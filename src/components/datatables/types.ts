@@ -1,10 +1,23 @@
+export interface PagingOptions {
+    type?: string;
+    numbers?: boolean;
+    buttons?: number;
+    boundaryNumbers?: boolean;
+}
+
+export interface LayoutOption {
+    paging?: PagingOptions;
+}
+
 export interface DataTableColumn {
     title: string;
-    data?: string;
+    data?: string | number;
     [key: string]: unknown;
 }
 
 export interface DataTableOptions {
+    processing?: boolean;
+    serverSide?: boolean;
     responsive?: boolean;
     ordering?: boolean;
     pageLength?: number;
@@ -26,11 +39,11 @@ export interface DataTableOptions {
     };
     searchPlaceholder?: string;
     layout?: {
-        topStart?: string | (() => HTMLElement);
-        topEnd?: string | (() => HTMLElement);
-        bottomStart?: string | (() => HTMLElement);
-        bottomEnd?: string | (() => HTMLElement);
-        [key: string]: string | (() => HTMLElement) | undefined;
+        topStart?: string | (() => HTMLElement) | LayoutOption;
+        topEnd?: string | (() => HTMLElement) | LayoutOption;
+        bottomStart?: string | (() => HTMLElement) | LayoutOption;
+        bottomEnd?: string | (() => HTMLElement) | LayoutOption;
+        [key: string]: string | (() => HTMLElement) | LayoutOption | undefined;
     };
     [key: string]: unknown;
 }

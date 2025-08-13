@@ -57,7 +57,10 @@ export const processLayout = (
 ): Record<string, unknown> => {
     const result: Record<string, unknown> = {};
 
-    for (const [key, value] of Object.entries(layoutConfig)) {
+    // Start with default layout if not provided
+    const finalLayout = { ...defaultLayout, ...layoutConfig };
+
+    for (const [key, value] of Object.entries(finalLayout)) {
         if (value === 'fluentPageLength') {
             result[key] = ControlRenderer({
                 component: shouldShowLengthSelect(options) ? (
