@@ -1,5 +1,8 @@
 "use client";
 
+import "datatables.net-dt/css/dataTables.dataTables.css";
+import "datatables.net-responsive-dt/css/responsive.dataTables.css";
+
 import { forwardRef, useRef, useImperativeHandle, useMemo, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Api } from 'datatables.net';

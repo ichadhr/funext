@@ -1,0 +1,139 @@
+$grid-columns: 12;
+$grid-gutter: 1.5em;
+$max-page-width: 1200px;
+$contained: 80%; // limits width of contained content, not XS,  optional
+
+$xs-breakpoint: 0;
+$sm-breakpoint: 576px;
+$md-breakpoint: 768px;
+$lg-breakpoint: 992px;
+$xl-breakpoint: 1200px;
+
+.container {
+    max-width: $max-page-width;
+    margin: 0 auto;
+}
+.container-fluid {
+    max-width: 100%;
+}
+.row {
+    display: grid;
+    grid-template-columns: repeat($grid-columns, 1fr); /*cols x freespace*/
+    grid-gap: $grid-gutter;
+}
+.contained {
+    max-width: $contained;
+    margin: 0 auto;
+}
+
+/* Build Bootstrap's Grid */
+@for $i from 1 through $grid-columns {
+    .col-xs-#{$i} {
+        grid-column: span ($i);
+    }
+}
+@for $i from 1 through $grid-columns {
+    .col-sm-#{$i} {
+        grid-column: span ($i);
+    }
+}
+@for $i from 1 through $grid-columns {
+    .col-md-#{$i} {
+        grid-column: span ($i);
+    }
+}
+@for $i from 1 through $grid-columns {
+    .col-lg-#{$i} {
+        grid-column: span ($i);
+    }
+}
+@for $i from 1 through $grid-columns {
+    .col-xl-#{$i} {
+        grid-column: span ($i);
+    }
+}
+
+/* Bootstrap grid break points */
+/* extra small */
+@media (max-width: $sm-breakpoint) {
+    @for $i from 1 through $grid-columns {
+        .col-xs-#{$i} {
+            grid-column: span ($i);
+        }
+    }
+    /* helper classes */
+    .hidden-xs {
+        display: none;
+    }
+    .container {
+        max-width: $max-page-width;
+    }
+}
+
+/* small */
+@media (min-width: $sm-breakpoint) and (max-width: $md-breakpoint) {
+    @for $i from 1 through $grid-columns {
+        .col-sm-#{$i} {
+            grid-column: span ($i);
+        }
+    }
+    /* helper classes */
+    .hidden-sm {
+        display: none;
+    }
+}
+
+/* medium */
+@media ($md-breakpoint) and (max-width: $lg-breakpoint) {
+    @for $i from 1 through $grid-columns {
+        .col-md-#{$i} {
+            grid-column: span ($i);
+        }
+    }
+    /* helper classes */
+    .hidden-md {
+        display: none;
+    }
+}
+
+/* large */
+@media (min-width: $lg-breakpoint) and (max-width: $xl-breakpoint) {
+    @for $i from 1 through $grid-columns {
+        .col-lg-#{$i} {
+            grid-column: span ($i);
+        }
+    }
+    /* helper classes */
+    .hidden-lg {
+        display: none;
+    }
+}
+
+/*extra large */
+@media (min-width: $xl-breakpoint) {
+    @for $i from 1 through $grid-columns {
+        .col-xl-#{$i} {
+            grid-column: span ($i);
+        }
+    }
+    /* helper classes */
+    .hidden-xl {
+        display: none;
+    }
+}
+
+// offset, push and pull require more work
+@for $i from 1 through $grid-columns {
+    .offset-#{$i} {
+        grid-column-start: ($i + 1);
+        grid-column-end: span ($grid-columns - $i);
+    }
+    .push-#{$i} {
+        grid-column-start: ($i + 1);
+        grid-column-end: span ($i);
+    }
+    .pull-#{$i} {
+        grid-column-start: ($grid-columns - $i);
+        grid-column-end: span ($i);
+    }
+}

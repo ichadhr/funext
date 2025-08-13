@@ -28,7 +28,9 @@ import {
   PersonRegular,
   PresenceAvailable12Filled
 } from "@fluentui/react-icons";
-import { FluentDataTable } from '@/components/datatables';
+import dynamic from 'next/dynamic';
+
+const FluentDataTable = dynamic(() => import('@/components/datatables').then(mod => mod.FluentDataTable), { ssr: false });
 
 // Define the employee data structure
 type Employee = {

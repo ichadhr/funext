@@ -2,7 +2,11 @@
 
 import { useRef, useState } from 'react';
 import { Card, Input } from "@fluentui/react-components";
-import { FluentDataTable } from '@/components/datatables';
+import dynamic from 'next/dynamic';
+import { Delete20Filled } from "@fluentui/react-icons";
+import { createRoot } from 'react-dom/client';
+
+const FluentDataTable = dynamic(() => import('@/components/datatables').then(mod => mod.FluentDataTable), { ssr: false });
 
 export default function DataTableDemo() {
   const [searchValue, setSearchValue] = useState('');
@@ -21,6 +25,7 @@ export default function DataTableDemo() {
     }
   };
 
+
   return (
     <div style={{ padding: "20px" }}>
       <Card style={{ padding: "20px", marginBottom: "20px" }}>
@@ -37,20 +42,47 @@ export default function DataTableDemo() {
         <FluentDataTable
           ref={tableRef}
           columns={[
-            { title: "Album ID" },
-            { title: "Album Title" },
-            { title: "Artist Name" },
-            { title: "Track Count" },
-            { title: "Genres" },
-            { title: "Min Price" },
-            { title: "Max Price" },
-            { title: "Avg Price" }
+            {
+              title: "Album ID",
+              data: "AlbumId",
+              render: (data: string) => data, // Return just the data
+              createdCell: (cell: HTMLElement, cellData: string) => {
+                // Use createRoot to render our component into the cell
+                const root = createRoot(cell);
+                root.render(
+                  <a href={`/sample/${cellData}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <Delete20Filled style={{ verticalAlign: 'middle', marginRight: '5px' }} />
+                    {cellData}
+                  </a>
+                );
+              }
+            },
+            { title: "Album Title", data: "AlbumTitle" },
+            { title: "Artist Name", data: "ArtistName" },
+            { title: "Track Count", data: "TrackCount" },
+            { title: "Genres", data: "Genres" },
+            {
+              title: "Min Price",
+              data: "MinPrice",
+              render: (data: string) => `$${parseFloat(data).toFixed(2)}`
+            },
+            {
+              title: "Max Price",
+              data: "MaxPrice",
+              render: (data: string) => `$${parseFloat(data).toFixed(2)}`
+            },
+            {
+              title: "Avg Price",
+              data: "AvgPrice",
+              render: (data: string) => `$${parseFloat(data).toFixed(2)}`
+            }
           ]}
           options={{
             processing: true,
             serverSide: true,
             responsive: true,
             ordering: true,
+            searching: true,
             language: {
               lengthMenu: "Display _MENU_ records",
               lengthLabels: {
@@ -63,7 +95,7 @@ export default function DataTableDemo() {
             lengthMenu: [10, 25, -1],
             ajax: {
               url: "http://localhost:8080/dt_json",
-              type: "POST"
+              type: "GET"
             }
           }}
         />
