@@ -2,20 +2,22 @@
 
 import { createRoot } from 'react-dom/client';
 import LengthSelect from './lengthSelect';
+import Search from './search';
 import { DataTableOptions } from './fluentDataTable';
+import { Api } from 'datatables.net-dt';
 
 /**
  * Default layout configuration for DataTables
  */
 export const defaultLayout = {
     topStart: 'fluentPageLength',
-    topEnd: 'search',
+    topEnd: 'fluentSearch',
     bottomStart: 'info',
     bottomEnd: 'paging'
 };
 
 /**
- * Process layout configuration to handle fluentPageLength
+ * Process layout configuration to handle fluentPageLength and fluentSearch
  * @param layoutConfig The layout configuration object
  * @param options DataTable options
  * @param tableRef Reference to the table
@@ -26,7 +28,7 @@ export const defaultLayout = {
 export const processLayout = (
     layoutConfig: Record<string, unknown>,
     options: DataTableOptions,
-    tableRef: React.RefObject<{ dt: () => import('datatables.net').Api<unknown> } | null>,
+    tableRef: React.RefObject<{ dt: () => Api<unknown> } | null>,
     textBefore: string,
     textAfter: string
 ) => {
@@ -34,6 +36,11 @@ export const processLayout = (
     const shouldShowLengthSelect = (options: DataTableOptions) => {
         return (options.lengthChange === true || options.lengthChange === undefined) &&
             (options.paging === true || options.paging === undefined);
+    };
+
+    // Determine if search should be shown
+    const shouldShowSearch = (options: DataTableOptions) => {
+        return options.searching !== false;
     };
 
     return Object.entries(layoutConfig).reduce((acc, [key, value]) => {
@@ -49,6 +56,29 @@ export const processLayout = (
                             textBefore={textBefore}
                             textAfter={textAfter}
                             lengthLabels={options.language?.lengthLabels}
+                        />
+                    );
+                }
+
+                return toolbar;
+            };
+        } else if (value === 'fluentSearch') {
+            acc[key] = function () {
+                const toolbar = document.createElement('div');
+                const root = createRoot(toolbar);
+
+                if (shouldShowSearch(options)) {
+                    root.render(
+                        <Search
+                            onSearchChange={(value) => {
+                                if (tableRef.current) {
+                                    const table = tableRef.current.dt();
+                                    if (table) {
+                                        table.search(value).draw();
+                                    }
+                                }
+                            }}
+                            placeholder={(options.searchPlaceholder as string) || ""}
                         />
                     );
                 }

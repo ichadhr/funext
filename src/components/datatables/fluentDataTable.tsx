@@ -5,7 +5,7 @@ import "datatables.net-responsive-dt/css/responsive.dataTables.css";
 
 import { forwardRef, useRef, useImperativeHandle, useMemo, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
-import { Api } from 'datatables.net';
+import { Api } from 'datatables.net-dt';
 import { defaultLayout, processLayout } from './dataTableOptions';
 
 // Define the props interface
@@ -21,6 +21,7 @@ export interface DataTableOptions {
   pageLength?: number;
   lengthChange?: boolean;
   paging?: boolean;
+  searching?: boolean;
   columns?: DataTableColumn[];
   ajax?: string | object | (() => void);
   language?: {
@@ -32,7 +33,9 @@ export interface DataTableOptions {
     lengthLabels?: {
       [key: string]: string;
     };
+    search?: string;
   };
+  searchPlaceholder?: string;
   [key: string]: unknown;
 }
 

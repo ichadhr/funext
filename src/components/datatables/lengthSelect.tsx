@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Select } from "@fluentui/react-components";
-import { Api } from 'datatables.net';
+import { Api } from 'datatables.net-dt';
 
 interface lengthSelectProps {
     tableRef: React.RefObject<{ dt: () => Api<unknown> } | null>;
@@ -61,12 +61,12 @@ const LengthSelect = ({ tableRef, textBefore = "", textAfter = "", lengthLabels 
     };
 
     return (
-        <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-            <span>{textBefore}</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '5px', margin: 0, padding: 0 }}>
+            <span style={{ margin: 0, padding: 0 }}>{textBefore}</span>
             <Select
                 value={length.toString()}
                 onChange={(e) => handleLengthChange(Number(e.target.value))}
-                style={{ width: 'auto', minWidth: '60px' }}
+                style={{ width: 'auto', minWidth: '60px'}}
                 aria-label="Page length select"
             >
                 {options.map(option => (
@@ -75,7 +75,7 @@ const LengthSelect = ({ tableRef, textBefore = "", textAfter = "", lengthLabels 
                     </option>
                 ))}
             </Select>
-            <span>{textAfter}</span>
+            <span style={{ margin: 0, padding: 0 }}>{textAfter}</span>
         </div>
     );
 };
