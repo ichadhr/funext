@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Select } from "@fluentui/react-components";
 import { Api } from 'datatables.net-dt';
 import React from 'react';
+import { useDataTableStyles } from '../styles';
 
 interface LengthSelectProps {
     tableRef: React.RefObject<{ dt: () => Api<unknown> } | null>;
@@ -57,17 +58,19 @@ const LengthSelect = ({ tableRef, textBefore = "", textAfter = "", lengthLabels 
         }
     };
 
+    const styles = useDataTableStyles();
+
     return (
         <div
-            style={{ display: 'flex', alignItems: 'center', gap: '5px', margin: 0, padding: 0 }}
+            className={styles.lengthSelectContainer}
             role="group"
             aria-label="Page length selection"
         >
-            <span style={{ margin: 0, padding: 0 }}>{textBefore}</span>
+            <span className={styles.lengthSelectLabel}>{textBefore}</span>
             <Select
                 value={length.toString()}
                 onChange={(e) => handleLengthChange(Number(e.target.value))}
-                style={{ width: 'auto', minWidth: '60px'}}
+                className={styles.lengthSelectInput}
                 aria-label="Page length select"
                 disabled={!tableRef.current}
             >
@@ -77,7 +80,7 @@ const LengthSelect = ({ tableRef, textBefore = "", textAfter = "", lengthLabels 
                     </option>
                 ))}
             </Select>
-            <span style={{ margin: 0, padding: 0 }}>{textAfter}</span>
+            <span className={styles.lengthSelectLabel}>{textAfter}</span>
         </div>
     );
 };

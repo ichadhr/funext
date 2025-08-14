@@ -62,6 +62,9 @@ const FluentDataTable = forwardRef<{ dt: () => Api<unknown> | undefined }, DataT
         ...columns,
         ...(options?.columns || [])
       ],
+            columnDefs: [
+        ...(options?.columnDefs || [])
+      ],
       layout: processLayout(
         options.layout ? options.layout as Record<string, unknown> : defaultLayout,
         options,

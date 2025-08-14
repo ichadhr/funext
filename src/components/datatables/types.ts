@@ -25,6 +25,11 @@ export interface DataTableOptions {
     paging?: boolean;
     searching?: boolean;
     columns?: DataTableColumn[];
+    columnDefs?: Array<{
+        targets: number | number[] | string;
+        className?: string;
+        [key: string]: unknown;
+    }>;
     ajax?: string | object | (() => void);
     language?: {
         lengthMenu?: string;

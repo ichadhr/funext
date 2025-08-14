@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { SearchBox, SearchBoxChangeEvent, InputOnChangeData } from "@fluentui/react-components";
+import { useDataTableStyles } from '../styles';
 
 interface SearchProps {
     onSearchChange: (value: string) => void;
@@ -18,13 +19,16 @@ export default function Search({ onSearchChange, placeholder = "", label = "Sear
         onSearchChange(value);
     };
 
+    const styles = useDataTableStyles();
+
     return (
-        <div style={{ display: 'flex', alignItems: 'center', gap: '5px', margin: 0, padding: 0 }}>
-            <span style={{ margin: 0, padding: 0 }}>{label}</span>
+        <div className={styles.searchContainer}>
+            <span className={styles.searchLabel}>{label}</span>
             <SearchBox
                 placeholder={placeholder}
                 value={searchValue}
                 onChange={handleSearchChange}
+                className={styles.searchInput}
             />
         </div>
     );

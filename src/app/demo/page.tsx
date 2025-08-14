@@ -18,6 +18,7 @@ export default function DataTableDemo() {
         <h2>DataTable Demo (AJAX Server-side)</h2>
         <FluentDataTable
           ref={tableRef}
+
           columns={[
             { title: "Album ID", data: "AlbumId" },
             { title: "Album Title", data: "AlbumTitle" },
@@ -42,9 +43,14 @@ export default function DataTableDemo() {
             {
               title: "Action",
               data: "AlbumId",
-              render: (data: string) => data, // Return just the data
+              className: "center-content",
+              orderable: false,
+              render: (data: string) => `action-${data}`, // Return a unique string identifier
               createdCell: (cell: HTMLElement, cellData: string) => {
-                // Use createRoot to render our component into the cell
+                // Clear any existing content
+                cell.innerHTML = '';
+
+                // Create React root and render component
                 const root = createRoot(cell);
                 root.render(
                   <a href={`/sample/${cellData}`} style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -53,8 +59,10 @@ export default function DataTableDemo() {
                 );
               }
             }
+
           ]}
           options={{
+            columnDefs: [],
             processing: true,
             serverSide: true,
             responsive: true,
@@ -63,8 +71,8 @@ export default function DataTableDemo() {
             language: {
               lengthMenu: "Show: _MENU_",
             },
-            pageLength: 25,
-            lengthMenu: [10, 25, -1],
+            pageLength: 5,
+            lengthMenu: [5, 10, 25, -1],
             ajax: {
               url: "http://localhost:8080/dt_json",
               type: "GET"
@@ -102,13 +110,15 @@ export default function DataTableDemo() {
               data: 8,
               render: (data: string) => data, // Return just the data
               createdCell: (cell: HTMLElement, cellData: string) => {
-                // Use createRoot to render our component into the cell
-                const root = createRoot(cell);
-                root.render(
-                  <a href={`/sample/${cellData}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                    <Delete20Filled style={{ verticalAlign: 'middle', marginRight: '5px' }} />
-                  </a>
-                );
+                // Only render on client side
+                if (typeof window !== 'undefined') {
+                  const root = createRoot(cell);
+                  root.render(
+                    <a href={`/sample/${cellData}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                      <Delete20Filled style={{ verticalAlign: 'middle', marginRight: '5px' }} />
+                    </a>
+                  );
+                }
               }
             }
           ]}
@@ -131,10 +141,7 @@ export default function DataTableDemo() {
             layout: {
               bottomEnd: {
                 paging: {
-                  type: 'simple',
-                  numbers: false,
-                  buttons: 3,
-                  boundaryNumbers: false
+                  type: 'full_numbers'
                 }
               }
             }

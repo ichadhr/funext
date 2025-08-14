@@ -2,7 +2,7 @@
 
 import { DataTableOptions } from '../types';
 import { ControlRenderer } from './control-renderer';
-import { LengthSelect, Search } from '../controls';
+import { LengthSelect, Search, Pagination } from '../controls';
 import { Api } from 'datatables.net-dt';
 import React from 'react';
 
@@ -15,7 +15,7 @@ export const defaultLayout = {
     topStart: 'fluentPageLength',
     topEnd: 'fluentSearch',
     bottomStart: 'info',
-    bottomEnd: 'paging'
+    bottomEnd: 'fluentPaging'
 };
 
 /**
@@ -38,8 +38,17 @@ export const shouldShowSearch = (options: DataTableOptions): boolean => {
 };
 
 /**
+ * Determines if the pagination control should be displayed based on DataTable options
+ * @param options - DataTable configuration options
+ * @returns boolean - True if pagination should be shown
+ */
+export const shouldShowPagination = (options: DataTableOptions): boolean => {
+    return options.paging !== false;
+};
+
+/**
  * Processes the layout configuration for DataTables, handling custom controls
- * like fluentPageLength and fluentSearch by rendering them with React.
+ * like fluentPageLength, fluentSearch, and fluentPaging by rendering them with React.
  *
  * @param layoutConfig - The layout configuration object from DataTables
  * @param options - DataTable configuration options
@@ -85,6 +94,14 @@ export const processLayout = (
                             }
                         },
                         placeholder: (options.searchPlaceholder as string) || ""
+                    })
+                ) : null
+            });
+        } else if (value === 'fluentPaging') {
+            result[key] = ControlRenderer({
+                component: shouldShowPagination(options) ? (
+                    React.createElement(Pagination, {
+                        tableRef
                     })
                 ) : null
             });

@@ -9,3 +9,24 @@
 .hidebottomborder {
     border-bottom: none;
 }
+
+/* Alignment utilities for DataTables */
+$alignments: (
+    left: left,
+    center: center,
+    right: right,
+);
+
+table.dataTable {
+    @each $name, $align in $alignments {
+        th.#{$name}-content,
+        td.#{$name}-content {
+            text-align: $align;
+        }
+    }
+}
+
+// for layout
+div.dt-container div.dt-layout-row {
+    margin: 1.5em 0;
+}
