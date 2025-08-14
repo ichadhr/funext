@@ -12,7 +12,7 @@ export interface DataTableOptions extends Config {
     /**
      * Extend the ajax property to properly include JQueryAjaxSettings
      */
-    ajax?: string | (AjaxSettings & { url?: string; type?: string });
+    ajax?: string | AjaxSettings | ((data: unknown, callback: (data: unknown) => void, settings: unknown) => void);
 }
 
 /**
