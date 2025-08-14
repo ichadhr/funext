@@ -18,50 +18,48 @@ export default function DataTableDemo() {
         <h2>DataTable Demo (AJAX Server-side)</h2>
         <FluentDataTable
           ref={tableRef}
-
-          columns={[
-            { title: "Album ID", data: "AlbumId" },
-            { title: "Album Title", data: "AlbumTitle" },
-            { title: "Artist Name", data: "ArtistName" },
-            { title: "Track Count", data: "TrackCount" },
-            { title: "Genres", data: "Genres" },
-            {
-              title: "Min Price",
-              data: "MinPrice",
-              render: (data: string) => `$${parseFloat(data).toFixed(2)}`
-            },
-            {
-              title: "Max Price",
-              data: "MaxPrice",
-              render: (data: string) => `$${parseFloat(data).toFixed(2)}`
-            },
-            {
-              title: "Avg Price",
-              data: "AvgPrice",
-              render: (data: string) => `$${parseFloat(data).toFixed(2)}`
-            },
-            {
-              title: "Action",
-              data: "AlbumId",
-              className: "center-content",
-              orderable: false,
-              render: (data: string) => `action-${data}`, // Return a unique string identifier
-              createdCell: (cell: HTMLElement, cellData: string) => {
-                // Clear any existing content
-                cell.innerHTML = '';
-
-                // Create React root and render component
-                const root = createRoot(cell);
-                root.render(
-                  <a href={`/sample/${cellData}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                    <Delete20Filled style={{ verticalAlign: 'middle', marginRight: '5px' }} />
-                  </a>
-                );
-              }
-            }
-
-          ]}
           options={{
+            columns: [
+              { title: "Album ID", data: "AlbumId" },
+              { title: "Album Title", data: "AlbumTitle" },
+              { title: "Artist Name", data: "ArtistName" },
+              { title: "Track Count", data: "TrackCount" },
+              { title: "Genres", data: "Genres" },
+              {
+                title: "Min Price",
+                data: "MinPrice",
+                render: (data: string) => `$${parseFloat(data).toFixed(2)}`
+              },
+              {
+                title: "Max Price",
+                data: "MaxPrice",
+                render: (data: string) => `$${parseFloat(data).toFixed(2)}`
+              },
+              {
+                title: "Avg Price",
+                data: "AvgPrice",
+                render: (data: string) => `$${parseFloat(data).toFixed(2)}`
+              },
+              {
+                title: "Action",
+                data: "AlbumId",
+                className: "center-content",
+                orderable: false,
+                render: (data: string) => `action-${data}`, // Return a unique string identifier
+                createdCell: (cell: HTMLElement, cellData: string) => {
+                  // Clear any existing content
+                  cell.innerHTML = '';
+        
+                  // Create React root and render component
+                  const root = createRoot(cell);
+                  root.render(
+                    <a href={`/sample/${cellData}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                      <Delete20Filled style={{ verticalAlign: 'middle', marginRight: '5px' }} />
+                    </a>
+                  );
+                }
+              }
+            ],
             columnDefs: [],
             processing: true,
             serverSide: true,
@@ -70,6 +68,8 @@ export default function DataTableDemo() {
             searching: true,
             language: {
               lengthMenu: "Show: _MENU_",
+              search: "Filter records:",
+              searchPlaceholder: "Type to search..."
             },
             pageLength: 5,
             lengthMenu: [5, 10, 25, -1],
@@ -84,45 +84,45 @@ export default function DataTableDemo() {
       <Card style={{ padding: "20px", marginBottom: "20px" }}>
         <h2>DataTable Demo (Local Data)</h2>
         <FluentDataTable
-          columns={[
-            { title: "Album ID", data: 0 },
-            { title: "Album Title", data: 1 },
-            { title: "Artist Name", data: 2 },
-            { title: "Track Count", data: 3 },
-            { title: "Genres", data: 4 },
-            {
-              title: "Min Price",
-              data: 5,
-              render: (data: string) => `$${parseFloat(data).toFixed(2)}`
-            },
-            {
-              title: "Max Price",
-              data: 6,
-              render: (data: string) => `$${parseFloat(data).toFixed(2)}`
-            },
-            {
-              title: "Avg Price",
-              data: 7,
-              render: (data: string) => `$${parseFloat(data).toFixed(2)}`
-            },
-            {
-              title: "Action",
-              data: 8,
-              render: (data: string) => data, // Return just the data
-              createdCell: (cell: HTMLElement, cellData: string) => {
-                // Only render on client side
-                if (typeof window !== 'undefined') {
-                  const root = createRoot(cell);
-                  root.render(
-                    <a href={`/sample/${cellData}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                      <Delete20Filled style={{ verticalAlign: 'middle', marginRight: '5px' }} />
-                    </a>
-                  );
+          options={{
+            columns: [
+              { title: "Album ID", data: 0 },
+              { title: "Album Title", data: 1 },
+              { title: "Artist Name", data: 2 },
+              { title: "Track Count", data: 3 },
+              { title: "Genres", data: 4 },
+              {
+                title: "Min Price",
+                data: 5,
+                render: (data: string) => `$${parseFloat(data).toFixed(2)}`
+              },
+              {
+                title: "Max Price",
+                data: 6,
+                render: (data: string) => `$${parseFloat(data).toFixed(2)}`
+              },
+              {
+                title: "Avg Price",
+                data: 7,
+                render: (data: string) => `$${parseFloat(data).toFixed(2)}`
+              },
+              {
+                title: "Action",
+                data: 8,
+                render: (data: string) => data, // Return just the data
+                createdCell: (cell: HTMLElement, cellData: string) => {
+                  // Only render on client side
+                  if (typeof window !== 'undefined') {
+                    const root = createRoot(cell);
+                    root.render(
+                      <a href={`/sample/${cellData}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                        <Delete20Filled style={{ verticalAlign: 'middle', marginRight: '5px' }} />
+                      </a>
+                    );
+                  }
                 }
               }
-            }
-          ]}
-          options={{
+            ],
             processing: true,
             responsive: true,
             ordering: true,
@@ -145,7 +145,6 @@ export default function DataTableDemo() {
                 }
               }
             }
-
           }}
         />
       </Card>

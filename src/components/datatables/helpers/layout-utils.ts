@@ -93,7 +93,8 @@ export const processLayout = (
                                 }
                             }
                         },
-                        placeholder: (options.searchPlaceholder as string) || ""
+                        placeholder: options.language?.searchPlaceholder || "",
+                        label: options.language?.search || "Search:"
                     })
                 ) : null
             });

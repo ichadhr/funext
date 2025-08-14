@@ -1,61 +1,36 @@
-export interface PagingOptions {
-    type?: string;
-    numbers?: boolean;
-    buttons?: number;
-    boundaryNumbers?: boolean;
+// Import official DataTables types
+import { Config, ConfigColumns, ConfigColumnDefs, AjaxSettings } from 'datatables.net';
+
+/**
+ * Extend DataTables Config interface to include our custom options
+ */
+export interface DataTableOptions extends Config {
+    // Our custom options can be added here
+    // For now, we'll use the standard DataTables options
+    // This interface extends Config to inherit all DataTables options
+
+    /**
+     * Extend the ajax property to properly include JQueryAjaxSettings
+     */
+    ajax?: string | (AjaxSettings & { url?: string; type?: string });
 }
 
-export interface LayoutOption {
-    paging?: PagingOptions;
-}
+/**
+ * Use the official DataTables column definition
+ * We can extend this in the future if we need custom properties
+ */
+export type DataTableColumn = ConfigColumns;
 
-export interface DataTableColumn {
-    title: string;
-    data?: string | number;
-    [key: string]: unknown;
-}
+/**
+ * Use the official DataTables column definition for columnDefs
+ * We can extend this in the future if we need custom properties
+ */
+export type DataTableColumnDefs = ConfigColumnDefs;
 
-export interface DataTableOptions {
-    processing?: boolean;
-    serverSide?: boolean;
-    responsive?: boolean;
-    ordering?: boolean;
-    pageLength?: number;
-    lengthChange?: boolean;
-    paging?: boolean;
-    searching?: boolean;
-    columns?: DataTableColumn[];
-    columnDefs?: Array<{
-        targets: number | number[] | string;
-        className?: string;
-        [key: string]: unknown;
-    }>;
-    ajax?: string | object | (() => void);
-    language?: {
-        lengthMenu?: string;
-        entries?: string | {
-            _: string;
-            [key: number]: string;
-        };
-        lengthLabels?: {
-            [key: string]: string;
-        };
-        search?: string;
-    };
-    searchPlaceholder?: string;
-    layout?: {
-        topStart?: string | (() => HTMLElement) | LayoutOption;
-        topEnd?: string | (() => HTMLElement) | LayoutOption;
-        bottomStart?: string | (() => HTMLElement) | LayoutOption;
-        bottomEnd?: string | (() => HTMLElement) | LayoutOption;
-        [key: string]: string | (() => HTMLElement) | LayoutOption | undefined;
-    };
-    [key: string]: unknown;
-}
-
+/**
+ * Props for our FluentDataTable component
+ */
 export interface DataTableProps {
-    data?: (string | number | boolean)[][];
-    columns?: DataTableColumn[];
-    options?: DataTableOptions;
-    className?: string;
+    data?: Array<Record<string, unknown>>;
+        options?: DataTableOptions;
 }

@@ -152,17 +152,17 @@ export default function Index() {
       <Card style={{ padding: "20px" }}>
         <h2>Album Data (DataTables with AJAX)</h2>
         <FluentDataTable
-          columns={[
-            { title: "Album ID" },
-            { title: "Album Title" },
-            { title: "Artist Name" },
-            { title: "Track Count" },
-            { title: "Genres" },
-            { title: "Min Price" },
-            { title: "Max Price" },
-            { title: "Avg Price" }
-          ]}
           options={{
+            columns: [
+              { title: "Album ID" },
+              { title: "Album Title" },
+              { title: "Artist Name" },
+              { title: "Track Count" },
+              { title: "Genres" },
+              { title: "Min Price" },
+              { title: "Max Price" },
+              { title: "Avg Price" }
+            ],
             processing: true,
             serverSide: true,
             responsive: true,

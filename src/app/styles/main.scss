@@ -11,19 +11,19 @@
 }
 
 /* Alignment utilities for DataTables */
-$alignments: (
-    left: left,
-    center: center,
-    right: right,
-);
+table.dataTable th.left-content,
+table.dataTable td.left-content {
+    text-align: left;
+}
 
-table.dataTable {
-    @each $name, $align in $alignments {
-        th.#{$name}-content,
-        td.#{$name}-content {
-            text-align: $align;
-        }
-    }
+table.dataTable th.center-content,
+table.dataTable td.center-content {
+    text-align: center;
+}
+
+table.dataTable th.right-content,
+table.dataTable td.right-content {
+    text-align: right;
 }
 
 // for layout

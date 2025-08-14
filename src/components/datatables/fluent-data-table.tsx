@@ -28,9 +28,7 @@ const DataTableComponent = dynamic(
 
 const FluentDataTable = forwardRef<{ dt: () => Api<unknown> | undefined }, DataTableProps>(({
   data,
-  columns = [],
-  options = {},
-  className = "display"
+  options = {}
 }, ref) => {
   const tableRef = useRef<{ dt: () => Api<unknown> } | null>(null);
   const [isClient, setIsClient] = useState(false);
@@ -49,31 +47,25 @@ const FluentDataTable = forwardRef<{ dt: () => Api<unknown> | undefined }, DataT
     return [parts[0] || "", parts[1] || ""];
   };
 
-  const mergedOptions = useMemo(() => {
-    const [textBefore, textAfter] = parseLengthMenuText(options.language?.lengthMenu);
-
-    return {
-      responsive: true,
-      ordering: true,
-      pageLength: 10,
-      lengthChange: true,
-      ...options,
-      columns: [
-        ...columns,
-        ...(options?.columns || [])
-      ],
-            columnDefs: [
-        ...(options?.columnDefs || [])
-      ],
-      layout: processLayout(
-        options.layout ? options.layout as Record<string, unknown> : defaultLayout,
-        options,
-        tableRef,
-        textBefore,
-        textAfter
-      )
-    };
-  }, [options, columns]);
+  const processedOptions = useMemo(() => {
+      const [textBefore, textAfter] = parseLengthMenuText(options?.language?.lengthMenu);
+  
+      return {
+        responsive: true,
+        ordering: true,
+        pageLength: 10,
+        lengthChange: true,
+        ...options,
+        columnDefs: options?.columnDefs || [],
+        layout: processLayout(
+          options.layout ? options.layout as Record<string, unknown> : defaultLayout,
+          options,
+          tableRef,
+          textBefore,
+          textAfter
+        )
+      };
+    }, [options]);
 
   const shouldUseData = data !== undefined && data !== null;
 
@@ -85,8 +77,8 @@ const FluentDataTable = forwardRef<{ dt: () => Api<unknown> | undefined }, DataT
     <DataTableComponent
       ref={tableRef}
       {...(shouldUseData ? { data } : {})}
-      className={className}
-      options={mergedOptions}
+      className="display"
+      options={processedOptions}
     />
   );
 });
