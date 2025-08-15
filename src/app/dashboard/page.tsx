@@ -57,7 +57,17 @@ const useStyles = makeStyles({
     },
 
     sidebar: {
-        backgroundColor: tokens.colorNeutralBackground4
+        backgroundColor: tokens.colorNeutralBackground4,
+        transitionProperty: 'all',
+        transitionDuration: '300ms',
+        transitionTimingFunction: 'ease',
+        overflow: 'hidden',
+        '&.expanded': {
+            width: '260px'
+        },
+        '&.collapsed': {
+            width: tokens.spacingHorizontalXXL
+        }
     },
 
     flex: {
@@ -73,16 +83,63 @@ const useStyles = makeStyles({
     },
 
     main: {
+        width: '100%',
         borderRadius: tokens.borderRadiusLarge,
         boxShadow: tokens.shadow2,
-        border: tokens.colorTransparentStroke
+        border: tokens.colorTransparentStroke,
+        transition: 'width 0.3s ease',
+        '&.expanded': {
+            width: '260px'
+        },
+        '&.collapsed': {
+            width: tokens.spacingHorizontalXXL
+        }
+
     },
 
     nav: {
-        minWidth: "260px",
-    }
-});
+        width: "260px",
+    },
 
+    gap1: {
+        gap: tokens.spacingHorizontalXS
+    },
+
+    gap0: {
+        gap: tokens.spacingHorizontalNone
+    },
+
+    padVerticalSection: {
+        paddingTop: tokens.spacingVerticalXXL,
+        paddingBottom: tokens.spacingVerticalXXL
+    },
+
+    marRHorizontalMain: {
+        marginRight: tokens.spacingHorizontalXXL
+    },
+
+    fullHeight: {
+        minHeight: '100vh'
+    },
+
+    itemsCenter: {
+        alignItems: 'center'
+    },
+
+    breadcrumb: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: `${tokens.spacingVerticalL} ${tokens.spacingHorizontalS}`
+    },
+    breadcrumbLeft: {
+        padding: tokens.spacingHorizontalXXL
+    },
+    breadcrumbRight: {
+        paddingRight: tokens.spacingHorizontalL
+    }
+
+});
 
 const path = "#";
 const CloseSidebar = bundleIcon(ArrowExportRtlFilled, GridDotsFilled);
@@ -91,20 +148,36 @@ const Dashboard = bundleIcon(Board20Filled, Board20Regular);
 
 export default function Page() {
     const styles = useStyles();
+
     const [isSidebarVisible, setIsSidebarVisible] = React.useState(true);
 
     // Tabster prop used to restore focus to the navigation trigger for overlay nav drawers
     const restoreFocusTargetAttributes = useRestoreFocusTarget();
-
+    console.log(tokens.spacingHorizontalXXL);
     return (
-        <section className={`${mergeClasses(styles.flex, isSidebarVisible ? 'gap-1' : 'gap-0', 'h-screen', 'py-7', styles.sidebar)}`}>
-            {/* Sidebar with Fluent UI Nav */}
-            <aside className={`${mergeClasses(styles.flex, styles.flexDirection)}`}>
+        <section
+            className={mergeClasses(
+                styles.flex,
+                styles.fullHeight,
+                styles.padVerticalSection,
+                styles.bgBody,
+                isSidebarVisible ? styles.gap1 : styles.gap0
+            )}
+        >
+            {/* Sidebar */}
+            <aside
+                className={mergeClasses(
+                    styles.flex,
+                    styles.flexDirection,
+                    styles.sidebar,
+                    isSidebarVisible ? 'expanded' : 'collapsed',
+                    // 'shrink-0' // prevent content from affecting width
+                )}
+            >
                 <NavDrawer
                     defaultSelectedValue="1"
                     open={isSidebarVisible}
                     type="inline"
-                    className={styles.nav}
                 >
                     <NavDrawerHeader>
                         <AppItem
@@ -152,67 +225,69 @@ export default function Page() {
                 </NavDrawer>
             </aside>
 
-            {/* Main Content Area - Rounded and floating */}
-            <main className={`${mergeClasses(isSidebarVisible ? 'mr-7' : 'mx-7', styles.flex, styles.flex1, styles.flexDirection, styles.bgContent, styles.main)}`}>
-                {/* Breadcrumb */}
-                <div className="px-5 pt-3">
-                    <Toolbar className="flex items-center gap-2">
-                        <Tooltip
-                            content={isSidebarVisible ? "Close Navigation" : "Open Navigation"}
-                            relationship="description"
-                            withArrow
-                        >
-                            <ToolbarButton
-                                aria-label="toggle sidebar"
-                                icon={isSidebarVisible ? <CloseSidebar /> : <OpenSidebar />}
-                                onClick={() => setIsSidebarVisible(!isSidebarVisible)}
-                                {...restoreFocusTargetAttributes}
-                            />
-                        </Tooltip>
-
-                        <ToolbarDivider />
-
-                        <Breadcrumb aria-label="Breadcrumb default example">
-                            <BreadcrumbItem>
-                                <BreadcrumbButton href={path}>
-                                    Item 1
-                                </BreadcrumbButton>
-                            </BreadcrumbItem>
-                            <BreadcrumbDivider />
-                            <BreadcrumbItem>
-                                <BreadcrumbButton href={path}>
-                                    Item 2
-                                </BreadcrumbButton>
-                            </BreadcrumbItem>
-                            <BreadcrumbDivider />
-                            <BreadcrumbItem>
-                                <BreadcrumbButton href={path}>
-                                    Item 3
-                                </BreadcrumbButton>
-                            </BreadcrumbItem>
-                            <BreadcrumbDivider />
-                            <BreadcrumbItem>
-                                <BreadcrumbButton href={path} current>
-                                    Item 4
-                                </BreadcrumbButton>
-                            </BreadcrumbItem>
-                        </Breadcrumb>
-                    </Toolbar>
+            {/* Main Content */}
+            <main
+                className={mergeClasses(
+                    styles.flex,
+                    styles.flex1,
+                    styles.flexDirection,
+                    styles.bgContent,
+                    styles.main,
+                    styles.marRHorizontalMain,
+                    isSidebarVisible ? 'expanded' : 'collapsed'
+                )}
+            >
+                {/* Toolbar & Breadcrumb */}
+                <div className={styles.breadcrumb}>
+                    <div className={mergeClasses(styles.flex, styles.itemsCenter, styles.gap1)}>
+                        <Toolbar>
+                            <Tooltip
+                                content={isSidebarVisible ? "Close Navigation" : "Open Navigation"}
+                                relationship="description"
+                                withArrow
+                            >
+                                <ToolbarButton
+                                    aria-label="toggle sidebar"
+                                    icon={isSidebarVisible ? <CloseSidebar /> : <OpenSidebar />}
+                                    onClick={() => setIsSidebarVisible(!isSidebarVisible)}
+                                    {...restoreFocusTargetAttributes}
+                                />
+                            </Tooltip>
+                            <ToolbarDivider />
+                            <Breadcrumb aria-label="Breadcrumb default example">
+                                <BreadcrumbItem>
+                                    <BreadcrumbButton href={path}>Item 1</BreadcrumbButton>
+                                </BreadcrumbItem>
+                                <BreadcrumbDivider />
+                                <BreadcrumbItem>
+                                    <BreadcrumbButton href={path}>Item 2</BreadcrumbButton>
+                                </BreadcrumbItem>
+                                <BreadcrumbDivider />
+                                <BreadcrumbItem>
+                                    <BreadcrumbButton href={path}>Item 3</BreadcrumbButton>
+                                </BreadcrumbItem>
+                                <BreadcrumbDivider />
+                                <BreadcrumbItem>
+                                    <BreadcrumbButton href={path} current>Item 4</BreadcrumbButton>
+                                </BreadcrumbItem>
+                            </Breadcrumb>
+                        </Toolbar></div>
+                    <div className={mergeClasses(styles.flex, styles.itemsCenter, styles.gap1, styles.breadcrumbRight)}>Lorem ipsum (right section)</div>
                 </div>
 
                 {/* Content Area */}
-                <div className="p-5 flex-1">
+                <div className="px-5 pt-1 pb-5 flex-1">
                     <div className="flex flex-col gap-4 h-full">
                         <div className="grid auto-rows-min gap-4 md:grid-cols-3">
                             <div className="bg-muted/50 aspect-video rounded-lg"></div>
                             <div className="bg-muted/50 aspect-video rounded-lg"></div>
                             <div className="bg-muted/50 aspect-video rounded-lg"></div>
                         </div>
-
                         <div className="bg-muted/50 flex-1 rounded-lg"></div>
                     </div>
                 </div>
             </main>
         </section>
+
     )
 }
