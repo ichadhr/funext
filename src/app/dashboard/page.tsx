@@ -57,10 +57,11 @@ const useStyles = makeStyles({
 
     wrapperSection: {
         display: 'flex',
-        minHeight: '100vh',
+        height: '100vh',
         paddingTop: tokens.spacingVerticalXXL,
         paddingBottom: tokens.spacingVerticalXXL,
-        backgroundColor: tokens.colorNeutralBackground4
+        backgroundColor: tokens.colorNeutralBackground4,
+        overflow: 'hidden'
     },
 
     wrapperSidebar: {
@@ -125,7 +126,7 @@ const useStyles = makeStyles({
         paddingTop: tokens.spacingVerticalS
     },
 
-    wrapperContentAre: {
+    wrapperContentArea: {
         display: 'flex',
         flexDirection: 'column',
         gap: tokens.spacingVerticalXL,
@@ -362,7 +363,7 @@ AppToolbar.displayName = 'AppToolbar';
 // ========================
 const ContentArea = React.memo<ContentArea>(({ styles }) => (
     <div className={styles.rowContentArea}>
-        <div className={styles.wrapperContentAre}>
+        <div className={styles.wrapperContentArea}>
             <div className={styles.gridContainer}>
                 <div className={styles.content3Container}></div>
                 <div className={styles.content3Container}></div>

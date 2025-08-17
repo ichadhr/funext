@@ -1,6 +1,5 @@
 const config = {
   plugins: {
-    "@tailwindcss/postcss": {},
     'postcss-flexbugs-fixes': {},
     'postcss-preset-env': {
       autoprefixer: {
@@ -9,8 +8,7 @@ const config = {
       stage: 3,
       features: {
         'custom-properties': false,
-      },
-      browsers: [">0.3%", "not dead", "not op_mini all"],
+      }
     }
   },
 };
