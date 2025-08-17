@@ -1,27 +1,51 @@
 "use client"
 
 // ========================
-// TypeScript Interfaces
+// TypeScript Interfaces & Types
 // ========================
+interface NavigationItem {
+    id: string;
+    label: string;
+    icon: string;
+    href?: string;
+    target?: string;
+    subItems?: NavigationSubItem[];
+}
+
+interface NavigationSubItem {
+    id: string;
+    label: string;
+    href: string;
+}
+
+interface NavigationSection {
+    title?: string;
+    items: NavigationItem[];
+    hasDivider?: boolean;
+}
+
+interface StyleClasses {
+    [key: string]: string;
+}
+
 interface SidebarProps {
     isSidebarVisible: boolean;
-    styles: ReturnType<ReturnType<typeof makeStyles>>;
+    styles: StyleClasses;
 }
 
 interface AppToolbarProps {
     isSidebarVisible: boolean;
     onToggleSidebar: () => void;
-    styles: ReturnType<ReturnType<typeof makeStyles>>;
+    styles: StyleClasses;
 }
 
-interface ContentArea {
-    styles: ReturnType<ReturnType<typeof makeStyles>>;
+interface ContentAreaProps {
+    styles: StyleClasses;
 }
 
 // ========================
 // Imports
 // ========================
-// React and Next.js imports
 import * as React from "react";
 import Image from "next/image";
 
@@ -39,9 +63,101 @@ import {
     Board20Filled, Board20Regular, ChevronDownRegular
 } from "@fluentui/react-icons";
 
-
+// ========================
+// Constants & Configuration
+// ========================
 const NAV_WIDTH = "260px";
 const NAV_COLLAPSED_WIDTH = tokens.spacingHorizontalXXL;
+const PATH = "#";
+
+const TRANSITION_CONFIG = {
+    property: 'all',
+    duration: '300ms',
+    timing: 'ease'
+} as const;
+
+// ========================
+// Icons (Created Once)
+// ========================
+const ICONS = {
+    closeSidebar: bundleIcon(ArrowExportRtlFilled, GridDotsFilled),
+    openSidebar: bundleIcon(ArrowExportFilled, GridDotsFilled),
+    dashboard: bundleIcon(Board20Filled, Board20Regular)
+} as const;
+
+// ========================
+// Navigation Configuration
+// ========================
+const NAVIGATION_SECTIONS: NavigationSection[] = [
+    {
+        items: [
+            { id: "1", label: "Dashboard", icon: "dashboard", href: PATH },
+            { id: "2", label: "Announcements", icon: "dashboard", href: PATH },
+            { id: "3", label: "Employee Spotlight", icon: "dashboard", href: PATH },
+            { id: "4", label: "Profile Search", icon: "dashboard", href: PATH },
+            { id: "5", label: "Performance Reviews", icon: "dashboard", href: PATH }
+        ]
+    },
+    {
+        title: "Employee Management",
+        items: [
+            {
+                id: "6",
+                label: "Job Postings",
+                icon: "dashboard",
+                subItems: [
+                    { id: "7", label: "Openings", href: PATH },
+                    { id: "8", label: "Submissions", href: PATH }
+                ]
+            },
+            { id: "9", label: "Interviews", icon: "dashboard" }
+        ]
+    },
+    {
+        title: "Benefits",
+        items: [
+            { id: "10", label: "Health Plans", icon: "dashboard" },
+            {
+                id: "11",
+                label: "Retirement",
+                icon: "dashboard",
+                subItems: [
+                    { id: "13", label: "Plan Information", href: PATH },
+                    { id: "14", label: "Fund Performance", href: PATH }
+                ]
+            }
+        ]
+    },
+    {
+        title: "Learning",
+        items: [
+            { id: "15", label: "Training Programs", icon: "dashboard" },
+            {
+                id: "16",
+                label: "Career Development",
+                icon: "dashboard",
+                subItems: [
+                    { id: "17", label: "Career Paths", href: PATH },
+                    { id: "18", label: "Planning", href: PATH }
+                ]
+            }
+        ]
+    },
+    {
+        items: [
+            { id: "19", label: "Workforce Data", icon: "dashboard", target: "_blank" },
+            { id: "20", label: "Reports", icon: "dashboard", href: PATH }
+        ],
+        hasDivider: true
+    }
+];
+
+const BREADCRUMB_ITEMS = [
+    { label: "Item 1", href: PATH, current: false },
+    { label: "Item 2", href: PATH, current: false },
+    { label: "Item 3", href: PATH, current: false },
+    { label: "Item 4", href: PATH, current: true }
+] as const;
 
 // ========================
 // Styles
@@ -68,13 +184,19 @@ const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: tokens.colorNeutralBackground4,
-        transitionProperty: 'all',
-        transitionDuration: '300ms',
-        transitionTimingFunction: 'ease',
+        transitionProperty: TRANSITION_CONFIG.property,
+        transitionDuration: TRANSITION_CONFIG.duration,
+        transitionTimingFunction: TRANSITION_CONFIG.timing,
         overflow: 'hidden',
-        flexShrink: 0,
-        '&.expanded': { width: NAV_WIDTH },
-        '&.collapsed': { width: tokens.spacingHorizontalXXL }
+        flexShrink: 0
+    },
+
+    wrapperSidebarExpanded: {
+        width: NAV_WIDTH
+    },
+
+    wrapperSidebarCollapsed: {
+        width: tokens.spacingHorizontalXXL
     },
 
     wrapperMain: {
@@ -87,9 +209,17 @@ const useStyles = makeStyles({
         boxShadow: tokens.shadow2,
         border: tokens.colorTransparentStroke,
         marginRight: tokens.spacingHorizontalXXL,
-        transition: 'width 0.3s ease',
-        '&.expanded': { width: NAV_WIDTH },
-        '&.collapsed': { width: tokens.spacingHorizontalXXL }
+        transitionProperty: 'width',
+        transitionDuration: TRANSITION_CONFIG.duration,
+        transitionTimingFunction: TRANSITION_CONFIG.timing
+    },
+
+    wrapperMainExpanded: {
+        width: NAV_WIDTH
+    },
+
+    wrapperMainCollapsed: {
+        width: tokens.spacingHorizontalXXL
     },
 
     breadcrumb: {
@@ -140,6 +270,9 @@ const useStyles = makeStyles({
         '@media (min-width: 768px)': {
             gridTemplateColumns: 'repeat(3, 1fr)',
         },
+        '@media (max-width: 767px)': {
+            gridTemplateColumns: '1fr',
+        }
     },
 
     content3Container: {
@@ -152,29 +285,109 @@ const useStyles = makeStyles({
         flex: 1,
         backgroundColor: tokens.colorNeutralBackground4,
         borderRadius: tokens.borderRadiusLarge,
+        minHeight: '200px'
     },
 
+    // Responsive adjustments
+    responsiveSection: {
+        '@media (max-width: 768px)': {
+            paddingTop: tokens.spacingVerticalL,
+            paddingBottom: tokens.spacingVerticalL,
+        }
+    },
+
+    responsiveMain: {
+        '@media (max-width: 768px)': {
+            marginRight: tokens.spacingHorizontalL,
+        }
+    }
 });
 
 // ========================
-// Memoized Constants and Icons
+// Helper Functions
 // ========================
-const PATH = "#";
-const CloseSidebar = bundleIcon(ArrowExportRtlFilled, GridDotsFilled);
-const OpenSidebar = bundleIcon(ArrowExportFilled, GridDotsFilled);
-const Dashboard = bundleIcon(Board20Filled, Board20Regular);
+const getIconComponent = (iconName: string) => {
+    switch (iconName) {
+        case 'dashboard':
+            return <ICONS.dashboard />;
+        default:
+            return <ICONS.dashboard />;
+    }
+};
+
+// ========================
+// Navigation Renderer
+// ========================
+const NavigationRenderer = React.memo<{ sections: NavigationSection[] }>(({ sections }) => (
+    <>
+        {sections.map((section, sectionIndex) => (
+            <React.Fragment key={sectionIndex}>
+                {section.hasDivider && <NavDivider />}
+                {section.title && <NavSectionHeader>{section.title}</NavSectionHeader>}
+                {section.items.map((item) => (
+                    item.subItems ? (
+                        <NavCategory key={item.id} value={item.id}>
+                            <NavCategoryItem icon={getIconComponent(item.icon)}>
+                                {item.label}
+                            </NavCategoryItem>
+                            <NavSubItemGroup>
+                                {item.subItems.map((subItem) => (
+                                    <NavSubItem key={subItem.id} href={subItem.href} value={subItem.id}>
+                                        {subItem.label}
+                                    </NavSubItem>
+                                ))}
+                            </NavSubItemGroup>
+                        </NavCategory>
+                    ) : (
+                        <NavItem
+                            key={item.id}
+                            href={item.href}
+                            icon={getIconComponent(item.icon)}
+                            value={item.id}
+                            target={item.target}
+                        >
+                            {item.label}
+                        </NavItem>
+                    )
+                ))}
+            </React.Fragment>
+        ))}
+    </>
+));
+
+NavigationRenderer.displayName = 'NavigationRenderer';
+
+// ========================
+// Breadcrumb Items Component
+// ========================
+const BreadcrumbItems = React.memo(() => (
+    <>
+        {BREADCRUMB_ITEMS.map((item, index) => (
+            <React.Fragment key={index}>
+                <BreadcrumbItem>
+                    <BreadcrumbButton href={item.href} current={item.current}>
+                        {item.label}
+                    </BreadcrumbButton>
+                </BreadcrumbItem>
+                {index < BREADCRUMB_ITEMS.length - 1 && <BreadcrumbDivider />}
+            </React.Fragment>
+        ))}
+    </>
+));
+
+BreadcrumbItems.displayName = 'BreadcrumbItems';
 
 // ========================
 // Sidebar Component
 // ========================
 const Sidebar = React.memo<SidebarProps>(({ isSidebarVisible, styles }) => {
+    const sidebarClasses = React.useMemo(() => mergeClasses(
+        styles.wrapperSidebar,
+        isSidebarVisible ? styles.wrapperSidebarExpanded : styles.wrapperSidebarCollapsed
+    ), [styles, isSidebarVisible]);
+
     return (
-        <aside
-            className={mergeClasses(
-                styles.wrapperSidebar,
-                isSidebarVisible ? styles.navExpanded : styles.navCollapsed
-            )}
-        >
+        <aside className={sidebarClasses}>
             <NavDrawer
                 defaultSelectedValue="1"
                 defaultSelectedCategoryValue=""
@@ -184,93 +397,22 @@ const Sidebar = React.memo<SidebarProps>(({ isSidebarVisible, styles }) => {
                 multiple={false}
             >
                 <NavDrawerHeader>
-                    <AppItem
-                        as="a"
-                        href="#"
-                    >
-                        <Image priority={true} loading="eager" src="/fluent.svg" alt="Fluent Logo" width={163} height={29} />
+                    <AppItem as="a" href="#" aria-label="Fluent UI Logo">
+                        <Image
+                            priority={true}
+                            loading="eager"
+                            src="/fluent.svg"
+                            alt="Fluent Logo"
+                            width={163}
+                            height={29}
+                        />
                     </AppItem>
                 </NavDrawerHeader>
 
                 <div className={styles.navHeaderSpacing}></div>
 
                 <NavDrawerBody>
-                    <NavItem href={PATH} icon={<Dashboard />} value="1">
-                        Dashboard
-                    </NavItem>
-                    <NavItem href={PATH} icon={<Dashboard />} value="2">
-                        Announcements
-                    </NavItem>
-                    <NavItem href={PATH} icon={<Dashboard />} value="3">
-                        Employee Spotlight
-                    </NavItem>
-                    <NavItem icon={<Dashboard />} href={PATH} value="4">
-                        Profile Search
-                    </NavItem>
-                    <NavItem icon={<Dashboard />} href={PATH} value="5">
-                        Performance Reviews
-                    </NavItem>
-
-                    <NavSectionHeader>Employee Management</NavSectionHeader>
-                    <NavCategory value="6">
-                        <NavCategoryItem icon={<Dashboard />}>
-                            Job Postings
-                        </NavCategoryItem>
-                        <NavSubItemGroup>
-                            <NavSubItem href={PATH} value="7">
-                                Openings
-                            </NavSubItem>
-                            <NavSubItem href={PATH} value="8">
-                                Submissions
-                            </NavSubItem>
-                        </NavSubItemGroup>
-                    </NavCategory>
-                    <NavItem icon={<Dashboard />} value="9">
-                        Interviews
-                    </NavItem>
-
-                    <NavSectionHeader>Benefits</NavSectionHeader>
-                    <NavItem icon={<Dashboard />} value="10">
-                        Health Plans
-                    </NavItem>
-                    <NavCategory value="11">
-                        <NavCategoryItem icon={<Dashboard />} value="12">
-                            Retirement
-                        </NavCategoryItem>
-                        <NavSubItemGroup>
-                            <NavSubItem href={PATH} value="13">
-                                Plan Information
-                            </NavSubItem>
-                            <NavSubItem href={PATH} value="14">
-                                Fund Performance
-                            </NavSubItem>
-                        </NavSubItemGroup>
-                    </NavCategory>
-
-                    <NavSectionHeader>Learning</NavSectionHeader>
-                    <NavItem icon={<Dashboard />} value="15">
-                        Training Programs
-                    </NavItem>
-                    <NavCategory value="16">
-                        <NavCategoryItem icon={<Dashboard />}>
-                            Career Development
-                        </NavCategoryItem>
-                        <NavSubItemGroup>
-                            <NavSubItem href={PATH} value="17">
-                                Career Paths
-                            </NavSubItem>
-                            <NavSubItem href={PATH} value="18">
-                                Planning
-                            </NavSubItem>
-                        </NavSubItemGroup>
-                    </NavCategory>
-                    <NavDivider />
-                    <NavItem target="_blank" icon={<Dashboard />} value="19">
-                        Workforce Data
-                    </NavItem>
-                    <NavItem href={PATH} icon={<Dashboard />} value="20">
-                        Reports
-                    </NavItem>
+                    <NavigationRenderer sections={NAVIGATION_SECTIONS} />
                 </NavDrawerBody>
             </NavDrawer>
         </aside>
@@ -280,88 +422,93 @@ const Sidebar = React.memo<SidebarProps>(({ isSidebarVisible, styles }) => {
 Sidebar.displayName = 'Sidebar';
 
 // ========================
-// Breadcrumb Items
+// App Toolbar Component
 // ========================
-const BreadcrumbItems = React.memo(() => (
-    <>
-        <BreadcrumbItem>
-            <BreadcrumbButton href={PATH}>Item 1</BreadcrumbButton>
-        </BreadcrumbItem>
-        <BreadcrumbDivider />
-        <BreadcrumbItem>
-            <BreadcrumbButton href={PATH}>Item 2</BreadcrumbButton>
-        </BreadcrumbItem>
-        <BreadcrumbDivider />
-        <BreadcrumbItem>
-            <BreadcrumbButton href={PATH}>Item 3</BreadcrumbButton>
-        </BreadcrumbItem>
-        <BreadcrumbDivider />
-        <BreadcrumbItem>
-            <BreadcrumbButton href={PATH} current>Item 4</BreadcrumbButton>
-        </BreadcrumbItem>
-    </>
-));
+const AppToolbar = React.memo<AppToolbarProps>(({ isSidebarVisible, onToggleSidebar, styles }) => {
+    // Track if we're in the middle of a transition
+    const [isTransitioning, setIsTransitioning] = React.useState(false);
 
-BreadcrumbItems.displayName = 'BreadcrumbItems';
+    // Tooltip content - immediate for hover, delayed for transition
+    const getTooltipContent = () => {
+        if (isTransitioning) {
+            // During transition, keep the old text until animation completes
+            return !isSidebarVisible ? "Close Navigation" : "Open Navigation";
+        }
+        // Normal state - immediate update for hover
+        return isSidebarVisible ? "Close Navigation" : "Open Navigation";
+    };
 
-// ========================
-// App Toolbar
-// ========================
-const AppToolbar = React.memo<AppToolbarProps>(({ isSidebarVisible, onToggleSidebar, styles }) => (
-    <div className={styles.breadcrumb}>
-        <div className={styles.wrapperBreadcrumb}>
-            <div className={styles.breadcrumbLeft}>
-                <Toolbar>
-                    <Tooltip
-                        content={isSidebarVisible ? "Close Navigation" : "Open Navigation"}
-                        relationship="description"
-                        withArrow
-                    >
-                        <ToolbarButton
-                            aria-label="toggle sidebar"
-                            icon={isSidebarVisible ? <CloseSidebar /> : <OpenSidebar />}
-                            onClick={onToggleSidebar}
-                        />
-                    </Tooltip>
-                    <ToolbarDivider />
-                    <Breadcrumb aria-label="Breadcrumb default example">
-                        <BreadcrumbItems />
-                    </Breadcrumb>
-                </Toolbar>
-            </div>
-            <div className={styles.breadcrumbRight}>
-                <Menu positioning={{ autoSize: true }}>
-                    <MenuTrigger disableButtonEnhancement>
-                        <Button appearance="subtle">
-                            <div style={{ display: 'flex', alignItems: 'center' }}>
-                                <Persona
-                                    name="Kevin Sturgis"
-                                    secondaryText="Administrator"
-                                />
-                                <ChevronDownRegular style={{ marginLeft: '10px' }} />
-                            </div>
-                        </Button>
-                    </MenuTrigger>
+    const handleToggleSidebar = React.useCallback(() => {
+        setIsTransitioning(true);
+        onToggleSidebar();
 
-                    <MenuPopover>
-                        <MenuList>
-                            <MenuItem>Profile </MenuItem>
-                            <MenuItem>Logout</MenuItem>
-                            <MenuItem disabled>Statistic</MenuItem>
-                        </MenuList>
-                    </MenuPopover>
-                </Menu>
+        // Clear transition state after animation completes
+        setTimeout(() => {
+            setIsTransitioning(false);
+        }, 300); // Match CSS transition duration
+    }, [onToggleSidebar]);
+
+    const tooltipContent = getTooltipContent();
+
+    return (
+        <div className={styles.breadcrumb}>
+            <div className={styles.wrapperBreadcrumb}>
+                <div className={styles.breadcrumbLeft}>
+                    <Toolbar>
+                        <Tooltip
+                            content={tooltipContent}
+                            relationship="description"
+                            withArrow
+                        >
+                            <ToolbarButton
+                                aria-label={tooltipContent}
+                                icon={isSidebarVisible ? <ICONS.closeSidebar /> : <ICONS.openSidebar />}
+                                onClick={handleToggleSidebar}
+                            />
+                        </Tooltip>
+                        <ToolbarDivider />
+                        <Breadcrumb aria-label="Current page navigation">
+                            <BreadcrumbItems />
+                        </Breadcrumb>
+                    </Toolbar>
+                </div>
+                <div className={styles.breadcrumbRight}>
+                    <Menu positioning={{ autoSize: true }}>
+                        <MenuTrigger disableButtonEnhancement>
+                            <Button
+                                appearance="subtle"
+                                aria-label="User menu"
+                            >
+                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                    <Persona
+                                        name="Kevin Sturgis"
+                                        secondaryText="Administrator"
+                                    />
+                                    <ChevronDownRegular style={{ marginLeft: '10px' }} />
+                                </div>
+                            </Button>
+                        </MenuTrigger>
+
+                        <MenuPopover>
+                            <MenuList>
+                                <MenuItem>Profile</MenuItem>
+                                <MenuItem>Logout</MenuItem>
+                                <MenuItem disabled>Statistics</MenuItem>
+                            </MenuList>
+                        </MenuPopover>
+                    </Menu>
+                </div>
             </div>
         </div>
-    </div>
-));
+    );
+});
 
 AppToolbar.displayName = 'AppToolbar';
 
 // ========================
-// Content Area
+// Content Area Component
 // ========================
-const ContentArea = React.memo<ContentArea>(({ styles }) => (
+const ContentArea = React.memo<ContentAreaProps>(({ styles }) => (
     <div className={styles.rowContentArea}>
         <div className={styles.wrapperContentArea}>
             <div className={styles.gridContainer}>
@@ -377,26 +524,39 @@ const ContentArea = React.memo<ContentArea>(({ styles }) => (
 ContentArea.displayName = 'ContentArea';
 
 // ========================
+// Custom Hooks
+// ========================
+const useSidebarState = (initialState: boolean = true) => {
+    const [isSidebarVisible, setIsSidebarVisible] = React.useState(() => {
+        // Could be enhanced to read from localStorage or user preferences
+        return initialState;
+    });
+
+    const toggleSidebar = React.useCallback(() => {
+        setIsSidebarVisible(prev => !prev);
+    }, []);
+
+    return { isSidebarVisible, toggleSidebar };
+};
+
+// ========================
 // Main Component
 // ========================
 export default function Page() {
     const styles = useStyles();
-    const [isSidebarVisible, setIsSidebarVisible] = React.useState(true);
-
-    // Memoized toggle handler
-    const handleToggleSidebar = React.useCallback(() => {
-        setIsSidebarVisible(prev => !prev);
-    }, []);
+    const { isSidebarVisible, toggleSidebar } = useSidebarState(true);
 
     // Memoized class names
     const sectionClasses = React.useMemo(() => mergeClasses(
         styles.wrapperSection,
+        styles.responsiveSection,
         isSidebarVisible ? styles.gap1 : styles.gap0
     ), [styles, isSidebarVisible]);
 
     const mainClasses = React.useMemo(() => mergeClasses(
         styles.wrapperMain,
-        isSidebarVisible ? styles.navExpanded : styles.navCollapsed
+        styles.responsiveMain,
+        isSidebarVisible ? styles.wrapperMainExpanded : styles.wrapperMainCollapsed
     ), [styles, isSidebarVisible]);
 
     return (
@@ -409,7 +569,7 @@ export default function Page() {
             <main className={mainClasses}>
                 <AppToolbar
                     isSidebarVisible={isSidebarVisible}
-                    onToggleSidebar={handleToggleSidebar}
+                    onToggleSidebar={toggleSidebar}
                     styles={styles}
                 />
                 <ContentArea
