@@ -230,8 +230,10 @@ const useStyles = makeStyles({
 
     content: {
         flex: 1,
-        padding: tokens.spacingHorizontalXL,
-        paddingTop: tokens.spacingVerticalS
+        paddingLeft: tokens.spacingHorizontalXL,
+        paddingRight: tokens.spacingHorizontalXL,
+        paddingBottom: tokens.spacingHorizontalXL,
+        paddingTop: 0
     },
 
     contentWrapper: {
@@ -264,6 +266,12 @@ const useStyles = makeStyles({
         backgroundColor: tokens.colorNeutralBackground4,
         borderRadius: tokens.borderRadiusLarge,
         minHeight: '200px'
+    },
+    personaName: {
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        minWidth: '0px',
     }
 });
 
@@ -451,6 +459,7 @@ const AppToolbar: React.FC<AppToolbarProps> = ({ isOpen, onToggle, styles }) => 
                         <Button appearance="subtle" aria-label="User menu">
                             <div style={{ display: 'flex', alignItems: 'center' }}>
                                 <Persona
+                                    className={styles.personaName}
                                     name="Kevin Sturgis"
                                     secondaryText="Administrator"
                                 />
