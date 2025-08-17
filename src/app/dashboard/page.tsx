@@ -1,8 +1,36 @@
 "use client"
 
+import * as React from "react";
+import Image from "next/image";
+import {
+    Breadcrumb, BreadcrumbItem, BreadcrumbDivider, BreadcrumbButton,
+    NavDrawer, NavDrawerBody, NavDrawerHeader, NavItem, NavCategory,
+    NavCategoryItem, NavSubItemGroup, NavSubItem, NavDivider, AppItem,
+    NavSectionHeader, Menu, MenuTrigger, Button, MenuItem, MenuList,
+    MenuPopover, Persona, Toolbar, ToolbarDivider, ToolbarButton, Tooltip
+} from "@fluentui/react-components";
+import { tokens, makeStyles } from "@fluentui/react-components";
+import {
+    bundleIcon, GridDotsFilled, ArrowExportFilled, ArrowExportRtlFilled,
+    Board20Filled, Board20Regular, ChevronDownRegular
+} from "@fluentui/react-icons";
+
 // ========================
-// TypeScript Interfaces & Types
+// Constants
 // ========================
+const MOBILE_BREAKPOINT = 1024;
+const NAV_WIDTH = "260px";
+const PATH = "#";
+
+// ========================
+// Types
+// ========================
+interface NavigationSubItem {
+    id: string;
+    label: string;
+    href: string;
+}
+
 interface NavigationItem {
     id: string;
     label: string;
@@ -12,72 +40,14 @@ interface NavigationItem {
     subItems?: NavigationSubItem[];
 }
 
-interface NavigationSubItem {
-    id: string;
-    label: string;
-    href: string;
-}
-
 interface NavigationSection {
     title?: string;
     items: NavigationItem[];
     hasDivider?: boolean;
 }
 
-interface StyleClasses {
-    [key: string]: string;
-}
-
-interface SidebarProps {
-    isSidebarVisible: boolean;
-    styles: StyleClasses;
-}
-
-interface AppToolbarProps {
-    isSidebarVisible: boolean;
-    onToggleSidebar: () => void;
-    styles: StyleClasses;
-}
-
-interface ContentAreaProps {
-    styles: StyleClasses;
-}
-
 // ========================
-// Imports
-// ========================
-import * as React from "react";
-import Image from "next/image";
-
-// Fluent UI imports
-import {
-    Breadcrumb, BreadcrumbItem, BreadcrumbDivider, BreadcrumbButton,
-    NavDrawer, NavDrawerBody, NavDrawerHeader, NavItem, NavCategory,
-    NavCategoryItem, NavSubItemGroup, NavSubItem, NavDivider, AppItem,
-    NavSectionHeader, Menu, MenuTrigger, Button, MenuItem, MenuList,
-    MenuPopover, Persona, Toolbar, ToolbarDivider, ToolbarButton, Tooltip
-} from "@fluentui/react-components";
-import { tokens, makeStyles, mergeClasses } from "@fluentui/react-components";
-import {
-    bundleIcon, GridDotsFilled, ArrowExportFilled, ArrowExportRtlFilled,
-    Board20Filled, Board20Regular, ChevronDownRegular
-} from "@fluentui/react-icons";
-
-// ========================
-// Constants & Configuration
-// ========================
-const NAV_WIDTH = "260px";
-const NAV_COLLAPSED_WIDTH = tokens.spacingHorizontalXXL;
-const PATH = "#";
-
-const TRANSITION_CONFIG = {
-    property: 'all',
-    duration: '300ms',
-    timing: 'ease'
-} as const;
-
-// ========================
-// Icons (Created Once)
+// Icons
 // ========================
 const ICONS = {
     closeSidebar: bundleIcon(ArrowExportRtlFilled, GridDotsFilled),
@@ -86,7 +56,7 @@ const ICONS = {
 } as const;
 
 // ========================
-// Navigation Configuration
+// Configuration
 // ========================
 const NAVIGATION_SECTIONS: NavigationSection[] = [
     {
@@ -163,43 +133,63 @@ const BREADCRUMB_ITEMS = [
 // Styles
 // ========================
 const useStyles = makeStyles({
-    // Navigation styles
-    navSize: { width: NAV_WIDTH },
-    navHeaderSpacing: { marginBottom: tokens.spacingVerticalL },
-    navExpanded: { width: NAV_WIDTH },
-    navCollapsed: { width: NAV_COLLAPSED_WIDTH },
-    gap1: { gap: tokens.spacingHorizontalXS },
-    gap0: { gap: tokens.spacingHorizontalNone },
-
-    wrapperSection: {
+    section: {
         display: 'flex',
         height: '100vh',
         paddingTop: tokens.spacingVerticalXXL,
         paddingBottom: tokens.spacingVerticalXXL,
         backgroundColor: tokens.colorNeutralBackground4,
-        overflow: 'hidden'
+        overflow: 'hidden',
+        '@media (max-width: 768px)': {
+            paddingTop: tokens.spacingVerticalL,
+            paddingBottom: tokens.spacingVerticalL,
+        }
+    },
+    
+    sectionWithGap: {
+        gap: tokens.spacingHorizontalXS,
     },
 
-    wrapperSidebar: {
+    sidebar: {
         display: 'flex',
         flexDirection: 'column',
         backgroundColor: tokens.colorNeutralBackground4,
-        transitionProperty: TRANSITION_CONFIG.property,
-        transitionDuration: TRANSITION_CONFIG.duration,
-        transitionTimingFunction: TRANSITION_CONFIG.timing,
+        transitionProperty: 'width',
+        transitionDuration: '300ms',
+        transitionTimingFunction: 'ease',
         overflow: 'hidden',
         flexShrink: 0
     },
 
-    wrapperSidebarExpanded: {
+    sidebarExpanded: {
         width: NAV_WIDTH
     },
 
-    wrapperSidebarCollapsed: {
+    sidebarCollapsed: {
         width: tokens.spacingHorizontalXXL
     },
 
-    wrapperMain: {
+    navDrawer: {
+        width: NAV_WIDTH
+    },
+
+    navHeader: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: tokens.spacingHorizontalS,
+        paddingTop: tokens.spacingVerticalS,
+        paddingBottom: tokens.spacingVerticalS,
+        [`@media (max-width: ${MOBILE_BREAKPOINT}px)`]: {
+            paddingTop: tokens.spacingVerticalL,
+        },
+    },
+
+    navHeaderSpacing: {
+        marginBottom: tokens.spacingVerticalL
+    },
+
+    main: {
         display: 'flex',
         flex: 1,
         flexDirection: 'column',
@@ -209,20 +199,13 @@ const useStyles = makeStyles({
         boxShadow: tokens.shadow2,
         border: tokens.colorTransparentStroke,
         marginRight: tokens.spacingHorizontalXXL,
-        transitionProperty: 'width',
-        transitionDuration: TRANSITION_CONFIG.duration,
-        transitionTimingFunction: TRANSITION_CONFIG.timing
+        [`@media (max-width: ${MOBILE_BREAKPOINT}px)`]: {
+            marginRight: tokens.spacingHorizontalL,
+            marginLeft: tokens.spacingHorizontalL,
+        }
     },
 
-    wrapperMainExpanded: {
-        width: NAV_WIDTH
-    },
-
-    wrapperMainCollapsed: {
-        width: tokens.spacingHorizontalXXL
-    },
-
-    breadcrumb: {
+    toolbar: {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -230,40 +213,35 @@ const useStyles = makeStyles({
         paddingBottom: tokens.spacingVerticalS
     },
 
-    wrapperBreadcrumb: {
+    toolbarLeft: {
         width: '100%',
         display: 'flex',
         alignItems: 'center',
-        gap: tokens.spacingHorizontalXS
-    },
-
-    breadcrumbLeft: {
+        gap: tokens.spacingHorizontalXS,
         padding: tokens.spacingHorizontalS
     },
 
-    breadcrumbRight: {
+    toolbarRight: {
         display: 'flex',
         alignItems: 'center',
         paddingRight: tokens.spacingHorizontalL,
         marginLeft: 'auto',
     },
 
-    rowContentArea: {
+    content: {
         flex: 1,
-        paddingLeft: tokens.spacingHorizontalXL,
-        paddingRight: tokens.spacingHorizontalXL,
-        paddingBottom: tokens.spacingVerticalXL,
+        padding: tokens.spacingHorizontalXL,
         paddingTop: tokens.spacingVerticalS
     },
 
-    wrapperContentArea: {
+    contentWrapper: {
         display: 'flex',
         flexDirection: 'column',
         gap: tokens.spacingVerticalXL,
         minHeight: '100%'
     },
 
-    gridContainer: {
+    grid: {
         display: 'grid',
         gridAutoRows: 'min-content',
         gap: tokens.spacingHorizontalXL,
@@ -275,59 +253,87 @@ const useStyles = makeStyles({
         }
     },
 
-    content3Container: {
+    gridItem: {
         backgroundColor: tokens.colorNeutralBackground4,
         aspectRatio: '16 / 9',
         borderRadius: tokens.borderRadiusLarge,
     },
 
-    contentFullContainer: {
+    fullContainer: {
         flex: 1,
         backgroundColor: tokens.colorNeutralBackground4,
         borderRadius: tokens.borderRadiusLarge,
         minHeight: '200px'
-    },
-
-    // Responsive adjustments
-    responsiveSection: {
-        '@media (max-width: 768px)': {
-            paddingTop: tokens.spacingVerticalL,
-            paddingBottom: tokens.spacingVerticalL,
-        }
-    },
-
-    responsiveMain: {
-        '@media (max-width: 768px)': {
-            marginRight: tokens.spacingHorizontalL,
-        }
     }
 });
 
 // ========================
 // Helper Functions
 // ========================
-const getIconComponent = (iconName: string) => {
-    switch (iconName) {
-        case 'dashboard':
-            return <ICONS.dashboard />;
-        default:
-            return <ICONS.dashboard />;
-    }
+const getIconComponent = () => {
+    return <ICONS.dashboard />;
 };
 
 // ========================
-// Navigation Renderer
+// Hook for responsive sidebar management
 // ========================
-const NavigationRenderer = React.memo<{ sections: NavigationSection[] }>(({ sections }) => (
+const useSidebar = () => {
+    const [isMobile, setIsMobile] = React.useState(false); // Initialize to false on server
+    const [isOpen, setIsOpen] = React.useState(true); // Initialize to true on server
+
+    // Use a ref to store the latest isOpen value without making it a dependency
+    const isOpenRef = React.useRef(isOpen);
+    React.useEffect(() => {
+        isOpenRef.current = isOpen;
+    }, [isOpen]);
+
+    React.useEffect(() => {
+        // This effect runs only on the client after hydration
+        const handleResize = () => {
+            const currentIsMobile = window.innerWidth < MOBILE_BREAKPOINT;
+            setIsMobile(currentIsMobile);
+            // If resizing from large to small, collapse the sidebar
+            if (currentIsMobile && isOpenRef.current) { // Use ref here
+                setIsOpen(false);
+            }
+        };
+
+        // Set initial mobile state on client mount
+        setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
+        // Set initial sidebar visibility based on mobile state
+        if (window.innerWidth < MOBILE_BREAKPOINT) {
+            setIsOpen(false); // Collapsed on small screens initially on client
+        } else {
+            setIsOpen(true); // Use initial state for large screens
+        }
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []); // No dependencies like the original
+
+    const toggle = React.useCallback(() => {
+        setIsOpen(prev => !prev);
+    }, []);
+
+    return { isMobile, isOpen, toggle, setIsOpen };
+};
+
+// ========================
+// Components
+// ========================
+const NavigationContent = () => (
     <>
-        {sections.map((section, sectionIndex) => (
+        {NAVIGATION_SECTIONS.map((section, sectionIndex) => (
             <React.Fragment key={sectionIndex}>
                 {section.hasDivider && <NavDivider />}
                 {section.title && <NavSectionHeader>{section.title}</NavSectionHeader>}
                 {section.items.map((item) => (
                     item.subItems ? (
                         <NavCategory key={item.id} value={item.id}>
-                            <NavCategoryItem icon={getIconComponent(item.icon)}>
+                            <NavCategoryItem icon={getIconComponent()}>
                                 {item.label}
                             </NavCategoryItem>
                             <NavSubItemGroup>
@@ -342,7 +348,7 @@ const NavigationRenderer = React.memo<{ sections: NavigationSection[] }>(({ sect
                         <NavItem
                             key={item.id}
                             href={item.href}
-                            icon={getIconComponent(item.icon)}
+                            icon={getIconComponent()}
                             value={item.id}
                             target={item.target}
                         >
@@ -353,14 +359,9 @@ const NavigationRenderer = React.memo<{ sections: NavigationSection[] }>(({ sect
             </React.Fragment>
         ))}
     </>
-));
+);
 
-NavigationRenderer.displayName = 'NavigationRenderer';
-
-// ========================
-// Breadcrumb Items Component
-// ========================
-const BreadcrumbItems = React.memo(() => (
+const BreadcrumbContent = () => (
     <>
         {BREADCRUMB_ITEMS.map((item, index) => (
             <React.Fragment key={index}>
@@ -373,34 +374,33 @@ const BreadcrumbItems = React.memo(() => (
             </React.Fragment>
         ))}
     </>
-));
+);
 
-BreadcrumbItems.displayName = 'BreadcrumbItems';
+interface SidebarProps {
+    isMobile: boolean;
+    isOpen: boolean;
+    onOpenChange: (open: boolean) => void;
+    styles: ReturnType<typeof useStyles>;
+}
 
-// ========================
-// Sidebar Component
-// ========================
-const Sidebar = React.memo<SidebarProps>(({ isSidebarVisible, styles }) => {
-    const sidebarClasses = React.useMemo(() => mergeClasses(
-        styles.wrapperSidebar,
-        isSidebarVisible ? styles.wrapperSidebarExpanded : styles.wrapperSidebarCollapsed
-    ), [styles, isSidebarVisible]);
+const Sidebar: React.FC<SidebarProps> = ({ isMobile, isOpen, onOpenChange, styles }) => {
+    const sidebarClass = `${styles.sidebar} ${
+        !isMobile ? (isOpen ? styles.sidebarExpanded : styles.sidebarCollapsed) : ''
+    }`;
 
     return (
-        <aside className={sidebarClasses}>
+        <aside className={sidebarClass}>
             <NavDrawer
                 defaultSelectedValue="1"
-                defaultSelectedCategoryValue=""
-                open={isSidebarVisible}
-                type="inline"
-                className={styles.navSize}
-                multiple={false}
+                open={isOpen}
+                type={isMobile ? "overlay" : "inline"}
+                className={!isMobile ? styles.navDrawer : ''}
+                onOpenChange={(_, data) => onOpenChange(data.open)}
             >
-                <NavDrawerHeader>
+                <NavDrawerHeader className={isMobile ? styles.navHeader : ''}>
                     <AppItem as="a" href="#" aria-label="Fluent UI Logo">
                         <Image
-                            priority={true}
-                            loading="eager"
+                            priority
                             src="/fluent.svg"
                             alt="Fluent Logo"
                             width={163}
@@ -409,172 +409,107 @@ const Sidebar = React.memo<SidebarProps>(({ isSidebarVisible, styles }) => {
                     </AppItem>
                 </NavDrawerHeader>
 
-                <div className={styles.navHeaderSpacing}></div>
+                <div className={styles.navHeaderSpacing} />
 
                 <NavDrawerBody>
-                    <NavigationRenderer sections={NAVIGATION_SECTIONS} />
+                    <NavigationContent />
                 </NavDrawerBody>
             </NavDrawer>
         </aside>
     );
-});
+};
 
-Sidebar.displayName = 'Sidebar';
+interface AppToolbarProps {
+    isOpen: boolean;
+    onToggle: () => void;
+    styles: ReturnType<typeof useStyles>;
+}
 
-// ========================
-// App Toolbar Component
-// ========================
-const AppToolbar = React.memo<AppToolbarProps>(({ isSidebarVisible, onToggleSidebar, styles }) => {
-    // Track if we're in the middle of a transition
-    const [isTransitioning, setIsTransitioning] = React.useState(false);
-
-    // Tooltip content - immediate for hover, delayed for transition
-    const getTooltipContent = () => {
-        if (isTransitioning) {
-            // During transition, keep the old text until animation completes
-            return !isSidebarVisible ? "Close Navigation" : "Open Navigation";
-        }
-        // Normal state - immediate update for hover
-        return isSidebarVisible ? "Close Navigation" : "Open Navigation";
-    };
-
-    const handleToggleSidebar = React.useCallback(() => {
-        setIsTransitioning(true);
-        onToggleSidebar();
-
-        // Clear transition state after animation completes
-        setTimeout(() => {
-            setIsTransitioning(false);
-        }, 300); // Match CSS transition duration
-    }, [onToggleSidebar]);
-
-    const tooltipContent = getTooltipContent();
+const AppToolbar: React.FC<AppToolbarProps> = ({ isOpen, onToggle, styles }) => {
+    const tooltipContent = isOpen ? "Close Navigation" : "Open Navigation";
 
     return (
-        <div className={styles.breadcrumb}>
-            <div className={styles.wrapperBreadcrumb}>
-                <div className={styles.breadcrumbLeft}>
-                    <Toolbar>
-                        <Tooltip
-                            content={tooltipContent}
-                            relationship="description"
-                            withArrow
-                        >
-                            <ToolbarButton
-                                aria-label={tooltipContent}
-                                icon={isSidebarVisible ? <ICONS.closeSidebar /> : <ICONS.openSidebar />}
-                                onClick={handleToggleSidebar}
-                            />
-                        </Tooltip>
-                        <ToolbarDivider />
-                        <Breadcrumb aria-label="Current page navigation">
-                            <BreadcrumbItems />
-                        </Breadcrumb>
-                    </Toolbar>
-                </div>
-                <div className={styles.breadcrumbRight}>
-                    <Menu positioning={{ autoSize: true }}>
-                        <MenuTrigger disableButtonEnhancement>
-                            <Button
-                                appearance="subtle"
-                                aria-label="User menu"
-                            >
-                                <div style={{ display: 'flex', alignItems: 'center' }}>
-                                    <Persona
-                                        name="Kevin Sturgis"
-                                        secondaryText="Administrator"
-                                    />
-                                    <ChevronDownRegular style={{ marginLeft: '10px' }} />
-                                </div>
-                            </Button>
-                        </MenuTrigger>
-
-                        <MenuPopover>
-                            <MenuList>
-                                <MenuItem>Profile</MenuItem>
-                                <MenuItem>Logout</MenuItem>
-                                <MenuItem disabled>Statistics</MenuItem>
-                            </MenuList>
-                        </MenuPopover>
-                    </Menu>
-                </div>
+        <div className={styles.toolbar}>
+            <div className={styles.toolbarLeft}>
+                <Toolbar>
+                    <Tooltip content={tooltipContent} relationship="description" withArrow>
+                        <ToolbarButton
+                            aria-label={tooltipContent}
+                            icon={isOpen ? <ICONS.closeSidebar /> : <ICONS.openSidebar />}
+                            onClick={onToggle}
+                        />
+                    </Tooltip>
+                    <ToolbarDivider />
+                    <Breadcrumb aria-label="Current page navigation">
+                        <BreadcrumbContent />
+                    </Breadcrumb>
+                </Toolbar>
+            </div>
+            <div className={styles.toolbarRight}>
+                <Menu positioning={{ autoSize: true }}>
+                    <MenuTrigger disableButtonEnhancement>
+                        <Button appearance="subtle" aria-label="User menu">
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                <Persona
+                                    name="Kevin Sturgis"
+                                    secondaryText="Administrator"
+                                />
+                                <ChevronDownRegular style={{ marginLeft: '10px' }} />
+                            </div>
+                        </Button>
+                    </MenuTrigger>
+                    <MenuPopover>
+                        <MenuList>
+                            <MenuItem>Profile</MenuItem>
+                            <MenuItem>Logout</MenuItem>
+                            <MenuItem disabled>Statistics</MenuItem>
+                        </MenuList>
+                    </MenuPopover>
+                </Menu>
             </div>
         </div>
     );
-});
+};
 
-AppToolbar.displayName = 'AppToolbar';
-
-// ========================
-// Content Area Component
-// ========================
-const ContentArea = React.memo<ContentAreaProps>(({ styles }) => (
-    <div className={styles.rowContentArea}>
-        <div className={styles.wrapperContentArea}>
-            <div className={styles.gridContainer}>
-                <div className={styles.content3Container}></div>
-                <div className={styles.content3Container}></div>
-                <div className={styles.content3Container}></div>
+const ContentArea: React.FC<{ styles: ReturnType<typeof useStyles> }> = ({ styles }) => (
+    <div className={styles.content}>
+        <div className={styles.contentWrapper}>
+            <div className={styles.grid}>
+                <div className={styles.gridItem} />
+                <div className={styles.gridItem} />
+                <div className={styles.gridItem} />
             </div>
-            <div className={styles.contentFullContainer}></div>
+            <div className={styles.fullContainer} />
         </div>
     </div>
-));
-
-ContentArea.displayName = 'ContentArea';
-
-// ========================
-// Custom Hooks
-// ========================
-const useSidebarState = (initialState: boolean = true) => {
-    const [isSidebarVisible, setIsSidebarVisible] = React.useState(() => {
-        // Could be enhanced to read from localStorage or user preferences
-        return initialState;
-    });
-
-    const toggleSidebar = React.useCallback(() => {
-        setIsSidebarVisible(prev => !prev);
-    }, []);
-
-    return { isSidebarVisible, toggleSidebar };
-};
+);
 
 // ========================
 // Main Component
 // ========================
 export default function Page() {
     const styles = useStyles();
-    const { isSidebarVisible, toggleSidebar } = useSidebarState(true);
+    const { isMobile, isOpen, toggle, setIsOpen } = useSidebar();
 
-    // Memoized class names
-    const sectionClasses = React.useMemo(() => mergeClasses(
-        styles.wrapperSection,
-        styles.responsiveSection,
-        isSidebarVisible ? styles.gap1 : styles.gap0
-    ), [styles, isSidebarVisible]);
-
-    const mainClasses = React.useMemo(() => mergeClasses(
-        styles.wrapperMain,
-        styles.responsiveMain,
-        isSidebarVisible ? styles.wrapperMainExpanded : styles.wrapperMainCollapsed
-    ), [styles, isSidebarVisible]);
+    const sectionClass = `${styles.section} ${
+        !isMobile && isOpen ? styles.sectionWithGap : ''
+    }`;
 
     return (
-        <section className={sectionClasses}>
+        <section className={sectionClass}>
             <Sidebar
-                isSidebarVisible={isSidebarVisible}
+                isMobile={isMobile}
+                isOpen={isOpen}
+                onOpenChange={setIsOpen}
                 styles={styles}
             />
-
-            <main className={mainClasses}>
+            <main className={styles.main}>
                 <AppToolbar
-                    isSidebarVisible={isSidebarVisible}
-                    onToggleSidebar={toggleSidebar}
+                    isOpen={isOpen}
+                    onToggle={toggle}
                     styles={styles}
                 />
-                <ContentArea
-                    styles={styles}
-                />
+                <ContentArea styles={styles} />
             </main>
         </section>
     );
