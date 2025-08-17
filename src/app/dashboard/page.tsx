@@ -1,57 +1,8 @@
 "use client"
 
-import * as React from "react";
-import {
-    Breadcrumb,
-    BreadcrumbItem,
-    BreadcrumbDivider,
-    BreadcrumbButton,
-    NavDrawer,
-    NavDrawerBody,
-    NavDrawerHeader,
-    NavItem,
-    NavCategory,
-    NavCategoryItem,
-    NavSubItemGroup,
-    NavSubItem,
-    NavDivider,
-    AppItem,
-    NavSectionHeader,
-    Menu,
-    MenuTrigger,
-    Button,
-    MenuItem,
-    MenuList,
-    MenuPopover,
-    Persona
-} from "@fluentui/react-components";
-
-import {
-    tokens,
-    makeStyles,
-    mergeClasses
-} from "@fluentui/react-components"
-
-import {
-    bundleIcon,
-    GridDotsFilled,
-    ArrowExportFilled,
-    ArrowExportRtlFilled,
-    Board20Filled,
-    Board20Regular,
-    ChevronDownRegular,
-} from "@fluentui/react-icons";
-
-import {
-    Toolbar,
-    ToolbarDivider,
-    ToolbarButton,
-    Tooltip
-} from "@fluentui/react-components";
-
-import Image from "next/image";
-
-// TypeScript interfaces
+// ========================
+// TypeScript Interfaces
+// ========================
 interface SidebarProps {
     isSidebarVisible: boolean;
     styles: ReturnType<ReturnType<typeof makeStyles>>;
@@ -63,103 +14,164 @@ interface AppToolbarProps {
     styles: ReturnType<ReturnType<typeof makeStyles>>;
 }
 
+interface ContentArea {
+    styles: ReturnType<ReturnType<typeof makeStyles>>;
+}
+
+// ========================
+// Imports
+// ========================
+// React and Next.js imports
+import * as React from "react";
+import Image from "next/image";
+
+// Fluent UI imports
+import {
+    Breadcrumb, BreadcrumbItem, BreadcrumbDivider, BreadcrumbButton,
+    NavDrawer, NavDrawerBody, NavDrawerHeader, NavItem, NavCategory,
+    NavCategoryItem, NavSubItemGroup, NavSubItem, NavDivider, AppItem,
+    NavSectionHeader, Menu, MenuTrigger, Button, MenuItem, MenuList,
+    MenuPopover, Persona, Toolbar, ToolbarDivider, ToolbarButton, Tooltip
+} from "@fluentui/react-components";
+import { tokens, makeStyles, mergeClasses } from "@fluentui/react-components";
+import {
+    bundleIcon, GridDotsFilled, ArrowExportFilled, ArrowExportRtlFilled,
+    Board20Filled, Board20Regular, ChevronDownRegular
+} from "@fluentui/react-icons";
+
+
+const NAV_WIDTH = "260px";
+const NAV_COLLAPSED_WIDTH = tokens.spacingHorizontalXXL;
+
+// ========================
+// Styles
+// ========================
 const useStyles = makeStyles({
-    bgBody: {
+    // Navigation styles
+    navSize: { width: NAV_WIDTH },
+    navHeaderSpacing: { marginBottom: tokens.spacingVerticalL },
+    navExpanded: { width: NAV_WIDTH },
+    navCollapsed: { width: NAV_COLLAPSED_WIDTH },
+    gap1: { gap: tokens.spacingHorizontalXS },
+    gap0: { gap: tokens.spacingHorizontalNone },
+
+    wrapperSection: {
+        display: 'flex',
+        minHeight: '100vh',
+        paddingTop: tokens.spacingVerticalXXL,
+        paddingBottom: tokens.spacingVerticalXXL,
         backgroundColor: tokens.colorNeutralBackground4
     },
-    bgContent: {
-        backgroundColor: tokens.colorNeutralBackground1
-    },
-    sidebar: {
+
+    wrapperSidebar: {
+        display: 'flex',
+        flexDirection: 'column',
         backgroundColor: tokens.colorNeutralBackground4,
         transitionProperty: 'all',
         transitionDuration: '300ms',
         transitionTimingFunction: 'ease',
         overflow: 'hidden',
-        '&.expanded': {
-            width: '260px'
-        },
-        '&.collapsed': {
-            width: tokens.spacingHorizontalXXL
-        }
+        flexShrink: 0,
+        '&.expanded': { width: NAV_WIDTH },
+        '&.collapsed': { width: tokens.spacingHorizontalXXL }
     },
-    flex: {
-        display: "flex"
-    },
-    flex1: {
-        flex: 1
-    },
-    flexDirection: {
-        flexDirection: "column"
-    },
-    main: {
+
+    wrapperMain: {
+        display: 'flex',
+        flex: 1,
+        flexDirection: 'column',
+        backgroundColor: tokens.colorNeutralBackground1,
         width: '100%',
         borderRadius: tokens.borderRadiusLarge,
         boxShadow: tokens.shadow2,
         border: tokens.colorTransparentStroke,
+        marginRight: tokens.spacingHorizontalXXL,
         transition: 'width 0.3s ease',
-        '&.expanded': {
-            width: '260px'
-        },
-        '&.collapsed': {
-            width: tokens.spacingHorizontalXXL
-        }
+        '&.expanded': { width: NAV_WIDTH },
+        '&.collapsed': { width: tokens.spacingHorizontalXXL }
     },
-    nav: {
-        width: "260px",
-    },
-    gap1: {
-        gap: tokens.spacingHorizontalXS
-    },
-    gap0: {
-        gap: tokens.spacingHorizontalNone
-    },
-    padVerticalSection: {
-        paddingTop: tokens.spacingVerticalXXL,
-        paddingBottom: tokens.spacingVerticalXXL
-    },
-    marRHorizontalMain: {
-        marginRight: tokens.spacingHorizontalXXL
-    },
-    fullHeight: {
-        minHeight: '100vh'
-    },
-    itemsCenter: {
-        alignItems: 'center'
-    },
+
     breadcrumb: {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: `${tokens.spacingVerticalL} ${tokens.spacingHorizontalS}`
+        paddingTop: tokens.spacingVerticalS,
+        paddingBottom: tokens.spacingVerticalS
     },
+
+    wrapperBreadcrumb: {
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        gap: tokens.spacingHorizontalXS
+    },
+
     breadcrumbLeft: {
-        padding: tokens.spacingHorizontalXXL
+        padding: tokens.spacingHorizontalS
     },
+
     breadcrumbRight: {
-        paddingRight: tokens.spacingHorizontalL
+        display: 'flex',
+        alignItems: 'center',
+        paddingRight: tokens.spacingHorizontalL,
+        marginLeft: 'auto',
     },
-    navHeaderSpacing: {
-        marginBottom: tokens.spacingVerticalL
-    }
+
+    rowContentArea: {
+        flex: 1,
+        paddingLeft: tokens.spacingHorizontalXL,
+        paddingRight: tokens.spacingHorizontalXL,
+        paddingBottom: tokens.spacingVerticalXL,
+        paddingTop: tokens.spacingVerticalS
+    },
+
+    wrapperContentAre: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: tokens.spacingVerticalXL,
+        minHeight: '100%'
+    },
+
+    gridContainer: {
+        display: 'grid',
+        gridAutoRows: 'min-content',
+        gap: tokens.spacingHorizontalXL,
+        '@media (min-width: 768px)': {
+            gridTemplateColumns: 'repeat(3, 1fr)',
+        },
+    },
+
+    content3Container: {
+        backgroundColor: tokens.colorNeutralBackground4,
+        aspectRatio: '16 / 9',
+        borderRadius: tokens.borderRadiusLarge,
+    },
+
+    contentFullContainer: {
+        flex: 1,
+        backgroundColor: tokens.colorNeutralBackground4,
+        borderRadius: tokens.borderRadiusLarge,
+    },
+
 });
 
-// Memoized constants and icons
+// ========================
+// Memoized Constants and Icons
+// ========================
 const PATH = "#";
 const CloseSidebar = bundleIcon(ArrowExportRtlFilled, GridDotsFilled);
 const OpenSidebar = bundleIcon(ArrowExportFilled, GridDotsFilled);
 const Dashboard = bundleIcon(Board20Filled, Board20Regular);
 
-// Memoized Sidebar Component
+// ========================
+// Sidebar Component
+// ========================
 const Sidebar = React.memo<SidebarProps>(({ isSidebarVisible, styles }) => {
     return (
         <aside
             className={mergeClasses(
-                styles.flex,
-                styles.flexDirection,
-                styles.sidebar,
-                isSidebarVisible ? 'expanded' : 'collapsed',
-                'shrink-0'
+                styles.wrapperSidebar,
+                isSidebarVisible ? styles.navExpanded : styles.navCollapsed
             )}
         >
             <NavDrawer
@@ -167,7 +179,7 @@ const Sidebar = React.memo<SidebarProps>(({ isSidebarVisible, styles }) => {
                 defaultSelectedCategoryValue=""
                 open={isSidebarVisible}
                 type="inline"
-                className={styles.nav}
+                className={styles.navSize}
                 multiple={false}
             >
                 <NavDrawerHeader>
@@ -175,7 +187,7 @@ const Sidebar = React.memo<SidebarProps>(({ isSidebarVisible, styles }) => {
                         as="a"
                         href="#"
                     >
-                        <Image src="/fluent.svg" alt="Fluent Logo" width={163} height={29} />
+                        <Image priority={true} loading="eager" src="/fluent.svg" alt="Fluent Logo" width={163} height={29} />
                     </AppItem>
                 </NavDrawerHeader>
 
@@ -266,7 +278,9 @@ const Sidebar = React.memo<SidebarProps>(({ isSidebarVisible, styles }) => {
 
 Sidebar.displayName = 'Sidebar';
 
-// Memoized Breadcrumb Items
+// ========================
+// Breadcrumb Items
+// ========================
 const BreadcrumbItems = React.memo(() => (
     <>
         <BreadcrumbItem>
@@ -289,80 +303,81 @@ const BreadcrumbItems = React.memo(() => (
 
 BreadcrumbItems.displayName = 'BreadcrumbItems';
 
-// Memoized Toolbar Component
-const AppToolbar = React.memo<AppToolbarProps>(({
-    isSidebarVisible,
-    onToggleSidebar,
-    styles
-}) => (
+// ========================
+// App Toolbar
+// ========================
+const AppToolbar = React.memo<AppToolbarProps>(({ isSidebarVisible, onToggleSidebar, styles }) => (
     <div className={styles.breadcrumb}>
-        <div className={mergeClasses(styles.flex, styles.itemsCenter, styles.gap1)}>
-            <Toolbar>
-                <Tooltip
-                    content={isSidebarVisible ? "Close Navigation" : "Open Navigation"}
-                    relationship="description"
-                    withArrow
-                >
-                    <ToolbarButton
-                        aria-label="toggle sidebar"
-                        icon={isSidebarVisible ? <CloseSidebar /> : <OpenSidebar />}
-                        onClick={onToggleSidebar}
-                    />
-                </Tooltip>
-                <ToolbarDivider />
-                <Breadcrumb aria-label="Breadcrumb default example">
-                    <BreadcrumbItems />
-                </Breadcrumb>
-            </Toolbar>
-        </div>
-        <div className={mergeClasses(styles.flex, styles.itemsCenter, styles.breadcrumbRight)}>
-            <Menu positioning={{ autoSize: true }}>
-                <MenuTrigger disableButtonEnhancement>
-                    <Button appearance="subtle">
-                        <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <Persona
-                                name="Kevin Sturgis"
-                                secondaryText="Administrator"
-                            />
-                            <ChevronDownRegular style={{ marginLeft: '10px' }} />
-                        </div>
+        <div className={styles.wrapperBreadcrumb}>
+            <div className={styles.breadcrumbLeft}>
+                <Toolbar>
+                    <Tooltip
+                        content={isSidebarVisible ? "Close Navigation" : "Open Navigation"}
+                        relationship="description"
+                        withArrow
+                    >
+                        <ToolbarButton
+                            aria-label="toggle sidebar"
+                            icon={isSidebarVisible ? <CloseSidebar /> : <OpenSidebar />}
+                            onClick={onToggleSidebar}
+                        />
+                    </Tooltip>
+                    <ToolbarDivider />
+                    <Breadcrumb aria-label="Breadcrumb default example">
+                        <BreadcrumbItems />
+                    </Breadcrumb>
+                </Toolbar>
+            </div>
+            <div className={styles.breadcrumbRight}>
+                <Menu positioning={{ autoSize: true }}>
+                    <MenuTrigger disableButtonEnhancement>
+                        <Button appearance="subtle">
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                <Persona
+                                    name="Kevin Sturgis"
+                                    secondaryText="Administrator"
+                                />
+                                <ChevronDownRegular style={{ marginLeft: '10px' }} />
+                            </div>
+                        </Button>
+                    </MenuTrigger>
 
-                    </Button>
-                </MenuTrigger>
-
-                <MenuPopover>
-                    <MenuList>
-                        <MenuItem>New </MenuItem>
-                        <MenuItem>New Window</MenuItem>
-                        <MenuItem disabled>Open File</MenuItem>
-                        <MenuItem>Open Folder</MenuItem>
-                    </MenuList>
-                </MenuPopover>
-            </Menu>
-
+                    <MenuPopover>
+                        <MenuList>
+                            <MenuItem>Profile </MenuItem>
+                            <MenuItem>Logout</MenuItem>
+                            <MenuItem disabled>Statistic</MenuItem>
+                        </MenuList>
+                    </MenuPopover>
+                </Menu>
+            </div>
         </div>
     </div>
 ));
 
 AppToolbar.displayName = 'AppToolbar';
 
-// Memoized Content Component
-const ContentArea = React.memo(() => (
-    <div className="px-5 pt-1 pb-5 flex-1">
-        <div className="flex flex-col gap-4 h-full">
-            <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                <div className="bg-muted/50 aspect-video rounded-lg"></div>
-                <div className="bg-muted/50 aspect-video rounded-lg"></div>
-                <div className="bg-muted/50 aspect-video rounded-lg"></div>
+// ========================
+// Content Area
+// ========================
+const ContentArea = React.memo<ContentArea>(({ styles }) => (
+    <div className={styles.rowContentArea}>
+        <div className={styles.wrapperContentAre}>
+            <div className={styles.gridContainer}>
+                <div className={styles.content3Container}></div>
+                <div className={styles.content3Container}></div>
+                <div className={styles.content3Container}></div>
             </div>
-            <div className="bg-muted/50 flex-1 rounded-lg"></div>
+            <div className={styles.contentFullContainer}></div>
         </div>
     </div>
 ));
 
 ContentArea.displayName = 'ContentArea';
 
+// ========================
 // Main Component
+// ========================
 export default function Page() {
     const styles = useStyles();
     const [isSidebarVisible, setIsSidebarVisible] = React.useState(true);
@@ -374,21 +389,13 @@ export default function Page() {
 
     // Memoized class names
     const sectionClasses = React.useMemo(() => mergeClasses(
-        styles.flex,
-        styles.fullHeight,
-        styles.padVerticalSection,
-        styles.bgBody,
+        styles.wrapperSection,
         isSidebarVisible ? styles.gap1 : styles.gap0
     ), [styles, isSidebarVisible]);
 
     const mainClasses = React.useMemo(() => mergeClasses(
-        styles.flex,
-        styles.flex1,
-        styles.flexDirection,
-        styles.bgContent,
-        styles.main,
-        styles.marRHorizontalMain,
-        isSidebarVisible ? 'expanded' : 'collapsed'
+        styles.wrapperMain,
+        isSidebarVisible ? styles.navExpanded : styles.navCollapsed
     ), [styles, isSidebarVisible]);
 
     return (
@@ -404,7 +411,9 @@ export default function Page() {
                     onToggleSidebar={handleToggleSidebar}
                     styles={styles}
                 />
-                <ContentArea />
+                <ContentArea
+                    styles={styles}
+                />
             </main>
         </section>
     );
