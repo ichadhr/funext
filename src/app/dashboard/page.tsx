@@ -3,28 +3,50 @@
 import * as React from "react";
 import Image from "next/image";
 import {
-    Breadcrumb, BreadcrumbItem, BreadcrumbDivider, BreadcrumbButton,
-    NavDrawer, NavDrawerBody, NavDrawerHeader, NavItem, NavCategory,
-    NavCategoryItem, NavSubItemGroup, NavSubItem, NavDivider, AppItem,
-    NavSectionHeader, Menu, MenuTrigger, Button, MenuItem, MenuList,
-    MenuPopover, Persona, Toolbar, ToolbarDivider, ToolbarButton, Tooltip
+    tokens,
+    makeStyles,
+    NavDivider,
+    NavSectionHeader,
+    NavCategory,
+    NavCategoryItem,
+    NavSubItemGroup,
+    NavSubItem,
+    NavItem,
+    NavDrawer,
+    NavDrawerHeader,
+    AppItem,
+    NavDrawerBody,
+    BreadcrumbItem,
+    BreadcrumbButton,
+    BreadcrumbDivider,
+    Toolbar,
+    Tooltip,
+    ToolbarButton,
+    ToolbarDivider,
+    Breadcrumb,
+    Menu,
+    MenuTrigger,
+    Button,
+    Avatar,
+    Persona,
+    MenuPopover,
+    MenuList,
+    MenuItem
 } from "@fluentui/react-components";
-import { tokens, makeStyles } from "@fluentui/react-components";
 import {
-    bundleIcon, GridDotsFilled, ArrowExportFilled, ArrowExportRtlFilled,
-    Board20Filled, Board20Regular, ChevronDownRegular
+    ArrowExportFilled,
+    ArrowExportRtlFilled,
+    Board20Filled,
+    Board20Regular,
+    bundleIcon,
+    ChevronDownRegular,
+    GridDotsFilled
 } from "@fluentui/react-icons";
 
-// ========================
-// Constants
-// ========================
-const MOBILE_BREAKPOINT = 1024;
-const NAV_WIDTH = "260px";
-const PATH = "#";
+// ====================================
+// TYPES & INTERFACES
+// ====================================
 
-// ========================
-// Types
-// ========================
 interface NavigationSubItem {
     id: string;
     label: string;
@@ -46,18 +68,53 @@ interface NavigationSection {
     hasDivider?: boolean;
 }
 
-// ========================
-// Icons
-// ========================
-const ICONS = {
-    closeSidebar: bundleIcon(ArrowExportRtlFilled, GridDotsFilled),
-    openSidebar: bundleIcon(ArrowExportFilled, GridDotsFilled),
-    dashboard: bundleIcon(Board20Filled, Board20Regular)
+interface SidebarProps {
+    isMobile: boolean;
+    isTablet: boolean;
+    isOpen: boolean;
+    onOpenChange: (open: boolean) => void;
+    styles: ReturnType<typeof useStyles>;
+}
+
+interface ContentAreaProps {
+    styles: ReturnType<typeof useStyles>;
+    isMobile: boolean;
+}
+
+interface BreadcrumbItemType {
+    label: string;
+    href: string;
+    current: boolean;
+}
+
+interface BreadcrumbContentProps {
+    isMobile: boolean;
+}
+
+interface AppToolbarProps {
+    isOpen: boolean;
+    onToggle: () => void;
+    styles: ReturnType<typeof useStyles>;
+    isMobile: boolean;
+    isTablet: boolean;
+}
+
+// ====================================
+// CONSTANTS & CONFIGURATION
+// ====================================
+
+const BREAKPOINTS = {
+    TABLET_MAX_WIDTH: 1024,
+    TABLET_MIN_WIDTH: 768,
+    MOBILE_MAX_WIDTH: 767,
 } as const;
 
-// ========================
-// Configuration
-// ========================
+const LAYOUT = {
+    NAV_WIDTH: "260px"
+} as const;
+
+const PATH = "#";
+
 const NAVIGATION_SECTIONS: NavigationSection[] = [
     {
         items: [
@@ -122,16 +179,27 @@ const NAVIGATION_SECTIONS: NavigationSection[] = [
     }
 ];
 
-const BREADCRUMB_ITEMS = [
+const BREADCRUMB_ITEMS: BreadcrumbItemType[] = [
     { label: "Item 1", href: PATH, current: false },
     { label: "Item 2", href: PATH, current: false },
     { label: "Item 3", href: PATH, current: false },
     { label: "Item 4", href: PATH, current: true }
-] as const;
+];
 
-// ========================
-// Styles
-// ========================
+const ICONS = {
+    NAV: {
+        dashboard: bundleIcon(Board20Filled, Board20Regular)
+    },
+    TOOLBAR: {
+        closeSidebar: bundleIcon(ArrowExportRtlFilled, GridDotsFilled),
+        openSidebar: bundleIcon(ArrowExportFilled, GridDotsFilled),
+    }
+} as const;
+
+// ====================================
+// STYLES
+// ====================================
+
 const useStyles = makeStyles({
     section: {
         display: 'flex',
@@ -145,9 +213,18 @@ const useStyles = makeStyles({
             paddingBottom: tokens.spacingVerticalL,
         }
     },
-    
+
     sectionWithGap: {
         gap: tokens.spacingHorizontalXS,
+    },
+
+    contentWrapperMobile: {
+        height: '100%',
+        overflowY: 'auto',
+        [`@media (max-width: ${BREAKPOINTS.MOBILE_MAX_WIDTH}px)`]: {
+            height: '100%',
+            overflowY: 'auto',
+        }
     },
 
     sidebar: {
@@ -162,7 +239,7 @@ const useStyles = makeStyles({
     },
 
     sidebarExpanded: {
-        width: NAV_WIDTH
+        width: LAYOUT.NAV_WIDTH
     },
 
     sidebarCollapsed: {
@@ -170,7 +247,7 @@ const useStyles = makeStyles({
     },
 
     navDrawer: {
-        width: NAV_WIDTH
+        width: LAYOUT.NAV_WIDTH
     },
 
     navHeader: {
@@ -180,7 +257,7 @@ const useStyles = makeStyles({
         padding: tokens.spacingHorizontalS,
         paddingTop: tokens.spacingVerticalS,
         paddingBottom: tokens.spacingVerticalS,
-        [`@media (max-width: ${MOBILE_BREAKPOINT}px)`]: {
+        [`@media (max-width: ${BREAKPOINTS.TABLET_MAX_WIDTH}px)`]: {
             paddingTop: tokens.spacingVerticalL,
         },
     },
@@ -199,7 +276,9 @@ const useStyles = makeStyles({
         boxShadow: tokens.shadow2,
         border: tokens.colorTransparentStroke,
         marginRight: tokens.spacingHorizontalXXL,
-        [`@media (max-width: ${MOBILE_BREAKPOINT}px)`]: {
+        minHeight: '0',
+        overflowY: 'auto',
+        [`@media (max-width: ${BREAKPOINTS.TABLET_MAX_WIDTH}px)`]: {
             marginRight: tokens.spacingHorizontalL,
             marginLeft: tokens.spacingHorizontalL,
         }
@@ -224,7 +303,13 @@ const useStyles = makeStyles({
     toolbarRight: {
         display: 'flex',
         alignItems: 'center',
-        paddingRight: tokens.spacingHorizontalL,
+        paddingRight: tokens.spacingHorizontalXL,
+        [`@media (max-width: ${BREAKPOINTS.TABLET_MAX_WIDTH}px)`]: {
+            paddingRight: tokens.spacingHorizontalXL,
+        },
+        [`@media (max-width: ${BREAKPOINTS.MOBILE_MAX_WIDTH}px)`]: {
+            paddingRight: tokens.spacingHorizontalXL,
+        },
         marginLeft: 'auto',
     },
 
@@ -267,6 +352,7 @@ const useStyles = makeStyles({
         borderRadius: tokens.borderRadiusLarge,
         minHeight: '200px'
     },
+
     personaName: {
         whiteSpace: 'nowrap',
         overflow: 'hidden',
@@ -275,77 +361,91 @@ const useStyles = makeStyles({
     }
 });
 
-// ========================
-// Helper Functions
-// ========================
-const getIconComponent = () => {
-    return <ICONS.dashboard />;
-};
+// ====================================
+// CUSTOM HOOKS
+// ====================================
 
-// ========================
-// Hook for responsive sidebar management
-// ========================
 const useSidebar = () => {
-    const [isMobile, setIsMobile] = React.useState(false); // Initialize to false on server
-    const [isOpen, setIsOpen] = React.useState(true); // Initialize to true on server
+    const [isMobile, setIsMobile] = React.useState(false);
+    const [isTablet, setIsTablet] = React.useState(false);
+    const [isOpen, setIsOpen] = React.useState(true);
 
-    // Use a ref to store the latest isOpen value without making it a dependency
     const isOpenRef = React.useRef(isOpen);
     React.useEffect(() => {
         isOpenRef.current = isOpen;
     }, [isOpen]);
 
     React.useEffect(() => {
-        // This effect runs only on the client after hydration
         const handleResize = () => {
-            const currentIsMobile = window.innerWidth < MOBILE_BREAKPOINT;
+            const currentIsMobile = window.innerWidth <= BREAKPOINTS.MOBILE_MAX_WIDTH;
+            const currentIsTablet = window.innerWidth >= BREAKPOINTS.TABLET_MIN_WIDTH && window.innerWidth <= BREAKPOINTS.TABLET_MAX_WIDTH;
             setIsMobile(currentIsMobile);
-            // If resizing from large to small, collapse the sidebar
-            if (currentIsMobile && isOpenRef.current) { // Use ref here
+            setIsTablet(currentIsTablet);
+
+            if ((currentIsMobile || currentIsTablet) && isOpenRef.current) {
                 setIsOpen(false);
             }
         };
 
-        // Set initial mobile state on client mount
-        setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
-        // Set initial sidebar visibility based on mobile state
-        if (window.innerWidth < MOBILE_BREAKPOINT) {
-            setIsOpen(false); // Collapsed on small screens initially on client
+        const initialIsMobile = window.innerWidth <= BREAKPOINTS.MOBILE_MAX_WIDTH;
+        const initialIsTablet = window.innerWidth >= BREAKPOINTS.TABLET_MIN_WIDTH && window.innerWidth <= BREAKPOINTS.TABLET_MAX_WIDTH;
+        setIsMobile(initialIsMobile);
+        setIsTablet(initialIsTablet);
+
+        if (initialIsMobile || initialIsTablet) {
+            setIsOpen(false);
         } else {
-            setIsOpen(true); // Use initial state for large screens
+            setIsOpen(true);
         }
 
         window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []); // No dependencies like the original
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const toggle = React.useCallback(() => {
         setIsOpen(prev => !prev);
     }, []);
 
-    return { isMobile, isOpen, toggle, setIsOpen };
+    return { isMobile, isTablet, isOpen, toggle, setIsOpen };
 };
 
-// ========================
-// Components
-// ========================
-const NavigationContent = () => (
+// ====================================
+// UTILITY COMPONENTS
+// ====================================
+
+const BreadcrumbContent: React.FC<BreadcrumbContentProps> = ({ isMobile }) => {
+    const itemsToRender = isMobile ? [BREADCRUMB_ITEMS[BREADCRUMB_ITEMS.length - 1]] : BREADCRUMB_ITEMS;
+
+    return (
+        <>
+            {itemsToRender.map((item: BreadcrumbItemType, index: number) => (
+                <React.Fragment key={index}>
+                    <BreadcrumbItem>
+                        <BreadcrumbButton href={item.href} current={item.current}>
+                            {item.label}
+                        </BreadcrumbButton>
+                    </BreadcrumbItem>
+                    {index < itemsToRender.length - 1 && <BreadcrumbDivider />}
+                </React.Fragment>
+            ))}
+        </>
+    );
+};
+
+const NavigationContent: React.FC = () => (
     <>
-        {NAVIGATION_SECTIONS.map((section, sectionIndex) => (
+        {NAVIGATION_SECTIONS.map((section: NavigationSection, sectionIndex: number) => (
             <React.Fragment key={sectionIndex}>
                 {section.hasDivider && <NavDivider />}
                 {section.title && <NavSectionHeader>{section.title}</NavSectionHeader>}
-                {section.items.map((item) => (
+                {section.items.map((item: NavigationItem) => (
                     item.subItems ? (
                         <NavCategory key={item.id} value={item.id}>
-                            <NavCategoryItem icon={getIconComponent()}>
+                            <NavCategoryItem icon={<ICONS.NAV.dashboard />}>
                                 {item.label}
                             </NavCategoryItem>
                             <NavSubItemGroup>
-                                {item.subItems.map((subItem) => (
+                                {item.subItems.map((subItem: NavigationSubItem) => (
                                     <NavSubItem key={subItem.id} href={subItem.href} value={subItem.id}>
                                         {subItem.label}
                                     </NavSubItem>
@@ -356,7 +456,7 @@ const NavigationContent = () => (
                         <NavItem
                             key={item.id}
                             href={item.href}
-                            icon={getIconComponent()}
+                            icon={<ICONS.NAV.dashboard />}
                             value={item.id}
                             target={item.target}
                         >
@@ -369,43 +469,90 @@ const NavigationContent = () => (
     </>
 );
 
-const BreadcrumbContent = () => (
-    <>
-        {BREADCRUMB_ITEMS.map((item, index) => (
-            <React.Fragment key={index}>
-                <BreadcrumbItem>
-                    <BreadcrumbButton href={item.href} current={item.current}>
-                        {item.label}
-                    </BreadcrumbButton>
-                </BreadcrumbItem>
-                {index < BREADCRUMB_ITEMS.length - 1 && <BreadcrumbDivider />}
-            </React.Fragment>
-        ))}
-    </>
-);
+// ====================================
+// MAIN COMPONENTS
+// ====================================
 
-interface SidebarProps {
-    isMobile: boolean;
-    isOpen: boolean;
-    onOpenChange: (open: boolean) => void;
-    styles: ReturnType<typeof useStyles>;
-}
+const AppToolbar: React.FC<AppToolbarProps> = ({ isOpen, onToggle, styles, isMobile, isTablet }) => {
+    const tooltipContent = isOpen ? "Close Navigation" : "Open Navigation";
 
-const Sidebar: React.FC<SidebarProps> = ({ isMobile, isOpen, onOpenChange, styles }) => {
-    const sidebarClass = `${styles.sidebar} ${
-        !isMobile ? (isOpen ? styles.sidebarExpanded : styles.sidebarCollapsed) : ''
-    }`;
+    return (
+        <div className={styles.toolbar}>
+            <div className={styles.toolbarLeft}>
+                <Toolbar>
+                    <Tooltip content={tooltipContent} relationship="description" withArrow>
+                        <ToolbarButton
+                            aria-label={tooltipContent}
+                            icon={isOpen ? <ICONS.TOOLBAR.closeSidebar /> : <ICONS.TOOLBAR.openSidebar />}
+                            onClick={onToggle}
+                        />
+                    </Tooltip>
+                    <ToolbarDivider />
+                    <Breadcrumb aria-label="Current page navigation">
+                        <BreadcrumbContent isMobile={isMobile} />
+                    </Breadcrumb>
+                </Toolbar>
+            </div>
+            <div className={styles.toolbarRight}>
+                <Menu positioning={{ autoSize: true }}>
+                    <MenuTrigger disableButtonEnhancement>
+                        <Button
+                            appearance="subtle"
+                            aria-label="User menu"
+                            style={{
+                                marginRight: isMobile ? '0' : '0',
+                                marginLeft: isMobile ? '100px' : '0',
+                                padding: isMobile ? '0' : undefined,
+                                minWidth: isMobile ? '0' : undefined,
+                            }}
+                        >
+                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                {isMobile ? (
+                                    <Avatar name="Kevin Sturgis" />
+                                ) : (isTablet ? (
+                                    <Persona
+                                        className={styles.personaName}
+                                        name="Kevin Sturgis"
+                                        secondaryText="Administrator"
+                                    />
+                                ) : (
+                                    <Persona
+                                        className={styles.personaName}
+                                        name="Kevin Sturgis"
+                                        secondaryText="Administrator"
+                                    />
+                                ))}
+                                <ChevronDownRegular style={{ marginLeft: isMobile ? '5px' : '10px' }} />
+                            </div>
+                        </Button>
+                    </MenuTrigger>
+                    <MenuPopover>
+                        <MenuList>
+                            <MenuItem>Profile</MenuItem>
+                            <MenuItem>Logout</MenuItem>
+                            <MenuItem disabled>Statistics</MenuItem>
+                        </MenuList>
+                    </MenuPopover>
+                </Menu>
+            </div>
+        </div>
+    );
+};
+
+const Sidebar: React.FC<SidebarProps> = ({ isMobile, isTablet, isOpen, onOpenChange, styles }) => {
+    const sidebarClass = `${styles.sidebar} ${!(isMobile || isTablet) ? (isOpen ? styles.sidebarExpanded : styles.sidebarCollapsed) : ''
+        }`;
 
     return (
         <aside className={sidebarClass}>
             <NavDrawer
                 defaultSelectedValue="1"
                 open={isOpen}
-                type={isMobile ? "overlay" : "inline"}
-                className={!isMobile ? styles.navDrawer : ''}
+                type={isMobile || isTablet ? "overlay" : "inline"}
+                className={!(isMobile || isTablet) ? styles.navDrawer : ''}
                 onOpenChange={(_, data) => onOpenChange(data.open)}
             >
-                <NavDrawerHeader className={isMobile ? styles.navHeader : ''}>
+                <NavDrawerHeader className={isMobile || isTablet ? styles.navHeader : ''}>
                     <AppItem as="a" href="#" aria-label="Fluent UI Logo">
                         <Image
                             priority
@@ -427,62 +574,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isMobile, isOpen, onOpenChange, style
     );
 };
 
-interface AppToolbarProps {
-    isOpen: boolean;
-    onToggle: () => void;
-    styles: ReturnType<typeof useStyles>;
-}
-
-const AppToolbar: React.FC<AppToolbarProps> = ({ isOpen, onToggle, styles }) => {
-    const tooltipContent = isOpen ? "Close Navigation" : "Open Navigation";
-
-    return (
-        <div className={styles.toolbar}>
-            <div className={styles.toolbarLeft}>
-                <Toolbar>
-                    <Tooltip content={tooltipContent} relationship="description" withArrow>
-                        <ToolbarButton
-                            aria-label={tooltipContent}
-                            icon={isOpen ? <ICONS.closeSidebar /> : <ICONS.openSidebar />}
-                            onClick={onToggle}
-                        />
-                    </Tooltip>
-                    <ToolbarDivider />
-                    <Breadcrumb aria-label="Current page navigation">
-                        <BreadcrumbContent />
-                    </Breadcrumb>
-                </Toolbar>
-            </div>
-            <div className={styles.toolbarRight}>
-                <Menu positioning={{ autoSize: true }}>
-                    <MenuTrigger disableButtonEnhancement>
-                        <Button appearance="subtle" aria-label="User menu">
-                            <div style={{ display: 'flex', alignItems: 'center' }}>
-                                <Persona
-                                    className={styles.personaName}
-                                    name="Kevin Sturgis"
-                                    secondaryText="Administrator"
-                                />
-                                <ChevronDownRegular style={{ marginLeft: '10px' }} />
-                            </div>
-                        </Button>
-                    </MenuTrigger>
-                    <MenuPopover>
-                        <MenuList>
-                            <MenuItem>Profile</MenuItem>
-                            <MenuItem>Logout</MenuItem>
-                            <MenuItem disabled>Statistics</MenuItem>
-                        </MenuList>
-                    </MenuPopover>
-                </Menu>
-            </div>
-        </div>
-    );
-};
-
-const ContentArea: React.FC<{ styles: ReturnType<typeof useStyles> }> = ({ styles }) => (
+const ContentArea: React.FC<ContentAreaProps> = ({ styles, isMobile }) => (
     <div className={styles.content}>
-        <div className={styles.contentWrapper}>
+        <div className={`${styles.contentWrapper} ${isMobile ? styles.contentWrapperMobile : ''}`}>
             <div className={styles.grid}>
                 <div className={styles.gridItem} />
                 <div className={styles.gridItem} />
@@ -493,21 +587,22 @@ const ContentArea: React.FC<{ styles: ReturnType<typeof useStyles> }> = ({ style
     </div>
 );
 
-// ========================
-// Main Component
-// ========================
+// ====================================
+// MAIN PAGE COMPONENT
+// ====================================
+
 export default function Page() {
     const styles = useStyles();
-    const { isMobile, isOpen, toggle, setIsOpen } = useSidebar();
+    const { isMobile, isTablet, isOpen, toggle, setIsOpen } = useSidebar();
 
-    const sectionClass = `${styles.section} ${
-        !isMobile && isOpen ? styles.sectionWithGap : ''
-    }`;
+    const sectionClass = `${styles.section} ${!(isMobile || isTablet) && isOpen ? styles.sectionWithGap : ''
+        }`;
 
     return (
         <section className={sectionClass}>
             <Sidebar
                 isMobile={isMobile}
+                isTablet={isTablet}
                 isOpen={isOpen}
                 onOpenChange={setIsOpen}
                 styles={styles}
@@ -517,8 +612,10 @@ export default function Page() {
                     isOpen={isOpen}
                     onToggle={toggle}
                     styles={styles}
+                    isMobile={isMobile}
+                    isTablet={isTablet}
                 />
-                <ContentArea styles={styles} />
+                <ContentArea styles={styles} isMobile={isMobile} />
             </main>
         </section>
     );
