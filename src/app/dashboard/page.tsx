@@ -33,6 +33,7 @@ import {
     MenuList,
     MenuItem
 } from "@fluentui/react-components";
+import { Card, CardHeader, CardPreview, Text } from "@fluentui/react-components";
 import {
     ArrowExportFilled,
     ArrowExportRtlFilled,
@@ -42,10 +43,12 @@ import {
     ChevronDownRegular,
     GridDotsFilled
 } from "@fluentui/react-icons";
+import { CardGrid, CardGridRow, CardGridColumn } from "../../components/grids";
 
 // ====================================
 // TYPES & INTERFACES
 // ====================================
+
 
 interface NavigationSubItem {
     id: string;
@@ -79,6 +82,7 @@ interface SidebarProps {
 interface ContentAreaProps {
     styles: ReturnType<typeof useStyles>;
     isMobile: boolean;
+    children: React.ReactNode; // Add children prop
 }
 
 interface BreadcrumbItemType {
@@ -186,6 +190,8 @@ const BREADCRUMB_ITEMS: BreadcrumbItemType[] = [
     { label: "Item 4", href: PATH, current: true }
 ];
 
+
+
 const ICONS = {
     NAV: {
         dashboard: bundleIcon(Board20Filled, Board20Regular)
@@ -203,11 +209,11 @@ const ICONS = {
 const useStyles = makeStyles({
     section: {
         display: 'flex',
-        height: '100vh',
+        minHeight: '100vh',
         paddingTop: tokens.spacingVerticalXXL,
         paddingBottom: tokens.spacingVerticalXXL,
         backgroundColor: tokens.colorNeutralBackground4,
-        overflow: 'hidden',
+        overflow: 'auto',
         '@media (max-width: 768px)': {
             paddingTop: tokens.spacingVerticalL,
             paddingBottom: tokens.spacingVerticalL,
@@ -220,7 +226,6 @@ const useStyles = makeStyles({
 
     contentWrapperMobile: {
         height: '100%',
-        overflowY: 'auto',
         [`@media (max-width: ${BREAKPOINTS.MOBILE_MAX_WIDTH}px)`]: {
             height: '100%',
             overflowY: 'auto',
@@ -272,12 +277,12 @@ const useStyles = makeStyles({
         flexDirection: 'column',
         backgroundColor: tokens.colorNeutralBackground1,
         width: '100%',
+        minHeight: '100%',
+        alignSelf: 'stretch',
         borderRadius: tokens.borderRadiusLarge,
         boxShadow: tokens.shadow2,
         border: tokens.colorTransparentStroke,
         marginRight: tokens.spacingHorizontalXXL,
-        minHeight: '0',
-        overflowY: 'auto',
         [`@media (max-width: ${BREAKPOINTS.TABLET_MAX_WIDTH}px)`]: {
             marginRight: tokens.spacingHorizontalL,
             marginLeft: tokens.spacingHorizontalL,
@@ -325,32 +330,6 @@ const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'column',
         gap: tokens.spacingVerticalXL,
-        minHeight: '100%'
-    },
-
-    grid: {
-        display: 'grid',
-        gridAutoRows: 'min-content',
-        gap: tokens.spacingHorizontalXL,
-        '@media (min-width: 768px)': {
-            gridTemplateColumns: 'repeat(3, 1fr)',
-        },
-        '@media (max-width: 767px)': {
-            gridTemplateColumns: '1fr',
-        }
-    },
-
-    gridItem: {
-        backgroundColor: tokens.colorNeutralBackground4,
-        aspectRatio: '16 / 9',
-        borderRadius: tokens.borderRadiusLarge,
-    },
-
-    fullContainer: {
-        flex: 1,
-        backgroundColor: tokens.colorNeutralBackground4,
-        borderRadius: tokens.borderRadiusLarge,
-        minHeight: '200px'
     },
 
     personaName: {
@@ -574,15 +553,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isMobile, isTablet, isOpen, onOpenCha
     );
 };
 
-const ContentArea: React.FC<ContentAreaProps> = ({ styles, isMobile }) => (
+const ContentArea: React.FC<ContentAreaProps> = ({ styles, isMobile, children }) => ( // Accept children
     <div className={styles.content}>
         <div className={`${styles.contentWrapper} ${isMobile ? styles.contentWrapperMobile : ''}`}>
-            <div className={styles.grid}>
-                <div className={styles.gridItem} />
-                <div className={styles.gridItem} />
-                <div className={styles.gridItem} />
-            </div>
-            <div className={styles.fullContainer} />
+            {children}
         </div>
     </div>
 );
@@ -615,7 +589,98 @@ export default function Page() {
                     isMobile={isMobile}
                     isTablet={isTablet}
                 />
-                <ContentArea styles={styles} isMobile={isMobile} />
+                <ContentArea styles={styles} isMobile={isMobile}>
+                    <h3>CardGrid with `fluid` container type</h3>
+                    <CardGrid type="fluid">
+                        <Card>
+                            <CardHeader header={<Text weight="semibold">Fluid CardGrid</Text>} />
+                            <CardPreview>
+                                <Text>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </Text>
+                            </CardPreview>
+                        </Card>
+                        <Text>This is text content for the fluid CardGrid.</Text>
+                    </CardGrid>
+
+                    <h3>Default CardGrid (no specific type, behaves like container-fluid)</h3>
+                    <CardGrid>
+                        <Card>
+                            <CardHeader header={<Text weight="semibold">Default CardGrid</Text>} />
+                            <CardPreview>
+                                <Text>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </Text>
+                            </CardPreview>
+                        </Card>
+                        <Text>This is text content for the default CardGrid.</Text>
+                    </CardGrid>
+
+                    <h3>CardGrid with `sm` container type</h3>
+                    <CardGrid type="sm">
+                        <Card>
+                            <CardHeader header={<Text weight="semibold">sm CardGrid</Text>} />
+                            <CardPreview>
+                                <Text>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </Text>
+                            </CardPreview>
+                        </Card>
+                        <Text>This is text content for the sm CardGrid.</Text>
+                    </CardGrid>
+
+                    <h3>CardGrid with `md` container type</h3>
+                    <CardGrid type="md">
+                        <Card>
+                            <CardHeader header={<Text weight="semibold">md CardGrid</Text>} />
+                            <CardPreview>
+                                <Text>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </Text>
+                            </CardPreview>
+                        </Card>
+                        <Text>This is text content for the md CardGrid.</Text>
+                    </CardGrid>
+
+                    <h3>CardGrid with `lg` container type</h3>
+                    <CardGrid type="lg">
+                        <Card>
+                            <CardHeader header={<Text weight="semibold">lg CardGrid</Text>} />
+                            <CardPreview>
+                                <Text>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </Text>
+                            </CardPreview>
+                        </Card>
+                        <Text>This is text content for the lg CardGrid.</Text>
+                    </CardGrid>
+
+                    <h3>CardGrid with `xl` container type</h3>
+                    <CardGrid type="xl">
+                        <Card>
+                            <CardHeader header={<Text weight="semibold">xl CardGrid</Text>} />
+                            <CardPreview>
+                                <Text>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </Text>
+                            </CardPreview>
+                        </Card>
+                        <Text>This is text content for the xl CardGrid.</Text>
+                    </CardGrid>
+
+                    <h3>CardGrid with `xxl` container type</h3>
+                    <CardGrid type="xxl">
+                        <Card>
+                            <CardHeader header={<Text weight="semibold">xxl CardGrid</Text>} />
+                            <CardPreview>
+                                <Text>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                </Text>
+                            </CardPreview>
+                        </Card>
+                        <Text>This is text content for the xxl CardGrid.</Text>
+                    </CardGrid>
+                </ContentArea>
             </main>
         </section>
     );
