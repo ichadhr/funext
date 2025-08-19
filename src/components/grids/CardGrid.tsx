@@ -1,67 +1,80 @@
 import * as React from 'react';
-import { makeStyles, tokens } from '@fluentui/react-components';
+import { makeStyles, tokens, mergeClasses } from '@fluentui/react-components';
 
 import { CardGridProps } from './types';
 
-const getContainerStyles = (minWidth: string) => ({
-    width: '100%',
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    paddingLeft: tokens.spacingHorizontalL,
-    paddingRight: tokens.spacingHorizontalL,
-    [`@media (min-width: ${minWidth})`]: {
-        maxWidth: '100%',
-    },
-});
+const BREAKPOINTS = {
+    sm: '576px',
+    md: '768px',
+    lg: '992px',
+    xl: '1200px',
+    xxl: '1400px',
+};
 
 const useStyles = makeStyles({
-    container: {
+    baseContainer: {
         width: '100%',
+        marginRight: 'auto',
+        marginLeft: 'auto',
+        paddingLeft: tokens.spacingHorizontalL,
+        paddingRight: tokens.spacingHorizontalL,
     },
-    // Default fixed-width container (.container)
-    defaultContainer: getContainerStyles('576px'),
-    // Fluid container (.container-fluid)
-    fluid: {
-        width: '100%',
+    containerSm: {
+        [`@media (min-width: ${BREAKPOINTS.sm})`]: {
+            maxWidth: '100%',
+        },
     },
-    // Responsive containers (.container-{breakpoint})
-    containerSm: getContainerStyles('576px'),
-    containerMd: getContainerStyles('768px'),
-    containerLg: getContainerStyles('992px'),
-    containerXl: getContainerStyles('1200px'),
-    containerXxl: getContainerStyles('1400px'),
+    containerMd: {
+        [`@media (min-width: ${BREAKPOINTS.md})`]: {
+            maxWidth: '100%',
+        },
+    },
+    containerLg: {
+        [`@media (min-width: ${BREAKPOINTS.lg})`]: {
+            maxWidth: '100%',
+        },
+    },
+    containerXl: {
+        [`@media (min-width: ${BREAKPOINTS.xl})`]: {
+            maxWidth: '100%',
+        },
+    },
+    containerXxl: {
+        [`@media (min-width: ${BREAKPOINTS.xxl})`]: {
+            maxWidth: '100%',
+        },
+    },
 });
 
 export const CardGrid: React.FC<CardGridProps> = ({ children, type, ...rest }) => {
     const styles = useStyles();
-    let containerClass;
 
-    const effectiveContainerType = type;
-
-    switch (effectiveContainerType) {
+    let responsiveClass = '';
+    switch (type) {
         case 'fluid':
-            containerClass = styles.fluid;
             break;
         case 'sm':
-            containerClass = styles.containerSm;
+            responsiveClass = styles.containerSm;
             break;
         case 'md':
-            containerClass = styles.containerMd;
+            responsiveClass = styles.containerMd;
             break;
         case 'lg':
-            containerClass = styles.containerLg;
+            responsiveClass = styles.containerLg;
             break;
         case 'xl':
-            containerClass = styles.containerXl;
+            responsiveClass = styles.containerXl;
             break;
         case 'xxl':
-            containerClass = styles.containerXxl;
+            responsiveClass = styles.containerXxl;
             break;
         default:
-            containerClass = styles.defaultContainer; // Default to .container
+            responsiveClass = styles.containerSm;
+            break;
     }
+
     return (
-        <div className={`${styles.container} ${containerClass}`} {...rest}>
+        <div className={mergeClasses(styles.baseContainer, responsiveClass)} {...rest}>
             {children}
         </div>
     );

@@ -48,19 +48,15 @@ export interface CardGridColumnProps extends React.HTMLAttributes<HTMLDivElement
     xxlMeAuto?: boolean;
 }
 
+export type JustifyContentValue = 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly';
+
 export interface CardGridRowProps extends React.HTMLAttributes<HTMLDivElement> {
     children?: React.ReactNode;
-    rowCols?: 'auto' | number | { [key in 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl']?: 'auto' | number };
+    rowCols?: 'auto' | number | { [key in BreakpointKey]?: 'auto' | number };
     g?: number | '0';
     gx?: number | '0';
     gy?: number | '0';
-    justifyContent?: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly';
-    justifyContentXs?: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly';
-    justifyContentSm?: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly';
-    justifyContentMd?: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly';
-    justifyContentLg?: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly';
-    justifyContentXl?: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly';
-    justifyContentXxl?: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly';
+    justifyContent?: JustifyContentValue | { [key in BreakpointKey]?: JustifyContentValue };
     alignItems?: 'start' | 'end' | 'center' | 'baseline' | 'stretch';
     alignContent?: 'start' | 'end' | 'center' | 'between' | 'around' | 'stretch';
 }

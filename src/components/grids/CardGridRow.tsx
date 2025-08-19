@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { makeStyles, tokens, mergeClasses } from '@fluentui/react-components';
 
-import { CardGridRowProps } from './types';
+import { CardGridRowProps, JustifyContentValue, BreakpointKey } from './types';
 
 // Breakpoint configuration
 const BREAKPOINTS = {
@@ -137,12 +137,6 @@ export const CardGridRow: React.FC<CardGridRowProps> = ({
     gx,
     gy,
     justifyContent,
-    justifyContentXs,
-    justifyContentSm,
-    justifyContentMd,
-    justifyContentLg,
-    justifyContentXl,
-    justifyContentXxl,
     alignItems,
     alignContent,
     ...propsToPass
@@ -185,29 +179,23 @@ export const CardGridRow: React.FC<CardGridRowProps> = ({
     };
 
     const getJustifyContentClassNames = (
-        justifyContent?: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly',
-        justifyContentXs?: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly',
-        justifyContentSm?: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly',
-        justifyContentMd?: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly',
-        justifyContentLg?: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly',
-        justifyContentXl?: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly',
-        justifyContentXxl?: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly'
+        justifyContentProp?: JustifyContentValue | { [key in BreakpointKey]?: JustifyContentValue }
     ): string[] => {
         const classNames: string[] = [];
-        const justifyProps = [
-            { prop: justifyContent, prefix: '' },
-            { prop: justifyContentXs, prefix: 'Xs' },
-            { prop: justifyContentSm, prefix: 'Sm' },
-            { prop: justifyContentMd, prefix: 'Md' },
-            { prop: justifyContentLg, prefix: 'Lg' },
-            { prop: justifyContentXl, prefix: 'Xl' },
-            { prop: justifyContentXxl, prefix: 'Xxl' },
-        ];
 
-        for (const { prop, prefix } of justifyProps) {
-            if (prop) {
-                classNames.push(styles[`justifyContent${prefix}${capitalize(prop)}`]);
-            }
+        if (!justifyContentProp) {
+            return [];
+        }
+
+        if (typeof justifyContentProp === 'string') {
+            classNames.push(styles[`justifyContent${capitalize(justifyContentProp)}`]);
+        } else {
+            Object.entries(justifyContentProp).forEach(([breakpoint, value]) => {
+                if (value && typeof value === 'string') { // Ensure value is a string
+                    const prefix = breakpoint === 'xs' ? '' : capitalize(breakpoint);
+                    classNames.push(styles[`justifyContent${prefix}${capitalize(value)}`]);
+                }
+            });
         }
         return classNames;
     };
@@ -215,15 +203,7 @@ export const CardGridRow: React.FC<CardGridRowProps> = ({
     const rowClass = mergeClasses(
         styles.row,
         ...getRowColsClassNames(),
-        ...getJustifyContentClassNames(
-            justifyContent,
-            justifyContentXs,
-            justifyContentSm,
-            justifyContentMd,
-            justifyContentLg,
-            justifyContentXl,
-            justifyContentXxl
-        ),
+        ...getJustifyContentClassNames(justifyContent),
         alignItems && styles[`alignItems${capitalize(alignItems)}`],
         alignContent && styles[`alignContent${capitalize(alignContent)}`],
         ...getGutterClassNames()
