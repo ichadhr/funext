@@ -1,10 +1,6 @@
 import * as React from "react";
+import { BREAKPOINTS } from "../components/ui/constants";
 
-export const BREAKPOINTS = {
-    TABLET_MAX_WIDTH: 1024,
-    TABLET_MIN_WIDTH: 768,
-    MOBILE_MAX_WIDTH: 767,
-}
 
 const useSidebar = () => {
     const [isMobile, setIsMobile] = React.useState(false);
