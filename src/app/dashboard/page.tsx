@@ -83,7 +83,7 @@ interface SidebarProps {
 interface ContentAreaProps {
     styles: ReturnType<typeof useStyles>;
     isMobile: boolean;
-    children: React.ReactNode; // Add children prop
+    children: React.ReactNode;
 }
 
 interface BreadcrumbItemType {
@@ -202,7 +202,6 @@ const ICONS = {
 // ====================================
 // STYLES
 // ====================================
-
 const useStyles = makeStyles({
     section: {
         display: 'flex',
@@ -277,7 +276,7 @@ const useStyles = makeStyles({
         minHeight: '100%',
         alignSelf: 'stretch',
         borderRadius: tokens.borderRadiusLarge,
-        boxShadow: tokens.shadow2,
+        boxShadow: tokens.shadow4,
         border: tokens.colorTransparentStroke,
         marginRight: tokens.spacingHorizontalXXL,
         [`@media (max-width: ${BREAKPOINTS.TABLET_MAX_WIDTH}px)`]: {
@@ -345,10 +344,6 @@ const useStyles = makeStyles({
     }
 });
 
-// ====================================
-// CUSTOM HOOKS
-// ====================================
-
 
 // ====================================
 // UTILITY COMPONENTS
@@ -415,17 +410,35 @@ const NavigationContent: React.FC = () => (
 // ====================================
 
 const AppToolbar: React.FC<AppToolbarProps> = ({ isOpen, onToggle, styles, isMobile, isTablet }) => {
-    const tooltipContent = isOpen ? "Close Navigation" : "Open Navigation";
+    const [displayedTooltipContent, setDisplayedTooltipContent] = React.useState("");
+    const [isTooltipOpen, setIsTooltipOpen] = React.useState(false); // State to control tooltip visibility
+
+    React.useEffect(() => {
+        const timer = setTimeout(() => {
+            setDisplayedTooltipContent(isOpen ? "Close Navigation" : "Open Navigation");
+        }, 300); // Match the CSS transition duration
+        return () => clearTimeout(timer);
+    }, [isOpen]);
 
     return (
         <div className={styles.toolbar}>
             <div className={styles.toolbarLeft}>
                 <Toolbar>
-                    <Tooltip content={tooltipContent} relationship="description" withArrow>
+                    <Tooltip
+                        content={displayedTooltipContent}
+                        relationship="description"
+                        withArrow
+                        visible={isTooltipOpen}
+                        onVisibleChange={(_ev, data) => setIsTooltipOpen(data.visible)}
+                    >
                         <ToolbarButton
-                            aria-label={tooltipContent}
+                            appearance="transparent"
+                            aria-label={displayedTooltipContent}
                             icon={isOpen ? <ICONS.TOOLBAR.closeSidebar /> : <ICONS.TOOLBAR.openSidebar />}
-                            onClick={onToggle}
+                            onClick={() => {
+                                onToggle(); // Toggle sidebar
+                                setIsTooltipOpen(false); // Close tooltip immediately on click
+                            }}
                         />
                     </Tooltip>
                     <ToolbarDivider />
@@ -639,7 +652,7 @@ export default function Page() {
                     </CardGridRow>
 
                     {/* Bootstrap-like example 1: justify-content-md-center with col-lg-2 and col-md-auto */}
-                    <CardGridRow justifyContentMd="center">
+                    <CardGridRow justifyContent={{ md: "center" }}>
                         <CardGridColumn lg={2}>
                             <Card appearance="filled-alternative">
                                 <CardHeader header={<Text weight="semibold">1 of 3 (lg=2)</Text>} />
@@ -1112,6 +1125,23 @@ export default function Page() {
                             <Card appearance="filled-alternative">
                                 <CardHeader header={<Text weight="semibold">.col-auto</Text>} />
                                 <Text>Column 2</Text>
+                            </Card>
+                        </CardGridColumn>
+                    </CardGridRow>
+
+                    {/* Custom Gutter Example: Horizontal Gutter (gx) */}
+                    <h3>Custom Gutter Example: Horizontal Gutter (gx)</h3>
+                    <CardGridRow gx={5} style={{ border: '1px solid #ccc' }}>
+                        <CardGridColumn col>
+                            <Card appearance="filled-alternative">
+                                <CardHeader header={<Text weight="semibold">Column with gx=5</Text>} />
+                                <Text>Custom column padding</Text>
+                            </Card>
+                        </CardGridColumn>
+                        <CardGridColumn col>
+                            <Card appearance="filled-alternative">
+                                <CardHeader header={<Text weight="semibold">Column with gx=5</Text>} />
+                                <Text>Custom column padding</Text>
                             </Card>
                         </CardGridColumn>
                     </CardGridRow>
