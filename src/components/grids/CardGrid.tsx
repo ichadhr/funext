@@ -16,8 +16,8 @@ const useStyles = makeStyles({
         width: '100%',
         marginRight: 'auto',
         marginLeft: 'auto',
-        paddingLeft: tokens.spacingHorizontalL,
-        paddingRight: tokens.spacingHorizontalL,
+        paddingLeft: tokens.spacingHorizontalM,
+        paddingRight: tokens.spacingHorizontalM,
     },
     containerSm: {
         [`@media (min-width: ${BREAKPOINTS.sm})`]: {
@@ -44,6 +44,10 @@ const useStyles = makeStyles({
             maxWidth: '100%',
         },
     },
+    noPadding: {
+        paddingLeft: '0',
+        paddingRight: '0',
+    },
 });
 
 export const CardGrid: React.FC<CardGridProps> = ({ children, type, ...rest }) => {
@@ -52,6 +56,7 @@ export const CardGrid: React.FC<CardGridProps> = ({ children, type, ...rest }) =
     let responsiveClass = '';
     switch (type) {
         case 'fluid':
+            responsiveClass = styles.noPadding;
             break;
         case 'sm':
             responsiveClass = styles.containerSm;
