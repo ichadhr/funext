@@ -17,24 +17,36 @@ const useStyles = makeStyles({
 
 interface TableSearchInputProps<TData extends TableData> {
     table: Table<TData>;
+    onSearchChange?: (value: string) => void; // New optional prop for server-side filtering
 }
 
-export function TableSearchInput<TData extends TableData>({ table }: TableSearchInputProps<TData>) {
+export function TableSearchInput<TData extends TableData>({ table, onSearchChange }: TableSearchInputProps<TData>) {
     const styles = useStyles();
-    const [globalFilter, setGlobalFilter] = React.useState('');
+    // Use internal state if onSearchChange is not provided, otherwise rely on parent
+    const [internalFilter, setInternalFilter] = React.useState('');
+
+    // Determine the current filter value based on whether onSearchChange is used
+    const currentFilter = onSearchChange ? table.getState().globalFilter : internalFilter;
 
     React.useEffect(() => {
-        table.setGlobalFilter(globalFilter);
-    }, [globalFilter, table]);
+        if (!onSearchChange) { // Only update TanStack's global filter if not manual
+            table.setGlobalFilter(internalFilter);
+        }
+    }, [internalFilter, table, onSearchChange]);
 
     const onChange = React.useCallback((event: React.SyntheticEvent<HTMLElement, Event>, data?: { value?: string }) => {
-        setGlobalFilter(data?.value || '');
-    }, [setGlobalFilter]);
+        const newValue = data?.value || '';
+        if (onSearchChange) {
+            onSearchChange(newValue); // Call parent's handler for manual filtering
+        } else {
+            setInternalFilter(newValue); // Update internal state for client-side filtering
+        }
+    }, [onSearchChange, setInternalFilter]);
 
     return (
         <Field label="Search" className={styles.searchLabel}>
             <SearchBox
-                value={globalFilter ?? ''}
+                value={currentFilter ?? ''}
                 onChange={onChange}
                 placeholder="Search..."
                 className={styles.searchInput}

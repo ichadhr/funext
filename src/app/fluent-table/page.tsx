@@ -7,11 +7,13 @@ import { authenticatedQuery } from '@utils/api';
 import { loginUser } from '@utils/auth';
 import { gql } from 'graphql-request';
 import { ClipboardRegular } from '@fluentui/react-icons'; // Corrected import for the icon
-import { TableLayout } from '@components/tanstack-table/types';
+import { TableLayout, TableState } from '@components/tanstack-table/types'; // Import TableState
 import { useMemo } from 'react';
 import { CardGrid } from "@/components/grids";
 import { Card, CardHeader, Text } from "@fluentui/react-components";
 
+
+// Helper function to convert camelCase to snake_case
 
 
 interface Album extends TableData {
@@ -25,17 +27,25 @@ interface Album extends TableData {
   avgPrice: number;
 }
 
+// Updated GraphQL query to accept pagination, sorting, and filtering arguments for albumsFluentTable
 const GET_ALBUMS_QUERY = gql`
-  query GetAlbums {
-    albumsDetails {
-      albumId
-      albumTitle
-      artistName
-      trackCount
-      genres
-      minPrice
-      maxPrice
-      avgPrice
+  query GetAlbumsCombined($page: Int!, $pageSize: Int!, $sortBy: String!, $sortDesc: Boolean!, $filter: [FilterInput]) {
+    albumsFluentTable(
+      pagination: { page: $page, pageSize: $pageSize },
+      sort: [{ id: $sortBy, desc: $sortDesc }],
+      filter: $filter
+    ) {
+      rows {
+        albumId
+        albumTitle
+        artistName
+        trackCount
+        genres
+        minPrice
+        maxPrice
+        avgPrice
+      }
+      rowCount
     }
   }
 `;
@@ -44,6 +54,7 @@ export default function FluentTableExamplePage() {
   const [data, setData] = React.useState<Album[]>([]);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
+  const [rowCount, setRowCount] = React.useState(0); // State to hold total row count from server
 
   const customLayout: TableLayout = useMemo(() => ({
     topStart: 'pageLength',
@@ -52,25 +63,52 @@ export default function FluentTableExamplePage() {
     bottomEnd: 'paging'
   }), []);
 
+  // onFetchData callback for server-side processing
+  const onFetchData = React.useCallback(async (state: TableState) => {
+    try {
+      setLoading(true);
+      await loginUser('admin', 'admin'); // Ensure user is logged in
 
-  React.useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        await loginUser('admin', 'admin');
+      const { pagination, sorting, globalFilter } = state;
 
-        const result: { albumsDetails: Album[] } = (await authenticatedQuery(GET_ALBUMS_QUERY)) as { albumsDetails: Album[] };
-        const mappedData = result.albumsDetails.map((album: Album) => ({ ...album, id: album.albumId }));
-        setData(mappedData);
-      } catch (err: unknown) {
-        setError((err as Error).message);
-      } finally {
-        setLoading(false);
+      // Prepare variables for GraphQL query based on the user's provided working query
+      const variables: {
+        page: number;
+        pageSize: number;
+        sortBy: string;
+        sortDesc: boolean;
+        filter?: { id: string; value: string }[]; // Make filter optional
+      } = {
+        page: pagination.pageIndex + 1, // GraphQL page is 1-based
+        pageSize: pagination.pageSize,
+        sortBy: sorting.length > 0 ? sorting[0].id : "albumTitle", // Use accessorKey directly
+        sortDesc: sorting.length > 0 ? sorting[0].desc : false,
+      };
+
+      if (globalFilter) {
+        variables.filter = [{ id: "genres", value: globalFilter }]; // Conditionally add filter array
       }
-    };
 
-    fetchData();
+      const result: { albumsFluentTable: { rows: Album[]; rowCount: number } } = (await authenticatedQuery(GET_ALBUMS_QUERY, variables)) as { albumsFluentTable: { rows: Album[]; rowCount: number } };
+      const mappedData = result.albumsFluentTable.rows.map((album: Album) => ({ ...album, id: album.albumId }));
+      setData(mappedData);
+      setRowCount(result.albumsFluentTable.rowCount); // Update total row count
+    } catch (err: unknown) {
+      setError((err as Error).message);
+    } finally {
+      setLoading(false);
+    }
   }, []);
+
+  // Initial data fetch on component mount
+  React.useEffect(() => {
+    // Call onFetchData with initial table state
+    onFetchData({
+      pagination: { pageIndex: 0, pageSize: 10 },
+      sorting: [],
+      globalFilter: '',
+    });
+  }, [onFetchData]);
 
 
   const tanStackColumns: ColumnDef<Album>[] = React.useMemo(
@@ -101,13 +139,6 @@ export default function FluentTableExamplePage() {
     []
   );
 
-  if (loading) {
-    return <div>Loading albums...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
 
 
   return (
@@ -120,6 +151,13 @@ export default function FluentTableExamplePage() {
             data={data}
             tanStackColumns={tanStackColumns}
             layout={customLayout}
+            manualPagination={true} // Enable manual pagination
+            manualSorting={true}    // Enable manual sorting
+            manualFiltering={true}  // Enable manual filtering
+            rowCount={rowCount}     // Pass total row count from server
+            onFetchData={onFetchData} // Pass the data fetching callback
+            loading={loading}       // Pass loading state
+            error={error}           // Pass error state
           />
         </Card>
       </CardGrid>

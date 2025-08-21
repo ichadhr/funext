@@ -1,4 +1,4 @@
-import { ColumnDef, Table } from '@tanstack/react-table';
+import { ColumnDef, Table, ColumnFiltersState, Updater } from '@tanstack/react-table';
 import { DataGridProps } from '@fluentui/react-components';
 
 export interface TableData {
@@ -20,6 +20,28 @@ export interface FluentTableProps<TData extends TableData> {
     bottomStartContent?: React.ReactNode;
     bottomEndContent?: React.ReactNode;
     layout?: TableLayout;
+    // New props for server-side processing
+    manualPagination?: boolean;
+    manualSorting?: boolean;
+    manualFiltering?: boolean;
+    rowCount?: number; // Total items from server
+    onFetchData?: (state: TableState) => void; // Callback for server data fetch
+    loading?: boolean; // Server-side loading status
+    error?: string | null; // Server-side error message
+    onColumnFiltersChange?: (updater: Updater<ColumnFiltersState>) => void;
+}
+
+export interface TableState {
+    pagination: {
+        pageIndex: number;
+        pageSize: number;
+    };
+    sorting: Array<{
+        id: string;
+        desc: boolean;
+    }>;
+    globalFilter: string;
+    columnFilters: ColumnFiltersState;
 }
 
 export type TableLayoutKey = 'topStart' | 'topEnd' | 'bottomStart' | 'bottomEnd';
