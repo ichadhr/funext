@@ -23,6 +23,7 @@ import {
 import { Spinner, MessageBar } from '@fluentui/react-components'; // Keep imports for use outside DataGrid
 import { FluentTableProps, TableData, TableControlKey } from './types';
 import { TableSearchInput, TablePaginationControls, TablePageSizeSelect, TableInfo } from './controls';
+import { useDebounce } from '@hooks/use-debounce';
 
 const useStyles = makeStyles({
     root: {
@@ -178,13 +179,14 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
     const pageSize = table.getState().pagination.pageSize;
     const sortingState = table.getState().sorting;
     const globalFilterState = table.getState().globalFilter;
+    const debouncedGlobalFilter = useDebounce(globalFilterState, 500); // Debounce for 500ms
 
     React.useEffect(() => {
         if (onFetchData && (manualPagination || manualSorting || manualFiltering)) {
             onFetchData({
                 pagination: { pageIndex, pageSize },
                 sorting: sortingState,
-                globalFilter: globalFilterState,
+                globalFilter: debouncedGlobalFilter, // Use debounced value
                 columnFilters: columnFilters,
             });
         }
@@ -196,7 +198,7 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
         pageIndex,
         pageSize,
         sortingState,
-        globalFilterState,
+        debouncedGlobalFilter, // Depend on debounced value
         columnFilters,
         table,
     ]);
@@ -221,8 +223,8 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
             return {
                 columnId: column.id,
                 renderHeaderCell: () => {
-                    const header = table.getHeaderGroups().flatMap(hg => hg.headers).find(h => h.column.id === column.id);
-                    return header ? flexRender(header.column.columnDef.header, header.getContext()) : null;
+                    // Directly return the column header content
+                    return column.columnDef.header;
                 },
                 renderCell: (item: TData) => {
                     const itemId = getRowId ? getRowId(item) : String(item.id);
@@ -237,7 +239,18 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
                     return cell ? flexRender(cell.column.columnDef.cell, cell.getContext()) : null;
                 },
                 sortable: column.getCanSort(),
-                compare: () => {
+                compare: (a, b) => {
+                    const accessorKey = column.id as keyof TData;
+                    const aValue = a[accessorKey];
+                    const bValue = b[accessorKey];
+
+                    if (typeof aValue === 'string' && typeof bValue === 'string') {
+                        return aValue.localeCompare(bValue);
+                    }
+                    if (typeof aValue === 'number' && typeof bValue === 'number') {
+                        return aValue - bValue;
+                    }
+                    // Fallback for other types or if values are not comparable
                     return 0;
                 },
             } as DataGridProps['columns'][number];
@@ -280,18 +293,9 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
                     <DataGridHeader>
                         <DataGridRow<TData>>
                             {({ renderHeaderCell, columnId }) => {
-                                const column = table.getColumn(String(columnId));
-                                const isSorted = column?.getIsSorted();
-                                const sortDirection = isSorted === "asc" ? "ascending" : isSorted === "desc" ? "descending" : undefined;
                                 return (
                                     <DataGridHeaderCell
                                         key={columnId}
-                                        onClick={() => {
-                                            if (column?.getCanSort()) {
-                                                column.toggleSorting(column.getIsSorted() === "asc");
-                                            }
-                                        }}
-                                        sortDirection={sortDirection}
                                     >
                                         {renderHeaderCell()}
                                     </DataGridHeaderCell>

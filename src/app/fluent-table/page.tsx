@@ -66,7 +66,7 @@ export default function FluentTableExamplePage() {
   const onFetchData = React.useCallback(async (state: TableState) => {
     try {
       setLoading(true);
-      const { pagination, sorting, globalFilter } = state;
+      const { pagination, sorting, globalFilter, columnFilters } = state;
 
       // Prepare variables for GraphQL query based on the user's provided working query
       const variables: {
@@ -74,7 +74,7 @@ export default function FluentTableExamplePage() {
         pageSize: number;
         sortBy: string;
         sortDesc: boolean;
-        filter?: { id: string; value: string }[]; // Make filter optional
+        filter?: { id: string[]; value: string; operator?: string }[]; // Update filter type to match GraphQL FilterInput
       } = {
         page: pagination.pageIndex + 1, // GraphQL page is 1-based
         pageSize: pagination.pageSize,
@@ -82,14 +82,33 @@ export default function FluentTableExamplePage() {
         sortDesc: sorting.length > 0 ? sorting[0].desc : false,
       };
 
+      const filters: { id: string[]; value: string; operator?: string }[] = [];
+
       if (globalFilter) {
         const searchableColumns = [
           "albumId", "albumTitle", "artistName", "trackCount", "genres", "minPrice", "maxPrice", "avgPrice"
         ];
-        variables.filter = searchableColumns.map(column => ({
-          id: camelToSnakeCase(column),
-          value: globalFilter
-        }));
+        filters.push({
+          id: searchableColumns.map(column => camelToSnakeCase(column)),
+          value: globalFilter,
+          operator: "CONTAINS"
+        });
+      }
+
+      if (columnFilters && columnFilters.length > 0) {
+        columnFilters.forEach(colFilter => {
+          if (colFilter.value) {
+            filters.push({
+              id: [camelToSnakeCase(colFilter.id)],
+              value: colFilter.value as string,
+              operator: "CONTAINS" // Default operator for column filters
+            });
+          }
+        });
+      }
+
+      if (filters.length > 0) {
+        variables.filter = filters;
       }
 
       const result: { albumsFluentTable: { rows: Album[]; rowCount: number } } = (await authenticatedQuery(GET_ALBUMS_QUERY, variables)) as { albumsFluentTable: { rows: Album[]; rowCount: number } };
