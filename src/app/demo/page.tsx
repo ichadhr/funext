@@ -44,7 +44,7 @@ import {
     GridDotsFilled
 } from "@fluentui/react-icons";
 import { CardGrid, CardGridRow, CardGridColumn } from "@components/grids";
-import useSidebar, { BREAKPOINTS } from "@hooks/use-sidebar";
+import useSidebar from "@hooks/use-sidebar";
 
 // ====================================
 // TYPES & INTERFACES
@@ -230,6 +230,12 @@ const ICONS = {
 // ====================================
 // UTILITY COMPONENTS
 // ====================================
+
+const BREAKPOINTS = {
+    TABLET_MAX_WIDTH: 1024,
+    TABLET_MIN_WIDTH: 768,
+    MOBILE_MAX_WIDTH: 767,
+} as const;
 
 const BreadcrumbContent: React.FC<BreadcrumbContentProps> = ({ isMobile }) => {
     const itemsToRender = isMobile ? [BREADCRUMB_ITEMS[BREADCRUMB_ITEMS.length - 1]] : BREADCRUMB_ITEMS;
@@ -659,7 +665,7 @@ export default function Page() {
                     </CardGridRow>
 
                     {/* Bootstrap-like example 1: justify-content-md-center with col-lg-2 and col-md-auto */}
-                    <CardGridRow justifyContentMd="center">
+                    <CardGridRow justifyContent={{ md: "center" }}>
                         <CardGridColumn lg={2}>
                             <Card appearance="filled-alternative">
                                 <CardHeader header={<Text weight="semibold">1 of 3 (lg=2)</Text>} />

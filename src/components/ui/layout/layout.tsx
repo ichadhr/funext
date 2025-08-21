@@ -20,8 +20,10 @@ export const Layout: React.FC<LayoutProps> = ({ children, navigationSections, na
     const styles = useStyles();
     const { isMobile, isTablet, isOpen, toggle, setIsOpen } = useSidebar();
 
+    const sectionClass = `${styles.section} ${!(isMobile || isTablet) && isOpen ? styles.sectionWithGap : ''}`;
+
     return (
-        <section className={styles.section}>
+        <section className={sectionClass}>
             <Sidebar
                 isMobile={isMobile}
                 isTablet={isTablet}

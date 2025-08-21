@@ -21,6 +21,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ isMobile, isTablet, isOpen, on
                 defaultSelectedValue="1"
                 open={isOpen}
                 type={isMobile || isTablet ? "overlay" : "inline"}
+                multiple={false}
                 className={!(isMobile || isTablet) ? styles.navDrawer : ''}
                 onOpenChange={(_, data) => onOpenChange(data.open)}
             >
