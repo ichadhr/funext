@@ -14,4 +14,8 @@ export interface FluentTableProps<TData extends TableData> {
     tanStackColumns: FluentColumnDef<TData>[]; // TanStack specific column definitions (now required)
     // Allow passing through any other DataGridProps
     dataGridProps?: Omit<DataGridProps, 'items' | 'columns'>;
+    topStartContent?: React.ReactNode;
+    topEndContent?: React.ReactNode;
+    bottomStartContent?: React.ReactNode;
+    bottomEndContent?: React.ReactNode;
 }

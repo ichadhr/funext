@@ -6,6 +6,7 @@ import {
     getFilteredRowModel, // Import for filtering
     getPaginationRowModel, // Import for pagination
     flexRender,
+    Table, // Import Table
 } from '@tanstack/react-table';
 import {
     DataGridBody,
@@ -16,8 +17,78 @@ import {
     DataGridCell,
     DataGridProps,
     TableColumnDefinition, // Keep this for the columns prop of DataGrid
+    makeStyles,
+    Field,
+    Input,
+    Button,
+    Select,
+    Label,
+    SearchBox, // Add SearchBox
+    tokens, // Keep tokens here as it's used in makeStyles
 } from '@fluentui/react-components';
 import { FluentTableProps, TableData } from './types';
+import { ArrowEjectFilled, ArrowNextFilled, ArrowPreviousFilled } from '@fluentui/react-icons';
+
+const useStyles = makeStyles({
+    root: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: tokens.spacingHorizontalM,
+    },
+    topControls: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        gap: tokens.spacingHorizontalM,
+    },
+    bottomControls: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        gap: tokens.spacingHorizontalM,
+    },
+    paginationControls: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: tokens.spacingHorizontalXS,
+    },
+    searchInput: {
+        width: '200px', // Adjust as needed
+    },
+    pageSizeSelect: {
+        width: '100px', // Adjust as needed
+    },
+    tableWrapper: {
+        overflowX: 'auto', // Enable horizontal scrolling for the table
+    },
+    // Styles for the content areas
+    topStart: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: tokens.spacingHorizontalM,
+    },
+    topEnd: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: tokens.spacingHorizontalM,
+    },
+    bottomStart: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: tokens.spacingHorizontalM,
+    },
+    bottomEnd: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: tokens.spacingHorizontalM,
+    },
+    rotatedIconLeft: {
+        transform: 'rotate(-90deg)',
+    },
+    rotatedIconRight: {
+        transform: 'rotate(90deg)',
+    },
+});
 
 export function FluentTable<TData extends TableData>(props: FluentTableProps<TData>) {
     const { data, tanStackColumns, dataGridProps } = props;
@@ -90,95 +161,145 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
     }, [table]);
 
 
-    return (
-        <div>
-            <input
-                type="text"
-                value={globalFilter ?? ''}
-                onChange={e => setGlobalFilter(e.target.value)}
-                placeholder="Search all columns..."
-            />
-            <DataGrid
-                items={table.getRowModel().rows.map(row => row.original)} // DataGrid expects paginated items
-                columns={fluentUiDataGridColumns} // Use the constructed Fluent UI columns
-                sortable
-                sortState={sortState}
-                onSortChange={onSortChange}
-                {...dataGridProps} // Spread additional DataGridProps
-            >
-                <DataGridHeader>
-                    <DataGridRow>
-                        {({ renderHeaderCell }) => (
-                            <DataGridHeaderCell>{renderHeaderCell()}</DataGridHeaderCell>
-                        )}
-                    </DataGridRow>
-                </DataGridHeader>
-                <DataGridBody<TData>>
-                    {({ item, rowId }) => (
-                        <DataGridRow<TData> key={rowId}>
-                            {({ renderCell }) => (
-                                <DataGridCell>{renderCell(item)}</DataGridCell>
-                            )}
-                        </DataGridRow>
-                    )}
-                </DataGridBody>
-            </DataGrid>
-            <div>
-                <button
+    const styles = useStyles();
+
+    const { topStartContent, topEndContent, bottomStartContent, bottomEndContent } = props;
+
+    const TablePaginationControls = React.memo(({ table }: { table: Table<TData> }) => {
+        return (
+            <div className={styles.paginationControls}>
+                <Button
                     onClick={() => table.setPageIndex(0)}
                     disabled={!table.getCanPreviousPage()}
-                >
-                    {'<<'}
-                </button>
-                <button
+                    aria-label="First page"
+                    icon={<ArrowEjectFilled className={styles.rotatedIconLeft} />}
+                />
+                <Button
                     onClick={() => table.previousPage()}
                     disabled={!table.getCanPreviousPage()}
-                >
-                    {'<'}
-                </button>
-                <button
+                    aria-label="Previous page"
+                    icon={<ArrowPreviousFilled />}
+                />
+                <Button
                     onClick={() => table.nextPage()}
                     disabled={!table.getCanNextPage()}
-                >
-                    {'>'}
-                </button>
-                <button
+                    aria-label="Next page"
+                    icon={<ArrowNextFilled />}
+                />
+                <Button
                     onClick={() => table.setPageIndex(table.getPageCount() - 1)}
                     disabled={!table.getCanNextPage()}
-                >
-                    {'>>'}
-                </button>
-                <span>
+                    aria-label="Last page"
+                    icon={<ArrowEjectFilled className={styles.rotatedIconRight} />}
+                />
+                <Label>
                     Page{' '}
                     <strong>
                         {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
                     </strong>{' '}
-                </span>
-                <span>
+                </Label>
+                <Label>
                     | Go to page:{' '}
-                    <input
+                    <Input
                         type="number"
-                        defaultValue={table.getState().pagination.pageIndex + 1}
+                        defaultValue={String(table.getState().pagination.pageIndex + 1)}
                         onChange={e => {
                             const page = e.target.value ? Number(e.target.value) - 1 : 0;
                             table.setPageIndex(page);
                         }}
                         style={{ width: '100px' }}
+                        disabled={!table.getCanNextPage()}
                     />
-                </span>{' '}
-                <select
-                    value={table.getState().pagination.pageSize}
+                </Label>
+            </div>
+        );
+    }) as React.MemoExoticComponent<React.FC<{ table: Table<TData> }>>;
+    TablePaginationControls.displayName = 'TablePaginationControls';
+
+    const TablePageSizeSelect = React.memo(({ table }: { table: Table<TData> }) => {
+        return (
+            <Field label="Page Size">
+                <Select
+                    value={String(table.getState().pagination.pageSize)}
                     onChange={e => {
                         table.setPageSize(Number(e.target.value));
                     }}
+                    className={styles.pageSizeSelect}
                 >
                     {[10, 20, 30, 40, 50].map(pageSize => (
                         <option key={pageSize} value={pageSize}>
                             Show {pageSize}
                         </option>
                     ))}
-                </select>
+                </Select>
+            </Field>
+        );
+    }) as React.MemoExoticComponent<React.FC<{ table: Table<TData> }>>;
+    TablePageSizeSelect.displayName = 'TablePageSizeSelect';
+
+    return (
+        <div className={styles.root}>
+            <div className={styles.topControls}>
+                <div className={styles.topStart}>
+                    {topStartContent || <TableSearchInput globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} styles={styles} />}
+                </div>
+                <div className={styles.topEnd}>
+                    {topEndContent}
+                </div>
+            </div>
+            <div className={styles.tableWrapper}>
+                <DataGrid
+                    items={table.getRowModel().rows.map(row => row.original)} // DataGrid expects paginated items
+                    columns={fluentUiDataGridColumns} // Use the constructed Fluent UI columns
+                    sortable
+                    sortState={sortState}
+                    onSortChange={onSortChange}
+                    {...dataGridProps} // Spread additional DataGridProps
+                >
+                    <DataGridHeader>
+                        <DataGridRow>
+                            {({ renderHeaderCell }) => (
+                                <DataGridHeaderCell>{renderHeaderCell()}</DataGridHeaderCell>
+                            )}
+                        </DataGridRow>
+                    </DataGridHeader>
+                    <DataGridBody<TData>>
+                        {({ item, rowId }) => (
+                            <DataGridRow<TData> key={rowId}>
+                                {({ renderCell }) => (
+                                    <DataGridCell>{renderCell(item)}</DataGridCell>
+                                )}
+                            </DataGridRow>
+                        )}
+                    </DataGridBody>
+                </DataGrid>
+            </div>
+            <div className={styles.bottomControls}>
+                <div className={styles.bottomStart}>
+                    {bottomStartContent || <TablePaginationControls table={table} />}
+                </div>
+                <div className={styles.bottomEnd}>
+                    {bottomEndContent || <TablePageSizeSelect table={table} />}
+                </div>
             </div>
         </div>
     );
 }
+
+const TableSearchInput = React.memo(({ globalFilter, setGlobalFilter, styles }: { globalFilter: string, setGlobalFilter: (filter: string) => void, styles: ReturnType<typeof useStyles> }) => {
+    const onChange = React.useCallback((event: React.SyntheticEvent<HTMLElement, Event>, data?: { value?: string }) => {
+        setGlobalFilter(data?.value || '');
+    }, [setGlobalFilter]);
+
+    return (
+        <Field label="Search">
+            <SearchBox
+                value={globalFilter ?? ''}
+                onChange={onChange}
+                placeholder="Search all columns..."
+                className={styles.searchInput}
+            />
+        </Field>
+    );
+});
+TableSearchInput.displayName = 'TableSearchInput';
