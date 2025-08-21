@@ -11,18 +11,21 @@ const useStyles = makeStyles({
 });
 
 export function TableInfo<TData extends TableData>(
-    { pageIndex, pageCount, totalItems }: TableInfoProps<TData>
+    { pageIndex, pageSize, totalItems }: TableInfoProps<TData>
 ) {
     const styles = useStyles();
+
+    const startIndex = pageIndex * pageSize + 1;
+    const endIndex = Math.min((pageIndex + 1) * pageSize, totalItems);
 
     return (
         <div className={styles.infoContainer}>
             <Label>
-                Page{' '}
+                Showing{' '}
                 <strong>
-                    {pageIndex + 1} of {pageCount}
+                    {startIndex} to {endIndex} of {totalItems}
                 </strong>{' '}
-                ({totalItems} items)
+                entries
             </Label>
         </div>
     );

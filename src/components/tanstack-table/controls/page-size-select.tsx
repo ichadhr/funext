@@ -1,11 +1,16 @@
 import * as React from 'react';
-import { Field, Select, makeStyles } from '@fluentui/react-components';
+import { Field, Select, makeStyles, tokens } from '@fluentui/react-components';
 import { TableData } from '../types';
 
 const useStyles = makeStyles({
     pageSizeSelect: {
-        width: '100px', // Adjust as needed
+        width: '80px', // Adjust as needed
     },
+    pageSizeLabel: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: tokens.spacingHorizontalS
+    }
 });
 
 import { TablePageSizeSelectProps } from '../types';
@@ -14,7 +19,7 @@ export function TablePageSizeSelect<TData extends TableData>({ table }: TablePag
     const styles = useStyles();
 
     return (
-        <Field label="Page Size">
+        <Field label="Page Size" className={styles.pageSizeLabel}>
             <Select
                 value={String(table.getState().pagination.pageSize)}
                 onChange={e => {
@@ -24,7 +29,7 @@ export function TablePageSizeSelect<TData extends TableData>({ table }: TablePag
             >
                 {[10, 20, 30, 40, 50].map(pageSize => (
                     <option key={pageSize} value={pageSize}>
-                        Show {pageSize}
+                        {pageSize}
                     </option>
                 ))}
             </Select>

@@ -26,6 +26,23 @@ export function TablePaginationControls<TData extends TableData>(
 
     return (
         <div className={styles.paginationControls}>
+            <Label>
+                Go to page:{' '}
+                <Input
+                    type="number"
+                    value={String(pageIndex + 1)}
+                    onChange={e => {
+                        let page = e.target.value ? Number(e.target.value) - 1 : 0;
+                        // Clamp the page value to be within valid range
+                        page = Math.max(0, Math.min(page, pageCount - 1));
+                        table.setPageIndex(page);
+                    }}
+                    style={{ width: '70px' }}
+                    disabled={!canNextPage && pageCount === 0}
+                    max={pageCount > 0 ? pageCount : 1} // Set max attribute for number input
+                    min={0} // Set min attribute for number input
+                />
+            </Label>
             <Button
                 onClick={() => table.setPageIndex(0)}
                 disabled={!canPreviousPage}
@@ -56,23 +73,6 @@ export function TablePaginationControls<TData extends TableData>(
                     {pageIndex + 1} of {pageCount}
                 </strong>{' '}
                 ({totalItems} items)
-            </Label>
-            <Label>
-                | Go to page:{' '}
-                <Input
-                    type="number"
-                    value={String(pageIndex + 1)}
-                    onChange={e => {
-                        let page = e.target.value ? Number(e.target.value) - 1 : 0;
-                        // Clamp the page value to be within valid range
-                        page = Math.max(0, Math.min(page, pageCount - 1));
-                        table.setPageIndex(page);
-                    }}
-                    style={{ width: '100px' }}
-                    disabled={!canNextPage && pageCount === 0}
-                    max={pageCount > 0 ? pageCount : 1} // Set max attribute for number input
-                    min={0} // Set min attribute for number input
-                />
             </Label>
         </div>
     );

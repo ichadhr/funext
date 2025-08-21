@@ -1,13 +1,18 @@
 import * as React from 'react';
-import { Field, SearchBox } from '@fluentui/react-components';
+import { Field, SearchBox, tokens } from '@fluentui/react-components';
 import { makeStyles } from '@fluentui/react-components';
 import { Table } from '@tanstack/react-table';
 import { TableData } from '../types';
 
 const useStyles = makeStyles({
     searchInput: {
-        width: '200px', // Adjust as needed
+        width: '170px', // Adjust as needed
     },
+    searchLabel: {
+        display: 'flex',
+        alignItems: 'center',
+        gap: tokens.spacingHorizontalS
+    }
 });
 
 interface TableSearchInputProps<TData extends TableData> {
@@ -27,11 +32,11 @@ export function TableSearchInput<TData extends TableData>({ table }: TableSearch
     }, [setGlobalFilter]);
 
     return (
-        <Field label="Search">
+        <Field label="Search" className={styles.searchLabel}>
             <SearchBox
                 value={globalFilter ?? ''}
                 onChange={onChange}
-                placeholder="Search all columns..."
+                placeholder="Search..."
                 className={styles.searchInput}
             />
         </Field>

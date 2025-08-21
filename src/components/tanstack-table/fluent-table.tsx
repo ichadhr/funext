@@ -108,6 +108,7 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
                     <TableInfo<TData>
                         table={table}
                         pageIndex={table.getState().pagination.pageIndex}
+                        pageSize={table.getState().pagination.pageSize}
                         pageCount={table.getPageCount()}
                         totalItems={table.getFilteredRowModel().rows.length}
                     />

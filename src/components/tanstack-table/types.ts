@@ -51,6 +51,7 @@ export interface TableSearchInputProps<TData extends TableData> {
 export interface TableInfoProps<TData extends TableData> {
     table: Table<TData>;
     pageIndex: number;
+    pageSize: number;
     pageCount: number;
     totalItems: number;
 }

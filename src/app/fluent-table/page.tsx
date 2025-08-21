@@ -9,6 +9,8 @@ import { gql } from 'graphql-request';
 import { ClipboardRegular } from '@fluentui/react-icons'; // Corrected import for the icon
 import { TableLayout } from '@components/tanstack-table/types';
 import { useMemo } from 'react';
+import { CardGrid } from "@/components/grids";
+import { Card, CardHeader, Text } from "@fluentui/react-components";
 
 
 
@@ -44,11 +46,11 @@ export default function FluentTableExamplePage() {
   const [error, setError] = React.useState<string | null>(null);
 
   const customLayout: TableLayout = useMemo(() => ({
-        topStart: 'pageLength',
-        topEnd: 'search',
-        bottomStart: 'info',
-        bottomEnd: 'paging'
-    }), []);
+    topStart: 'pageLength',
+    topEnd: 'search',
+    bottomStart: 'info',
+    bottomEnd: 'paging'
+  }), []);
 
 
   React.useEffect(() => {
@@ -109,13 +111,18 @@ export default function FluentTableExamplePage() {
 
 
   return (
+
     <div>
-      <h1>TanStack Table with Fluent UI DataGrid Example (Fetched Albums)</h1>
-      <FluentTable
-        data={data}
-        tanStackColumns={tanStackColumns}
-        layout={customLayout}
-      />
+      <CardGrid type="fluid">
+        <Card appearance="subtle">
+          <CardHeader header={<Text weight="semibold">TanStack Table with Fluent UI DataGrid Example (Fetched Albums)</Text>} />
+          <FluentTable
+            data={data}
+            tanStackColumns={tanStackColumns}
+            layout={customLayout}
+          />
+        </Card>
+      </CardGrid>
     </div>
   );
 }
