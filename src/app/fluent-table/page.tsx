@@ -8,6 +8,10 @@ import { authenticatedQuery } from '../../utils/api';
 import { loginUser } from '@utils/auth';
 import { gql } from 'graphql-request';
 import { ClipboardRegular } from '@fluentui/react-icons'; // Corrected import for the icon
+import { TableControlKey, TableLayout } from './components/tanstack-table/types';
+import { useMemo } from 'react';
+
+
 
 interface Album extends TableData {
   albumId: string;
@@ -40,6 +44,14 @@ export default function FluentTableExamplePage() {
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
 
+  const customLayout: TableLayout = useMemo(() => ({
+        topStart: 'pageLength',
+        topEnd: 'search',
+        bottomStart: 'info',
+        bottomEnd: 'paging'
+    }), []);
+
+
   React.useEffect(() => {
     const fetchData = async () => {
       try {
@@ -59,83 +71,6 @@ export default function FluentTableExamplePage() {
     fetchData();
   }, []);
 
-  const columns: TableColumnDefinition<Album>[] = React.useMemo(
-    () => [
-      {
-        columnId: 'albumId',
-        renderHeaderCell: () => 'Album ID',
-        renderCell: (item) => item.albumId,
-        sortable: true,
-        compare: (_a, _b) => 0,
-      },
-      {
-        columnId: 'albumTitle',
-        renderHeaderCell: () => 'Album Title',
-        renderCell: (item) => item.albumTitle,
-        sortable: true,
-        compare: (_a, _b) => 0,
-      },
-      {
-        columnId: 'artistName',
-        renderHeaderCell: () => 'Artist Name',
-        renderCell: (item) => item.artistName,
-        sortable: true,
-        compare: (_a, _b) => 0,
-      },
-      {
-        columnId: 'trackCount',
-        renderHeaderCell: () => 'Track Count',
-        renderCell: (item) => item.trackCount,
-        sortable: true,
-        compare: (_a, _b) => 0,
-      },
-      {
-        columnId: 'genres',
-        renderHeaderCell: () => 'Genres',
-        renderCell: (item) => item.genres.join(', '),
-        sortable: true,
-        compare: (_a, _b) => 0,
-      },
-      {
-        columnId: 'minPrice',
-        renderHeaderCell: () => 'Min Price',
-        renderCell: (item) => item.minPrice,
-        sortable: true,
-        compare: (_a, _b) => 0,
-      },
-      {
-        columnId: 'maxPrice',
-        renderHeaderCell: () => 'Max Price',
-        renderCell: (item) => item.maxPrice,
-        sortable: true,
-        compare: (_a, _b) => 0,
-      },
-      {
-        columnId: 'avgPrice',
-        renderHeaderCell: () => 'Avg Price',
-        renderCell: (item) => item.avgPrice,
-        sortable: true,
-        compare: (_a, _b) => 0,
-      },
-      {
-        columnId: 'copyAlbumId', // New column for copying album ID
-        renderHeaderCell: () => 'Copy ID',
-        renderCell: (item) => (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-            <span>{item.albumId}</span>
-            <ClipboardRegular
-              onClick={() => navigator.clipboard.writeText(item.albumId)}
-              style={{ cursor: 'pointer' }}
-              title="Copy Album ID"
-            />
-          </div>
-        ),
-        sortable: false, // This column is not sortable
-        compare: (_a, _b) => 0, // Dummy compare function to satisfy type checker
-      },
-    ],
-    []
-  );
 
   const tanStackColumns: ColumnDef<Album>[] = React.useMemo(
     () => [
@@ -173,13 +108,14 @@ export default function FluentTableExamplePage() {
     return <div>Error: {error}</div>;
   }
 
+
   return (
     <div>
       <h1>TanStack Table with Fluent UI DataGrid Example (Fetched Albums)</h1>
       <FluentTable
         data={data}
-        columns={columns}
         tanStackColumns={tanStackColumns}
+        layout={customLayout}
       />
     </div>
   );
