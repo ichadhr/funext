@@ -13,7 +13,7 @@ import { Card, CardHeader, Text } from "@fluentui/react-components";
 
 
 // Helper function to convert camelCase to snake_case
-
+const camelToSnakeCase = (str: string) => str.replace(/[A-Z]/g, letter => `_${letter.toLowerCase()}`);
 
 interface Album extends TableData {
   albumId: string;
@@ -78,12 +78,18 @@ export default function FluentTableExamplePage() {
       } = {
         page: pagination.pageIndex + 1, // GraphQL page is 1-based
         pageSize: pagination.pageSize,
-        sortBy: sorting.length > 0 ? sorting[0].id : "albumTitle", // Use accessorKey directly
+        sortBy: sorting.length > 0 ? camelToSnakeCase(sorting[0].id) : "album_title", // Use accessorKey and convert to snake_case
         sortDesc: sorting.length > 0 ? sorting[0].desc : false,
       };
 
       if (globalFilter) {
-        variables.filter = [{ id: "genres", value: globalFilter }]; // Conditionally add filter array
+        const searchableColumns = [
+          "albumId", "albumTitle", "artistName", "trackCount", "genres", "minPrice", "maxPrice", "avgPrice"
+        ];
+        variables.filter = searchableColumns.map(column => ({
+          id: camelToSnakeCase(column),
+          value: globalFilter
+        }));
       }
 
       const result: { albumsFluentTable: { rows: Album[]; rowCount: number } } = (await authenticatedQuery(GET_ALBUMS_QUERY, variables)) as { albumsFluentTable: { rows: Album[]; rowCount: number } };
