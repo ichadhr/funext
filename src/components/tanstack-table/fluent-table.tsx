@@ -81,7 +81,7 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
         getFilteredRowModel: getFilteredRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
         enableSorting: true,
-        getRowId: getRowId || ((row) => row.id),
+        getRowId: getRowId || ((row) => String(row.id)), // Ensure getRowId always returns a string
         state: {
             pagination,
         },
@@ -92,20 +92,20 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
         switch (key) {
             case 'pageLength':
                 return (
-                    <TablePageSizeSelect
+                    <TablePageSizeSelect<TData>
                         table={table}
                         pageSize={table.getState().pagination.pageSize}
                     />
                 );
             case 'search':
                 return (
-                    <TableSearchInput
+                    <TableSearchInput<TData>
                         table={table}
                     />
                 );
             case 'info':
                 return (
-                    <TableInfo
+                    <TableInfo<TData>
                         table={table}
                         pageIndex={table.getState().pagination.pageIndex}
                         pageCount={table.getPageCount()}
@@ -114,7 +114,7 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
                 );
             case 'paging':
                 return (
-                    <TablePaginationControls
+                    <TablePaginationControls<TData>
                         table={table}
                         pageIndex={table.getState().pagination.pageIndex}
                         pageSize={table.getState().pagination.pageSize}
@@ -173,7 +173,7 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
                 },
             } as DataGridProps['columns'][number]; // Cast to a single column definition type from DataGridProps
         });
-    }, [table]);
+    }, [table, getRowId]);
 
 
     const styles = useStyles();

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Button, Label, Input, makeStyles, tokens } from '@fluentui/react-components';
 import { ArrowEjectFilled, ArrowNextFilled, ArrowPreviousFilled } from '@fluentui/react-icons';
-import { Table } from '@tanstack/react-table';
 import { TableData } from '../types';
 
 const useStyles = makeStyles({
@@ -20,9 +19,9 @@ const useStyles = makeStyles({
 
 import { TablePaginationControlsProps } from '../types';
 
-const TablePaginationControlsInternal = <TData extends TableData>(
-    { table, pageIndex, pageSize, pageCount, canPreviousPage, canNextPage, totalItems }: TablePaginationControlsProps<TData>
-) => {
+export function TablePaginationControls<TData extends TableData>(
+    { table, pageIndex, pageCount, canPreviousPage, canNextPage, totalItems }: TablePaginationControlsProps<TData>
+) {
     const styles = useStyles();
 
     return (
@@ -77,7 +76,5 @@ const TablePaginationControlsInternal = <TData extends TableData>(
             </Label>
         </div>
     );
-};
-
-export const TablePaginationControls = React.memo(TablePaginationControlsInternal) as any;
+}
 TablePaginationControls.displayName = 'TablePaginationControls';

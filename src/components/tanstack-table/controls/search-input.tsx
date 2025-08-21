@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Field, SearchBox } from '@fluentui/react-components';
-import { makeStyles, tokens } from '@fluentui/react-components';
+import { makeStyles } from '@fluentui/react-components';
 import { Table } from '@tanstack/react-table';
 import { TableData } from '../types';
 
@@ -14,7 +14,7 @@ interface TableSearchInputProps<TData extends TableData> {
     table: Table<TData>;
 }
 
-const TableSearchInputInternal = <TData extends TableData>({ table }: TableSearchInputProps<TData>) => {
+export function TableSearchInput<TData extends TableData>({ table }: TableSearchInputProps<TData>) {
     const styles = useStyles();
     const [globalFilter, setGlobalFilter] = React.useState('');
 
@@ -36,7 +36,5 @@ const TableSearchInputInternal = <TData extends TableData>({ table }: TableSearc
             />
         </Field>
     );
-};
-
-export const TableSearchInput = React.memo(TableSearchInputInternal) as any;
+}
 TableSearchInput.displayName = 'TableSearchInput';

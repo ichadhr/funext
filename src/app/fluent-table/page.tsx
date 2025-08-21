@@ -3,12 +3,11 @@
 import * as React from 'react';
 import { ColumnDef } from '@tanstack/react-table';
 import { FluentTable, TableData } from '@components/tanstack-table';
-import { TableColumnDefinition } from '@fluentui/react-components';
-import { authenticatedQuery } from '../../utils/api';
+import { authenticatedQuery } from '@utils/api';
 import { loginUser } from '@utils/auth';
 import { gql } from 'graphql-request';
 import { ClipboardRegular } from '@fluentui/react-icons'; // Corrected import for the icon
-import { TableControlKey, TableLayout } from './components/tanstack-table/types';
+import { TableLayout } from '@components/tanstack-table/types';
 import { useMemo } from 'react';
 
 
@@ -58,7 +57,7 @@ export default function FluentTableExamplePage() {
         setLoading(true);
         await loginUser('admin', 'admin');
 
-        const result: any = await authenticatedQuery(GET_ALBUMS_QUERY);
+        const result: { albumsDetails: Album[] } = (await authenticatedQuery(GET_ALBUMS_QUERY)) as { albumsDetails: Album[] };
         const mappedData = result.albumsDetails.map((album: Album) => ({ ...album, id: album.albumId }));
         setData(mappedData);
       } catch (err: unknown) {

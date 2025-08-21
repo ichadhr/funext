@@ -20,7 +20,21 @@ const LOGIN_MUTATION = gql`
 
 export async function loginUser(username: string, password: string) {
   try {
-    const data: any = await client.request(LOGIN_MUTATION, { username, password });
+interface LoginResponse {
+  usersMutation: {
+    login: {
+      token: string;
+      user: {
+        id: string;
+        username: string;
+        email: string;
+        role: string;
+      };
+    };
+  };
+}
+
+    const data: LoginResponse = await client.request(LOGIN_MUTATION, { username, password });
     const { token, user } = data.usersMutation.login; // Corrected destructuring
     // Store the token (e.g., in localStorage or a state management solution)
     localStorage.setItem('jwt_token', token);

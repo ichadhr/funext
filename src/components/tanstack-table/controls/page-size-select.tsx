@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Field, Select, makeStyles, tokens } from '@fluentui/react-components';
-import { Table } from '@tanstack/react-table';
+import { Field, Select, makeStyles } from '@fluentui/react-components';
 import { TableData } from '../types';
 
 const useStyles = makeStyles({
@@ -11,7 +10,7 @@ const useStyles = makeStyles({
 
 import { TablePageSizeSelectProps } from '../types';
 
-const TablePageSizeSelectInternal = <TData extends TableData>({ table }: TablePageSizeSelectProps<TData>) => {
+export function TablePageSizeSelect<TData extends TableData>({ table }: TablePageSizeSelectProps<TData>) {
     const styles = useStyles();
 
     return (
@@ -31,7 +30,5 @@ const TablePageSizeSelectInternal = <TData extends TableData>({ table }: TablePa
             </Select>
         </Field>
     );
-};
-
-export const TablePageSizeSelect = React.memo(TablePageSizeSelectInternal) as any;
+}
 TablePageSizeSelect.displayName = 'TablePageSizeSelect';

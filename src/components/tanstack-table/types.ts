@@ -2,7 +2,8 @@ import { ColumnDef, Table } from '@tanstack/react-table';
 import { DataGridProps } from '@fluentui/react-components';
 
 export interface TableData {
-    [key: string]: any; // This will be addressed later if needed
+    id: string | number;
+    [key: string]: unknown;
 }
 
 // FluentTable will accept Fluent UI's TableColumnDefinition
@@ -20,14 +21,14 @@ export interface FluentTableProps<TData extends TableData> {
     bottomEndContent?: React.ReactNode;
     layout?: TableLayout;
 }
- 
+
 export type TableLayoutKey = 'topStart' | 'topEnd' | 'bottomStart' | 'bottomEnd';
 export type TableControlKey = 'pageLength' | 'search' | 'info' | 'paging';
- 
+
 export type TableLayout = {
     [key in TableLayoutKey]?: TableControlKey;
 };
- 
+
 export interface TablePaginationControlsProps<TData extends TableData> {
     table: Table<TData>;
     pageIndex: number;
@@ -37,12 +38,16 @@ export interface TablePaginationControlsProps<TData extends TableData> {
     canNextPage: boolean;
     totalItems: number;
 }
- 
+
 export interface TablePageSizeSelectProps<TData extends TableData> {
     table: Table<TData>;
     pageSize: number;
 }
- 
+
+export interface TableSearchInputProps<TData extends TableData> {
+    table: Table<TData>;
+}
+
 export interface TableInfoProps<TData extends TableData> {
     table: Table<TData>;
     pageIndex: number;

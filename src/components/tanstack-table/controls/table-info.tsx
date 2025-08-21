@@ -10,9 +10,9 @@ const useStyles = makeStyles({
     },
 });
 
-const TableInfoInternal = <TData extends TableData>(
+export function TableInfo<TData extends TableData>(
     { pageIndex, pageCount, totalItems }: TableInfoProps<TData>
-) => {
+) {
     const styles = useStyles();
 
     return (
@@ -26,7 +26,5 @@ const TableInfoInternal = <TData extends TableData>(
             </Label>
         </div>
     );
-};
-
-export const TableInfo = React.memo(TableInfoInternal) as any;
+}
 TableInfo.displayName = 'TableInfo';
