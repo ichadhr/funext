@@ -278,10 +278,25 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
                     {...dataGridProps}
                 >
                     <DataGridHeader>
-                        <DataGridRow>
-                            {({ renderHeaderCell }) => (
-                                <DataGridHeaderCell>{renderHeaderCell()}</DataGridHeaderCell>
-                            )}
+                        <DataGridRow<TData>>
+                            {({ renderHeaderCell, columnId }) => {
+                                const column = table.getColumn(String(columnId));
+                                const isSorted = column?.getIsSorted();
+                                const sortDirection = isSorted === "asc" ? "ascending" : isSorted === "desc" ? "descending" : undefined;
+                                return (
+                                    <DataGridHeaderCell
+                                        key={columnId}
+                                        onClick={() => {
+                                            if (column?.getCanSort()) {
+                                                column.toggleSorting(column.getIsSorted() === "asc");
+                                            }
+                                        }}
+                                        sortDirection={sortDirection}
+                                    >
+                                        {renderHeaderCell()}
+                                    </DataGridHeaderCell>
+                                );
+                            }}
                         </DataGridRow>
                     </DataGridHeader>
                     <DataGridBody<TData>>

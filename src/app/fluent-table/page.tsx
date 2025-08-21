@@ -4,7 +4,6 @@ import * as React from 'react';
 import { ColumnDef } from '@tanstack/react-table';
 import { FluentTable, TableData } from '@components/tanstack-table';
 import { authenticatedQuery } from '@utils/api';
-import { loginUser } from '@utils/auth';
 import { gql } from 'graphql-request';
 import { ClipboardRegular } from '@fluentui/react-icons'; // Corrected import for the icon
 import { TableLayout, TableState } from '@components/tanstack-table/types'; // Import TableState
@@ -67,8 +66,6 @@ export default function FluentTableExamplePage() {
   const onFetchData = React.useCallback(async (state: TableState) => {
     try {
       setLoading(true);
-      await loginUser('admin', 'admin'); // Ensure user is logged in
-
       const { pagination, sorting, globalFilter } = state;
 
       // Prepare variables for GraphQL query based on the user's provided working query
@@ -107,23 +104,25 @@ export default function FluentTableExamplePage() {
       pagination: { pageIndex: 0, pageSize: 10 },
       sorting: [],
       globalFilter: '',
+      columnFilters: [], // Add this line
     });
   }, [onFetchData]);
 
 
   const tanStackColumns: ColumnDef<Album>[] = React.useMemo(
     () => [
-      { accessorKey: 'albumId', header: 'Album ID' },
-      { accessorKey: 'albumTitle', header: 'Album Title' },
-      { accessorKey: 'artistName', header: 'Artist Name' },
-      { accessorKey: 'trackCount', header: 'Track Count' },
-      { accessorKey: 'genres', header: 'Genres' },
-      { accessorKey: 'minPrice', header: 'Min Price' },
-      { accessorKey: 'maxPrice', header: 'Max Price' },
-      { accessorKey: 'avgPrice', header: 'Avg Price' },
+      { accessorKey: 'albumId', header: 'Album ID', enableSorting: true },
+      { accessorKey: 'albumTitle', header: 'Album Title', enableSorting: true },
+      { accessorKey: 'artistName', header: 'Artist Name', enableSorting: true },
+      { accessorKey: 'trackCount', header: 'Track Count', enableSorting: true },
+      { accessorKey: 'genres', header: 'Genres', enableSorting: true },
+      { accessorKey: 'minPrice', header: 'Min Price', enableSorting: true },
+      { accessorKey: 'maxPrice', header: 'Max Price', enableSorting: true },
+      { accessorKey: 'avgPrice', header: 'Avg Price', enableSorting: true },
       {
         accessorKey: 'copyAlbumId', // New column for copying album ID
         header: 'Copy ID',
+        enableSorting: false, // This column should not be sortable
         cell: ({ row }) => (
           <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
             <span>{row.original.albumId}</span>

@@ -34,10 +34,12 @@ interface LoginResponse {
   };
 }
 
+    console.log('Attempting login for user:', username);
     const data: LoginResponse = await client.request(LOGIN_MUTATION, { username, password });
     const { token, user } = data.usersMutation.login; // Corrected destructuring
     // Store the token (e.g., in localStorage or a state management solution)
     localStorage.setItem('jwt_token', token);
+    console.log('Login successful, token stored:', token);
     console.log('Login successful, user:', user);
     return { token, user };
   } catch (error) {
