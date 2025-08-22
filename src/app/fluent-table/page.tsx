@@ -134,7 +134,7 @@ export default function FluentTableExamplePage() {
   }, [onFetchData]);
 
 
-  const tanStackColumns: ColumnDef<Album>[] = React.useMemo(
+  const dataColumns: ColumnDef<Album>[] = React.useMemo(
     () => [
       { accessorKey: 'albumId', header: 'Album ID', enableSorting: true },
       { accessorKey: 'albumTitle', header: 'Album Title', enableSorting: true },
@@ -173,7 +173,7 @@ export default function FluentTableExamplePage() {
           <CardHeader header={<Text weight="semibold">TanStack Table with Fluent UI DataGrid Example (Fetched Albums)</Text>} />
           <FluentTable
             data={data}
-            tanStackColumns={tanStackColumns}
+            dataColumns={dataColumns}
             layout={customLayout}
             manualPagination={true} // Enable manual pagination
             manualSorting={true}    // Enable manual sorting

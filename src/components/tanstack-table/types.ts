@@ -7,11 +7,14 @@ export interface TableData {
 }
 
 // FluentTable will accept Fluent UI's TableColumnDefinition
-export type FluentColumnDef<TData extends TableData, TValue = unknown> = ColumnDef<TData, TValue>;
+export type FluentColumnDef<TData extends TableData, TValue = unknown> = ColumnDef<TData, TValue> & {
+    compare?: (a: TData, b: TData) => number;
+};
+export type { ColumnDef };
 
 export interface FluentTableProps<TData extends TableData> {
     data: TData[];
-    tanStackColumns: FluentColumnDef<TData>[]; // TanStack specific column definitions (now required)
+    dataColumns: FluentColumnDef<TData>[]; // TanStack specific column definitions (now required)
     // Allow passing through any other DataGridProps
     dataGridProps?: Omit<DataGridProps, 'items' | 'columns'>;
     getRowId?: (originalRow: TData) => string;

@@ -19,9 +19,10 @@ import {
     makeStyles,
     tokens,
     DataGridCell,
+    Label,
 } from '@fluentui/react-components';
 import { Spinner, MessageBar } from '@fluentui/react-components'; // Keep imports for use outside DataGrid
-import { FluentTableProps, TableData, TableControlKey } from './types';
+import { FluentTableProps, TableData, TableControlKey, FluentColumnDef } from './types';
 import { TableSearchInput, TablePaginationControls, TablePageSizeSelect, TableInfo } from './controls';
 import { useDebounce } from '@hooks/use-debounce';
 
@@ -85,7 +86,7 @@ const useStyles = makeStyles({
 export function FluentTable<TData extends TableData>(props: FluentTableProps<TData>) {
     const {
         data,
-        tanStackColumns,
+        dataColumns,
         dataGridProps,
         getRowId,
         layout,
@@ -109,7 +110,7 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
 
     const table = useReactTable({
         data,
-        columns: tanStackColumns,
+        columns: dataColumns,
         getCoreRowModel: getCoreRowModel(),
         getSortedRowModel: manualSorting ? undefined : getSortedRowModel(),
         getFilteredRowModel: manualFiltering ? undefined : getFilteredRowModel(),
@@ -224,7 +225,7 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
                 columnId: column.id,
                 renderHeaderCell: () => {
                     // Directly return the column header content
-                    return column.columnDef.header;
+                    return <Label weight="semibold">{column.columnDef.header}</Label>;
                 },
                 renderCell: (item: TData) => {
                     const itemId = getRowId ? getRowId(item) : String(item.id);
@@ -239,7 +240,7 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
                     return cell ? flexRender(cell.column.columnDef.cell, cell.getContext()) : null;
                 },
                 sortable: column.getCanSort(),
-                compare: (a, b) => {
+                compare: (column.columnDef as FluentColumnDef<TData>).compare || ((a, b) => {
                     const accessorKey = column.id as keyof TData;
                     const aValue = a[accessorKey];
                     const bValue = b[accessorKey];
@@ -252,7 +253,7 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
                     }
                     // Fallback for other types or if values are not comparable
                     return 0;
-                },
+                }),
             } as DataGridProps['columns'][number];
         });
     }, [table, getRowId]);
@@ -343,3 +344,4 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
         </div>
     );
 }
+
