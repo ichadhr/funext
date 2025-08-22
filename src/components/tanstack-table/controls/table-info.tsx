@@ -22,9 +22,7 @@ export function TableInfo<TData extends TableData>(
         <div className={styles.infoContainer}>
             <Label>
                 Showing{' '}
-                <strong>
                     {startIndex} to {endIndex} of {totalItems}
-                </strong>{' '}
                 entries
             </Label>
         </div>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Label, Input, makeStyles, tokens } from '@fluentui/react-components';
+import { Button, Label, SpinButton, makeStyles, tokens, useId } from '@fluentui/react-components';
 import { ArrowEjectFilled, ArrowNextFilled, ArrowPreviousFilled } from '@fluentui/react-icons';
 import { TableData } from '../types';
 
@@ -15,33 +15,44 @@ const useStyles = makeStyles({
     rotatedIconRight: {
         transform: 'rotate(90deg)',
     },
+    spinButton: {
+        width: '70px',
+    },
 });
 
 import { TablePaginationControlsProps } from '../types';
 
 export function TablePaginationControls<TData extends TableData>(
-    { table, pageIndex, pageCount, canPreviousPage, canNextPage, totalItems }: TablePaginationControlsProps<TData>
+    { table, pageIndex, pageCount, canPreviousPage, canNextPage }: TablePaginationControlsProps<TData>
 ) {
     const styles = useStyles();
 
     return (
         <div className={styles.paginationControls}>
-            <Label>
+            <Label htmlFor={useId('page-spin-button')}>
                 Go to page:{' '}
-                <Input
-                    type="number"
-                    value={String(pageIndex + 1)}
-                    onChange={e => {
-                        let page = e.target.value ? Number(e.target.value) - 1 : 0;
+                <SpinButton
+                    value={pageIndex + 1}
+                    onChange={(e, data) => {
+                        let page = data.value ? data.value - 1 : 0;
+                        if (data.displayValue) {
+                            page = Number(data.displayValue) - 1;
+                        }
                         // Clamp the page value to be within valid range
                         page = Math.max(0, Math.min(page, pageCount - 1));
                         table.setPageIndex(page);
                     }}
-                    style={{ width: '70px' }}
+                    min={0}
+                    max={pageCount > 0 ? pageCount : 1}
                     disabled={!canNextPage && pageCount === 0}
-                    max={pageCount > 0 ? pageCount : 1} // Set max attribute for number input
-                    min={0} // Set min attribute for number input
+                    id={useId('page-spin-button')}
+                    className={styles.spinButton}
                 />
+            </Label>
+            <Label>
+                Page {' '}
+                    {pageIndex + 1} of {pageCount}
+                    {' '}
             </Label>
             <Button
                 onClick={() => table.setPageIndex(0)}
@@ -67,13 +78,6 @@ export function TablePaginationControls<TData extends TableData>(
                 aria-label="Last page"
                 icon={<ArrowEjectFilled className={styles.rotatedIconRight} />}
             />
-            <Label>
-                Page{' '}
-                <strong>
-                    {pageIndex + 1} of {pageCount}
-                </strong>{' '}
-                ({totalItems} items)
-            </Label>
         </div>
     );
 }
