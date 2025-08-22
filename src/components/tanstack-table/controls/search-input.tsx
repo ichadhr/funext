@@ -18,9 +18,11 @@ const useStyles = makeStyles({
 interface TableSearchInputProps<TData extends TableData> {
     table: Table<TData>;
     onSearchChange?: (value: string) => void; // New optional prop for server-side filtering
+    placeholder?: string;
+    label?: string;
 }
 
-export function TableSearchInput<TData extends TableData>({ table, onSearchChange }: TableSearchInputProps<TData>) {
+export function TableSearchInput<TData extends TableData>({ table, onSearchChange, placeholder, label }: TableSearchInputProps<TData>) {
     const styles = useStyles();
     // Use internal state if onSearchChange is not provided, otherwise rely on parent
     const [internalFilter, setInternalFilter] = React.useState('');
@@ -44,11 +46,11 @@ export function TableSearchInput<TData extends TableData>({ table, onSearchChang
     }, [onSearchChange, setInternalFilter]);
 
     return (
-        <Field label="Search" className={styles.searchLabel}>
+        <Field label={label ?? "Search: "} className={styles.searchLabel}>
             <SearchBox
                 value={currentFilter ?? ''}
                 onChange={onChange}
-                placeholder="Search..."
+                placeholder={placeholder ?? "Search..."}
                 className={styles.searchInput}
             />
         </Field>

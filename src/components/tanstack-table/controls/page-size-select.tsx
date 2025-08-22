@@ -1,11 +1,9 @@
 import * as React from 'react';
-import { Field, Select, makeStyles, tokens } from '@fluentui/react-components';
-import { TableData } from '../types';
+import { Field, Select, useId, SelectProps, makeStyles, tokens } from '@fluentui/react-components';
+
+import { TableData, TablePageSizeSelectProps } from '../types';
 
 const useStyles = makeStyles({
-    pageSizeSelect: {
-        width: '80px', // Adjust as needed
-    },
     pageSizeLabel: {
         display: 'flex',
         alignItems: 'center',
@@ -13,27 +11,38 @@ const useStyles = makeStyles({
     }
 });
 
-import { TablePageSizeSelectProps } from '../types';
-
-export function TablePageSizeSelect<TData extends TableData>({ table }: TablePageSizeSelectProps<TData>) {
+export function TablePageSizeSelect<TData extends TableData>({ table, label, length, totalRows }: TablePageSizeSelectProps<TData>) {
     const styles = useStyles();
+    console.log('data', totalRows);
+    const selectId = useId();
+
+    const onChange: SelectProps["onChange"] = (e, data) => {
+        const value = data.value;
+        if (value === '-1') {
+            table.setPageSize(totalRows);
+        } else {
+            table.setPageSize(Number(value));
+        }
+    };
+
+    const pageSizes = length || [5, 10, 50, -1];
 
     return (
-        <Field label="Page Size" className={styles.pageSizeLabel}>
-            <Select
-                value={String(table.getState().pagination.pageSize)}
-                onChange={e => {
-                    table.setPageSize(Number(e.target.value));
-                }}
-                className={styles.pageSizeSelect}
-            >
-                {[10, 20, 30, 40, 50].map(pageSize => (
-                    <option key={pageSize} value={pageSize}>
-                        {pageSize}
-                    </option>
-                ))}
-            </Select>
-        </Field>
+        <>
+            <Field label={label ?? "Show: "} className={styles.pageSizeLabel}>
+                <Select
+                    id={selectId}
+                    aria-label="Page length select"
+                    onChange={onChange}
+                >
+                    {pageSizes.map(pageSize => (
+                        <option key={pageSize} value={String(pageSize)}>
+                            {pageSize === -1 ? 'All' : pageSize}
+                        </option>
+                    ))}
+                </Select>
+            </Field>
+        </>
     );
 }
 TablePageSizeSelect.displayName = 'TablePageSizeSelect';

@@ -20,9 +20,10 @@ import {
     tokens,
     DataGridCell,
     Label,
+    Spinner,
+    MessageBar
 } from '@fluentui/react-components';
-import { Spinner, MessageBar } from '@fluentui/react-components'; // Keep imports for use outside DataGrid
-import { FluentTableProps, TableData, TableControlKey, FluentColumnDef } from './types';
+import { FluentTableProps, TableData, FluentColumnDef, TableLayout, TableControlPlacement } from './types';
 import { TableSearchInput, TablePaginationControls, TablePageSizeSelect, TableInfo } from './controls';
 import { useDebounce } from '@hooks/use-debounce';
 
@@ -90,6 +91,7 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
         dataGridProps,
         getRowId,
         layout,
+        optionControl, // Destructure new prop
         manualPagination,
         manualSorting,
         manualFiltering,
@@ -100,9 +102,25 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
         onColumnFiltersChange,
     } = props;
 
+    // Define default layout if not provided
+    const defaultLayout: TableLayout = {
+        topStart: 'search',
+        topEnd: 'pageLength',
+        bottomStart: 'info',
+        bottomEnd: 'paging',
+    };
+
+    // Merge provided layout with default layout, only overriding specified positions
+    const effectiveLayout = {
+        ...defaultLayout,
+        ...layout,
+    };
+
+    const initialPageSize = optionControl?.pageLength?.length?.[0] || 5;
+
     const [pagination, setPagination] = React.useState({
         pageIndex: 0,
-        pageSize: 10,
+        pageSize: initialPageSize,
     });
     const [globalFilter, setGlobalFilter] = React.useState('');
     const [sorting, setSorting] = React.useState<SortingState>([]);
@@ -133,20 +151,30 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
         onColumnFiltersChange: onColumnFiltersChange || setColumnFilters,
     });
 
-    const renderControl = (key?: TableControlKey) => {
-        switch (key) {
+    const renderControl = (placementType?: TableControlPlacement) => {
+        if (!placementType || placementType === 'none') {
+            return null;
+        }
+
+        switch (placementType) {
             case 'pageLength':
+                const pageLengthOptions = optionControl?.pageLength;
                 return (
                     <TablePageSizeSelect<TData>
                         table={table}
-                        pageSize={table.getState().pagination.pageSize}
+                        label={pageLengthOptions?.label}
+                        length={pageLengthOptions?.length}
+                        totalRows={rowCount !== undefined ? rowCount : table.getFilteredRowModel().rows.length}
                     />
                 );
             case 'search':
+                const searchOptions = optionControl?.search;
                 return (
                     <TableSearchInput<TData>
                         table={table}
                         onSearchChange={manualFiltering ? setGlobalFilter : undefined}
+                        placeholder={searchOptions?.placeholder}
+                        label={searchOptions?.label}
                     />
                 );
             case 'info':
@@ -156,7 +184,7 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
                         pageIndex={table.getState().pagination.pageIndex}
                         pageSize={table.getState().pagination.pageSize}
                         pageCount={table.getPageCount()}
-                        totalItems={rowCount !== undefined ? rowCount : table.getFilteredRowModel().rows.length}
+                        totalRows={rowCount !== undefined ? rowCount : table.getFilteredRowModel().rows.length}
                     />
                 );
             case 'paging':
@@ -168,7 +196,7 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
                         pageCount={table.getPageCount()}
                         canPreviousPage={table.getCanPreviousPage()}
                         canNextPage={table.getCanNextPage()}
-                        totalItems={rowCount !== undefined ? rowCount : table.getFilteredRowModel().rows.length}
+                        totalRows={rowCount !== undefined ? rowCount : table.getFilteredRowModel().rows.length}
                     />
                 );
             default:
@@ -212,6 +240,12 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
     );
 
     const onSortChange: DataGridProps["onSortChange"] = React.useCallback((e: React.MouseEvent, nextSortState: Parameters<NonNullable<DataGridProps["onSortChange"]>>[1]) => {
+        const column = table.getColumn(nextSortState.sortColumn?.toString() || '');
+        if (column && !column.getCanSort()) {
+            // If the column is not sortable, do nothing
+            return;
+        }
+
         setSortState(nextSortState);
         const tanstackSort = nextSortState.sortColumn
             ? [{ id: nextSortState.sortColumn.toString(), desc: nextSortState.sortDirection === "descending" }]
@@ -224,7 +258,6 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
             return {
                 columnId: column.id,
                 renderHeaderCell: () => {
-                    // Directly return the column header content
                     return <Label weight="semibold">{column.columnDef.header}</Label>;
                 },
                 renderCell: (item: TData) => {
@@ -240,7 +273,16 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
                     return cell ? flexRender(cell.column.columnDef.cell, cell.getContext()) : null;
                 },
                 sortable: column.getCanSort(),
-                compare: (column.columnDef as FluentColumnDef<TData>).compare || ((a, b) => {
+                compare: (a, b) => {
+                    if (column.columnDef.enableSorting === false) {
+                        return 0;
+                    }
+
+                    const customCompare = (column.columnDef as FluentColumnDef<TData>).compare;
+                    if (customCompare) {
+                        return customCompare(a, b);
+                    }
+
                     const accessorKey = column.id as keyof TData;
                     const aValue = a[accessorKey];
                     const bValue = b[accessorKey];
@@ -253,7 +295,7 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
                     }
                     // Fallback for other types or if values are not comparable
                     return 0;
-                }),
+                },
             } as DataGridProps['columns'][number];
         });
     }, [table, getRowId]);
@@ -266,10 +308,15 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
         <div className={styles.root}>
             <div className={styles.topControls}>
                 <div className={styles.topStart}>
-                    {layout?.topStart ? renderControl(layout.topStart) : topStartContent || <TableSearchInput table={table} onSearchChange={manualFiltering ? setGlobalFilter : undefined} />}
+                    {effectiveLayout?.topStart ? renderControl(effectiveLayout.topStart) : topStartContent || <TableSearchInput table={table} onSearchChange={manualFiltering ? setGlobalFilter : undefined} placeholder="Search..." />}
                 </div>
                 <div className={styles.topEnd}>
-                    {layout?.topEnd ? renderControl(layout.topEnd) : topEndContent}
+                    {effectiveLayout?.topEnd ? renderControl(effectiveLayout.topEnd) : topEndContent || (
+                        <TablePageSizeSelect
+                            table={table}
+                            totalRows={rowCount !== undefined ? rowCount : table.getFilteredRowModel().rows.length}
+                        />
+                    )}
                 </div>
             </div>
             {error && (
@@ -320,7 +367,7 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
             </div>
             <div className={styles.bottomControls}>
                 <div className={styles.bottomStart}>
-                    {layout?.bottomStart ? renderControl(layout.bottomStart) : bottomStartContent || (
+                    {effectiveLayout?.bottomStart ? renderControl(effectiveLayout.bottomStart) : bottomStartContent || (
                         <TablePaginationControls
                             table={table}
                             pageIndex={table.getState().pagination.pageIndex}
@@ -328,15 +375,15 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
                             pageCount={table.getPageCount()}
                             canPreviousPage={table.getCanPreviousPage()}
                             canNextPage={table.getCanNextPage()}
-                            totalItems={rowCount !== undefined ? rowCount : table.getFilteredRowModel().rows.length}
+                            totalRows={rowCount !== undefined ? rowCount : table.getFilteredRowModel().rows.length}
                         />
                     )}
                 </div>
                 <div className={styles.bottomEnd}>
-                    {layout?.bottomEnd ? renderControl(layout.bottomEnd) : bottomEndContent || (
+                    {effectiveLayout?.bottomEnd ? renderControl(effectiveLayout.bottomEnd) : bottomEndContent || (
                         <TablePageSizeSelect
                             table={table}
-                            pageSize={table.getState().pagination.pageSize}
+                            totalRows={rowCount !== undefined ? rowCount : table.getFilteredRowModel().rows.length}
                         />
                     )}
                 </div>

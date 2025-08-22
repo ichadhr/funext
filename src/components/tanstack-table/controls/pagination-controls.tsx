@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button, Label, SpinButton, makeStyles, tokens, useId } from '@fluentui/react-components';
-import { ArrowEjectFilled, ArrowNextFilled, ArrowPreviousFilled } from '@fluentui/react-icons';
+import { ChevronLeftFilled, ChevronRightFilled, ArrowNextFilled, ArrowPreviousFilled } from '@fluentui/react-icons';
 import { TableData } from '../types';
 
 const useStyles = makeStyles({
@@ -58,25 +58,25 @@ export function TablePaginationControls<TData extends TableData>(
                 onClick={() => table.setPageIndex(0)}
                 disabled={!canPreviousPage}
                 aria-label="First page"
-                icon={<ArrowEjectFilled className={styles.rotatedIconLeft} />}
+                icon={<ArrowPreviousFilled />}
             />
             <Button
                 onClick={() => table.previousPage()}
                 disabled={!canPreviousPage}
                 aria-label="Previous page"
-                icon={<ArrowPreviousFilled />}
+                icon={<ChevronLeftFilled/>}
             />
             <Button
                 onClick={() => table.nextPage()}
                 disabled={!canNextPage}
                 aria-label="Next page"
-                icon={<ArrowNextFilled />}
+                icon={<ChevronRightFilled />}
             />
             <Button
                 onClick={() => table.setPageIndex(pageCount - 1)}
                 disabled={!canNextPage}
                 aria-label="Last page"
-                icon={<ArrowEjectFilled className={styles.rotatedIconRight} />}
+                icon={<ArrowNextFilled />}
             />
         </div>
     );

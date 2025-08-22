@@ -23,6 +23,7 @@ export interface FluentTableProps<TData extends TableData> {
     bottomStartContent?: React.ReactNode;
     bottomEndContent?: React.ReactNode;
     layout?: TableLayout;
+    optionControl?: OptionControlConfig; // New prop for detailed control options
     // New props for server-side processing
     manualPagination?: boolean;
     manualSorting?: boolean;
@@ -48,11 +49,19 @@ export interface TableState {
 }
 
 export type TableLayoutKey = 'topStart' | 'topEnd' | 'bottomStart' | 'bottomEnd';
-export type TableControlKey = 'pageLength' | 'search' | 'info' | 'paging';
+
+export type TableControlPlacement = 'search' | 'pageLength' | 'info' | 'paging' | 'none';
 
 export type TableLayout = {
-    [key in TableLayoutKey]?: TableControlKey;
+    [key in TableLayoutKey]?: TableControlPlacement;
 };
+
+export interface OptionControlConfig {
+    search?: { label?: string; placeholder?: string; };
+    pageLength?: { label?: string; length?: number[]; };
+    info?: object;
+    paging?: object;
+}
 
 export interface TablePaginationControlsProps<TData extends TableData> {
     table: Table<TData>;
@@ -61,12 +70,14 @@ export interface TablePaginationControlsProps<TData extends TableData> {
     pageCount: number;
     canPreviousPage: boolean;
     canNextPage: boolean;
-    totalItems: number;
+    totalRows: number;
 }
 
 export interface TablePageSizeSelectProps<TData extends TableData> {
     table: Table<TData>;
-    pageSize: number;
+    label?: string;
+    length?: number[];
+    totalRows: number;
 }
 
 export interface TableSearchInputProps<TData extends TableData> {
@@ -78,5 +89,5 @@ export interface TableInfoProps<TData extends TableData> {
     pageIndex: number;
     pageSize: number;
     pageCount: number;
-    totalItems: number;
+    totalRows: number;
 }

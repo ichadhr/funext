@@ -6,7 +6,7 @@ import { FluentTable, TableData } from '@components/tanstack-table';
 import { authenticatedQuery } from '@utils/api';
 import { gql } from 'graphql-request';
 import { ClipboardRegular } from '@fluentui/react-icons'; // Corrected import for the icon
-import { TableLayout, TableState } from '@components/tanstack-table/types'; // Import TableState
+import { TableLayout, TableState, OptionControlConfig } from '@components/tanstack-table/types'; // Import TableState and OptionControlConfig
 import { useMemo } from 'react';
 import { CardGrid } from "@/components/grids";
 import { Card, CardHeader, Text } from "@fluentui/react-components";
@@ -58,8 +58,11 @@ export default function FluentTableExamplePage() {
   const customLayout: TableLayout = useMemo(() => ({
     topStart: 'pageLength',
     topEnd: 'search',
-    bottomStart: 'info',
-    bottomEnd: 'paging'
+  }), []);
+
+  const customOptionControl: OptionControlConfig = useMemo(() => ({
+    search: { label: 'Search: ', placeholder: 'Type to search...' },
+    pageLength: { label: 'Show: ', length: [5, 10, -1] },
   }), []);
 
   // onFetchData callback for server-side processing
@@ -114,7 +117,7 @@ export default function FluentTableExamplePage() {
       const result: { albumsFluentTable: { rows: Album[]; rowCount: number } } = (await authenticatedQuery(GET_ALBUMS_QUERY, variables)) as { albumsFluentTable: { rows: Album[]; rowCount: number } };
       const mappedData = result.albumsFluentTable.rows.map((album: Album) => ({ ...album, id: album.albumId }));
       setData(mappedData);
-      setRowCount(result.albumsFluentTable.rowCount); // Update total row count
+      setRowCount(Number(result.albumsFluentTable.rowCount) || 0); // Ensure rowCount is a number
     } catch (err: unknown) {
       setError((err as Error).message);
     } finally {
@@ -123,16 +126,18 @@ export default function FluentTableExamplePage() {
   }, []);
 
   // Initial data fetch on component mount
+
+
+  // Initial data fetch on component mount
   React.useEffect(() => {
     // Call onFetchData with initial table state
     onFetchData({
-      pagination: { pageIndex: 0, pageSize: 10 },
+      pagination: { pageIndex: 0, pageSize: customOptionControl.pageLength?.length?.[0] || 5 }, // Use the initial page size from layout
       sorting: [],
       globalFilter: '',
-      columnFilters: [], // Add this line
+      columnFilters: [],
     });
-  }, [onFetchData]);
-
+  }, [onFetchData, customLayout, customOptionControl]); // Add customLayout and customOptionControl to dependencies
 
   const dataColumns: ColumnDef<Album>[] = React.useMemo(
     () => [
@@ -143,7 +148,7 @@ export default function FluentTableExamplePage() {
       { accessorKey: 'genres', header: 'Genres', enableSorting: true },
       { accessorKey: 'minPrice', header: 'Min Price', enableSorting: true },
       { accessorKey: 'maxPrice', header: 'Max Price', enableSorting: true },
-      { accessorKey: 'avgPrice', header: 'Avg Price', enableSorting: true },
+      { accessorKey: 'avgPrice', header: 'Avg Price', enableSorting: false },
       {
         accessorKey: 'copyAlbumId', // New column for copying album ID
         header: 'Copy ID',
@@ -175,6 +180,7 @@ export default function FluentTableExamplePage() {
             data={data}
             dataColumns={dataColumns}
             layout={customLayout}
+            optionControl={customOptionControl} // Pass the new optionControl prop
             manualPagination={true} // Enable manual pagination
             manualSorting={true}    // Enable manual sorting
             manualFiltering={true}  // Enable manual filtering
