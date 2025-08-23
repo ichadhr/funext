@@ -1,4 +1,5 @@
 @use '_globals';
+@use './_datatables-theme';
 
 // div {
 //     padding: 10px;
@@ -28,7 +29,7 @@ table.dataTable td.right-content {
 
 // for layout
 div.dt-container div.dt-layout-row {
-    margin: 1.5em 0;
+    margin: 0.5rem 0;
 }
 
 .dt-processing > div:last-child {

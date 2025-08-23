@@ -55,7 +55,7 @@ const FluentDataTable = forwardRef<{ dt: () => Api<unknown> | undefined }, DataT
 
       if (tableRect) {
         setOverlayStyle({
-          top: tbodyRect.top - tableRect.top + 73.7, // offset overlay
+          top: tbodyRect.top - tableRect.top + 47.66, // offset overlay
           left: tbodyRect.left - tableRect.left,
           width: tbodyRect.width,
           height: tbodyRect.height,
