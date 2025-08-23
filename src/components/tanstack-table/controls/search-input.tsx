@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Field, SearchBox, tokens } from '@fluentui/react-components';
+import { Field, SearchBox, tokens, useId } from '@fluentui/react-components';
 import { makeStyles } from '@fluentui/react-components';
 import { Table } from '@tanstack/react-table';
 import { TableData } from '../types';
@@ -29,6 +29,7 @@ export function TableSearchInput<TData extends TableData>({ table, onSearchChang
 
     // Determine the current filter value based on whether onSearchChange is used
     const currentFilter = onSearchChange ? table.getState().globalFilter : internalFilter;
+    const searchId = useId('search-control');
 
     React.useEffect(() => {
         if (!onSearchChange) { // Only update TanStack's global filter if not manual
@@ -48,6 +49,7 @@ export function TableSearchInput<TData extends TableData>({ table, onSearchChang
     return (
         <Field label={label ?? "Search: "} className={styles.searchLabel}>
             <SearchBox
+                id={searchId}
                 value={currentFilter ?? ''}
                 onChange={onChange}
                 placeholder={placeholder ?? "Search..."}

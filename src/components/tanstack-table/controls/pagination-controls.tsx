@@ -26,10 +26,11 @@ export function TablePaginationControls<TData extends TableData>(
     { table, pageIndex, pageCount, canPreviousPage, canNextPage, loading }: TablePaginationControlsProps<TData>
 ) {
     const styles = useStyles();
+    const paginationId = useId('pagination-control');
 
     return (
         <div className={styles.paginationControls}>
-            <Label htmlFor={useId('page-spin-button')}>
+            <Label htmlFor={paginationId}>
                 Go to page:{' '}
                 <SpinButton
                     value={pageIndex + 1}
@@ -44,8 +45,7 @@ export function TablePaginationControls<TData extends TableData>(
                     }}
                     min={0}
                     max={pageCount > 0 ? pageCount : 1}
-                    disabled={(!canNextPage && pageCount === 0) || loading}
-                    id={useId('page-spin-button')}
+                    id={paginationId}
                     className={styles.spinButton}
                 />
             </Label>

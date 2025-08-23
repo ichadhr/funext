@@ -65,30 +65,22 @@ const useStyles = makeStyles({
     topStart: {
         display: 'flex',
         alignItems: 'center',
-        gap: tokens.spacingHorizontalM,
-        paddingTop: tokens.spacingHorizontalM,
-        paddingBottom: tokens.spacingHorizontalM
+        gap: tokens.spacingHorizontalM
     },
     topEnd: {
         display: 'flex',
         alignItems: 'center',
-        gap: tokens.spacingHorizontalM,
-        paddingTop: tokens.spacingHorizontalM,
-        paddingBottom: tokens.spacingHorizontalM
+        gap: tokens.spacingHorizontalM
     },
     bottomStart: {
         display: 'flex',
         alignItems: 'center',
-        gap: tokens.spacingHorizontalM,
-        paddingTop: tokens.spacingHorizontalM,
-        paddingBottom: tokens.spacingHorizontalM
+        gap: tokens.spacingHorizontalM
     },
     bottomEnd: {
         display: 'flex',
         alignItems: 'center',
-        gap: tokens.spacingHorizontalM,
-        paddingTop: tokens.spacingHorizontalM,
-        paddingBottom: tokens.spacingHorizontalM
+        gap: tokens.spacingHorizontalM
     },
 });
 

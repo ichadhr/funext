@@ -13,7 +13,7 @@ const useStyles = makeStyles({
 
 export function TablePageSizeSelect<TData extends TableData>({ table, label, length, totalRows, loading }: TablePageSizeSelectProps<TData>) {
     const styles = useStyles();
-    const selectId = useId();
+    const selectId = useId('select-control');
 
     // Local state to reflect user's selection immediately (optimistic UI)
     const [selectedValue, setSelectedValue] = React.useState<string>(() => {
