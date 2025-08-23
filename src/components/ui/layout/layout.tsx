@@ -2,7 +2,7 @@ import * as React from "react";
 import { AppToolbar } from "../toolbar/toolbar";
 import { Sidebar } from "../sidebar/sidebar";
 import { ContentArea } from "../content-area/content-area";
-import { useStyles } from "../use-styles";
+import { useStyles } from "../styles";
 import useSidebar from "@hooks/use-sidebar";
 
 import { NavigationSection, BreadcrumbItemType } from "../types";

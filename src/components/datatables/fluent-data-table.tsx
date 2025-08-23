@@ -8,6 +8,8 @@ import { DataTableProps } from './types';
 import { Spinner } from '@fluentui/react-components';
 import { useDataTableStyles } from './styles';
 
+const TABLE_HEADER_OFFSET = 47.66; // Offset to align loading overlay with table body, likely accounting for header height and/or padding.
+
 const DataTableComponent = dynamic(
   async () => {
     const dtReact = await import('datatables.net-react');
@@ -55,7 +57,7 @@ const FluentDataTable = forwardRef<{ dt: () => Api<unknown> | undefined }, DataT
 
       if (tableRect) {
         setOverlayStyle({
-          top: tbodyRect.top - tableRect.top + 47.66, // offset overlay
+          top: tbodyRect.top - tableRect.top + TABLE_HEADER_OFFSET,
           left: tbodyRect.left - tableRect.left,
           width: tbodyRect.width,
           height: tbodyRect.height,
@@ -90,9 +92,6 @@ const FluentDataTable = forwardRef<{ dt: () => Api<unknown> | undefined }, DataT
       };
     }, [options]);
 
-  const shouldUseData = data !== undefined && data !== null;
-
-
   const styles = useDataTableStyles();
 
   if (!isClient) {
@@ -103,7 +102,7 @@ const FluentDataTable = forwardRef<{ dt: () => Api<unknown> | undefined }, DataT
     <div style={{ position: 'relative' }}> {/* Wrapper div for positioning */}
       <DataTableComponent
         ref={tableRef}
-        {...(shouldUseData ? { data } : {})}
+        data={data}
         className="display"
         options={processedOptions}
         onProcessing={handleProcessing} // Attach the event listener

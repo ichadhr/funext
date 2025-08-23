@@ -16,7 +16,7 @@ import {
 } from "@fluentui/react-components";
 import { AppToolbarProps } from "../types";
 import { ICONS } from "../constants";
-import { useStyles } from "../use-styles";
+import { useStyles } from "../styles";
 import { Breadcrumbs } from "../breadcrumbs/breadcrumbs";
 import { ChevronDownRegular } from "@fluentui/react-icons";
 

@@ -7,7 +7,7 @@ import {
 } from "@fluentui/react-components";
 import Image from "next/image";
 import { SidebarProps } from "../types";
-import { useStyles } from "../use-styles";
+import { useStyles } from "../styles";
 import { Navigation } from "../navigation/navigation";
 
 export const Sidebar: React.FC<SidebarProps> = ({ isMobile, isTablet, isOpen, onOpenChange, navigationSections, navIcons }) => {

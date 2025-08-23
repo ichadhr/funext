@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ContentAreaProps } from "../types";
-import { useStyles } from "../use-styles";
+import { useStyles } from "../styles";
 
 export const ContentArea: React.FC<ContentAreaProps> = ({ isMobile, children }) => {
     const styles = useStyles();
