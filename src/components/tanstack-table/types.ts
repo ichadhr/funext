@@ -71,6 +71,7 @@ export interface TablePaginationControlsProps<TData extends TableData> {
     canPreviousPage: boolean;
     canNextPage: boolean;
     totalRows: number;
+    loading?: boolean;
 }
 
 export interface TablePageSizeSelectProps<TData extends TableData> {
@@ -78,6 +79,7 @@ export interface TablePageSizeSelectProps<TData extends TableData> {
     label?: string;
     length?: number[];
     totalRows: number;
+    loading?: boolean;
 }
 
 export interface TableSearchInputProps<TData extends TableData> {

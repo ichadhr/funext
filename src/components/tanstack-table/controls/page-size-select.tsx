@@ -11,13 +11,20 @@ const useStyles = makeStyles({
     }
 });
 
-export function TablePageSizeSelect<TData extends TableData>({ table, label, length, totalRows }: TablePageSizeSelectProps<TData>) {
+export function TablePageSizeSelect<TData extends TableData>({ table, label, length, totalRows, loading }: TablePageSizeSelectProps<TData>) {
     const styles = useStyles();
-    console.log('data', totalRows);
     const selectId = useId();
+
+    // Local state to reflect user's selection immediately (optimistic UI)
+    const [selectedValue, setSelectedValue] = React.useState<string>(() => {
+        const initial = table.getState().pagination.pageSize;
+        return (initial === totalRows) ? '-1' : String(initial);
+    });
 
     const onChange: SelectProps["onChange"] = (e, data) => {
         const value = data.value;
+        // update local state immediately so the UI reflects the selection
+        setSelectedValue(value);
         if (value === '-1') {
             table.setPageSize(totalRows);
         } else {
@@ -27,6 +34,18 @@ export function TablePageSizeSelect<TData extends TableData>({ table, label, len
 
     const pageSizes = length || [5, 10, 50, -1];
 
+    // Make the select controlled using the table's current pageSize.
+    // If the pageSize equals totalRows we show '-1' (All) as the selected value.
+    const currentPageSize = table.getState().pagination.pageSize;
+
+    // Keep local selectedValue in sync with table state (e.g. after remote load completes)
+    React.useEffect(() => {
+        const derived = (currentPageSize === totalRows) ? '-1' : String(currentPageSize);
+        setSelectedValue(derived);
+    }, [table, totalRows, currentPageSize]);
+
+    const controlledValue = selectedValue;
+
     return (
         <>
             <Field label={label ?? "Show: "} className={styles.pageSizeLabel}>
@@ -34,6 +53,8 @@ export function TablePageSizeSelect<TData extends TableData>({ table, label, len
                     id={selectId}
                     aria-label="Page length select"
                     onChange={onChange}
+                    value={controlledValue}        // controlled (optimistic + synced)
+                    disabled={loading}
                 >
                     {pageSizes.map(pageSize => (
                         <option key={pageSize} value={String(pageSize)}>

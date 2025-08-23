@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 import { TablePaginationControlsProps } from '../types';
 
 export function TablePaginationControls<TData extends TableData>(
-    { table, pageIndex, pageCount, canPreviousPage, canNextPage }: TablePaginationControlsProps<TData>
+    { table, pageIndex, pageCount, canPreviousPage, canNextPage, loading }: TablePaginationControlsProps<TData>
 ) {
     const styles = useStyles();
 
@@ -44,7 +44,7 @@ export function TablePaginationControls<TData extends TableData>(
                     }}
                     min={0}
                     max={pageCount > 0 ? pageCount : 1}
-                    disabled={!canNextPage && pageCount === 0}
+                    disabled={(!canNextPage && pageCount === 0) || loading}
                     id={useId('page-spin-button')}
                     className={styles.spinButton}
                 />
@@ -56,25 +56,25 @@ export function TablePaginationControls<TData extends TableData>(
             </Label>
             <Button
                 onClick={() => table.setPageIndex(0)}
-                disabled={!canPreviousPage}
+                disabled={!canPreviousPage || loading}
                 aria-label="First page"
                 icon={<ArrowPreviousFilled />}
             />
             <Button
                 onClick={() => table.previousPage()}
-                disabled={!canPreviousPage}
+                disabled={!canPreviousPage || loading}
                 aria-label="Previous page"
                 icon={<ChevronLeftFilled/>}
             />
             <Button
                 onClick={() => table.nextPage()}
-                disabled={!canNextPage}
+                disabled={!canNextPage || loading}
                 aria-label="Next page"
                 icon={<ChevronRightFilled />}
             />
             <Button
                 onClick={() => table.setPageIndex(pageCount - 1)}
-                disabled={!canNextPage}
+                disabled={!canNextPage || loading}
                 aria-label="Last page"
                 icon={<ArrowNextFilled />}
             />

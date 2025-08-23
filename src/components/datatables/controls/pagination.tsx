@@ -195,7 +195,6 @@ const Pagination = ({ tableRef }: PaginationProps): React.ReactElement => {
       }
     } else {
       // For many pages, show first, around current (centered), and last
-      // For many pages, show first, around current (centered), and last
       // We want to show exactly 7 elements: first page, ellipsis, 3 middle pages, ellipsis, last page
 
       // Calculate start and end pages to show around current page

@@ -66,21 +66,29 @@ const useStyles = makeStyles({
         display: 'flex',
         alignItems: 'center',
         gap: tokens.spacingHorizontalM,
+        paddingTop: tokens.spacingHorizontalM,
+        paddingBottom: tokens.spacingHorizontalM
     },
     topEnd: {
         display: 'flex',
         alignItems: 'center',
         gap: tokens.spacingHorizontalM,
+        paddingTop: tokens.spacingHorizontalM,
+        paddingBottom: tokens.spacingHorizontalM
     },
     bottomStart: {
         display: 'flex',
         alignItems: 'center',
         gap: tokens.spacingHorizontalM,
+        paddingTop: tokens.spacingHorizontalM,
+        paddingBottom: tokens.spacingHorizontalM
     },
     bottomEnd: {
         display: 'flex',
         alignItems: 'center',
         gap: tokens.spacingHorizontalM,
+        paddingTop: tokens.spacingHorizontalM,
+        paddingBottom: tokens.spacingHorizontalM
     },
 });
 
@@ -165,6 +173,7 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
                         label={pageLengthOptions?.label}
                         length={pageLengthOptions?.length}
                         totalRows={rowCount !== undefined ? rowCount : table.getFilteredRowModel().rows.length}
+                        loading={loading}
                     />
                 );
             case 'search':
@@ -197,6 +206,7 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
                         canPreviousPage={table.getCanPreviousPage()}
                         canNextPage={table.getCanNextPage()}
                         totalRows={rowCount !== undefined ? rowCount : table.getFilteredRowModel().rows.length}
+                        loading={loading}
                     />
                 );
             default:
@@ -229,7 +239,6 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
         sortingState,
         debouncedGlobalFilter, // Depend on debounced value
         columnFilters,
-        table,
     ]);
 
     const [sortState, setSortState] = React.useState<Parameters<NonNullable<DataGridProps["onSortChange"]>>[1]>(
@@ -315,6 +324,7 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
                         <TablePageSizeSelect
                             table={table}
                             totalRows={rowCount !== undefined ? rowCount : table.getFilteredRowModel().rows.length}
+                            loading={loading}
                         />
                     )}
                 </div>
@@ -376,6 +386,7 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
                             canPreviousPage={table.getCanPreviousPage()}
                             canNextPage={table.getCanNextPage()}
                             totalRows={rowCount !== undefined ? rowCount : table.getFilteredRowModel().rows.length}
+                            loading={loading}
                         />
                     )}
                 </div>
@@ -384,6 +395,7 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
                         <TablePageSizeSelect
                             table={table}
                             totalRows={rowCount !== undefined ? rowCount : table.getFilteredRowModel().rows.length}
+                            loading={loading}
                         />
                     )}
                 </div>
