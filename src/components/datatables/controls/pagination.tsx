@@ -12,29 +12,8 @@ import { ArrowPrevious20Filled, ArrowNext20Filled } from "@fluentui/react-icons"
 import { Api } from 'datatables.net-dt';
 import React from 'react';
 import { useDataTableStyles } from '../styles';
+import { PageInfo, PaginationProps, PaginationButtonProps } from '../types';
 
-interface PaginationProps {
-  tableRef: React.RefObject<{ dt: () => Api<unknown> } | null>;
-}
-
-interface PageInfo {
-  page: number;
-  pages: number;
-  start: number;
-  end: number;
-  length: number;
-  recordsTotal: number;
-  recordsDisplay: number;
-}
-
-interface PaginationButtonProps {
-  page: number;
-  active: boolean;
-  onClick: (page: number) => void;
-  onKeyDown: (event: KeyboardEvent<HTMLButtonElement>, page: number) => void;
-  disabled?: boolean;
-  className?: string;
-}
 
 const PaginationButton: React.FC<PaginationButtonProps> = ({
   page,

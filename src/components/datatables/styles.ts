@@ -1,4 +1,4 @@
-import { makeStyles } from "@fluentui/react-components";
+import { makeStyles, tokens } from "@fluentui/react-components";
 
 const useDataTableStyles = makeStyles({
     paginationPageButton: {
@@ -107,6 +107,15 @@ const useDataTableStyles = makeStyles({
             fontSize: '12px',
             flex: 1,
         },
+    }
+    ,
+    dtLoadingOverlay: {
+        position: 'absolute',
+        backgroundColor: tokens.colorNeutralBackgroundAlpha2,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: 20, // Ensure it's above the table
     }
 });
 

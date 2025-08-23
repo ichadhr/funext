@@ -1,23 +1,25 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { SearchBox, SearchBoxChangeEvent, InputOnChangeData } from "@fluentui/react-components";
 import { useDataTableStyles } from '../styles';
+import { useDebounce } from '@hooks/use-debounce';
+import { SearchProps } from '../types';
 
-interface SearchProps {
-    onSearchChange: (value: string) => void;
-    placeholder?: string;
-    label?: string;
-}
 
-export default function Search({ onSearchChange, placeholder = "", label = "Search:" }: SearchProps) {
+const Search = ({ onSearchChange, placeholder = "", label = "Search:" }: SearchProps) => {
     const [searchValue, setSearchValue] = useState('');
+    const debouncedSearchValue = useDebounce(searchValue, 500); // Debounce for 500ms
 
     const handleSearchChange = (event: SearchBoxChangeEvent, data: InputOnChangeData) => {
         const value = data.value || '';
         setSearchValue(value);
-        onSearchChange(value);
     };
+
+    // Call onSearchChange only when the debounced value changes
+    useEffect(() => {
+        onSearchChange(debouncedSearchValue);
+    }, [debouncedSearchValue, onSearchChange]);
 
     const styles = useDataTableStyles();
 
@@ -33,3 +35,5 @@ export default function Search({ onSearchChange, placeholder = "", label = "Sear
         </div>
     );
 }
+
+export default Search;

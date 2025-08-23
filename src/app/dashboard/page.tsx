@@ -6,6 +6,7 @@ import { NAVIGATION_SECTIONS, NAV_ICONS } from "./nav-items";
 import { useBreadcrumbs } from "@/hooks/use-breadcrumbs";
 import { CardGrid, CardGridColumn, CardGridRow } from "@/components/grids";
 import { Card, CardHeader, Text } from "@fluentui/react-components";
+import { FluentDataTable } from "@/components/datatables";
 
 const PAGE_TITLE = "Dashboard";
 const USER_NAME = "Kevin Sturgis";
@@ -22,6 +23,36 @@ export default function Page() {
             userName={USER_NAME}
             userRole={USER_ROLE}
         >
+            {/* DataTables component with AJAX */}
+            <CardGrid type="fluid">
+                <Card appearance="subtle">
+                    <h2>Album Data (DataTables with AJAX)</h2>
+                    <FluentDataTable
+                        options={{
+                            columns: [
+                                { title: "Album ID" },
+                                { title: "Album Title" },
+                                { title: "Artist Name" },
+                                { title: "Track Count" },
+                                { title: "Genres" },
+                                { title: "Min Price" },
+                                { title: "Max Price" },
+                                { title: "Avg Price" }
+                            ],
+                            processing: true,
+                            serverSide: true,
+                            responsive: true,
+                            ordering: true,
+                            pageLength: 10,
+                            lengthChange: true,
+                            ajax: {
+                                url: "http://localhost:8080/dt_json",
+                                type: "POST"
+                            }
+                        }}
+                    />
+                </Card>
+            </CardGrid>
             <CardGrid type="fluid">
                 <Card appearance="subtle">
                     <CardHeader header={<Text weight="semibold">CardGrid with `fluid` container type</Text>} />

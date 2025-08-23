@@ -2,22 +2,10 @@
 
 import { useEffect, useState } from 'react';
 import { Select } from "@fluentui/react-components";
-import { Api } from 'datatables.net-dt';
 import React from 'react';
 import { useDataTableStyles } from '../styles';
+import { DataTableSettings, LengthSelectProps } from '../types';
 
-interface LengthSelectProps {
-    tableRef: React.RefObject<{ dt: () => Api<unknown> } | null>;
-    textBefore?: string;
-    textAfter?: string;
-    lengthLabels?: {
-        [key: string]: string;
-    };
-}
-
-interface DataTableSettings {
-    aLengthMenu: Array<number | number[]>;
-}
 
 const LengthSelect = ({ tableRef, textBefore = "", textAfter = "", lengthLabels = { "-1": 'All' } }: LengthSelectProps): React.ReactElement => {
     const [length, setLength] = useState(10);

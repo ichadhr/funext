@@ -1,5 +1,6 @@
 // Import official DataTables types
-import { Config, ConfigColumns, ConfigColumnDefs, AjaxSettings } from 'datatables.net';
+import { Config, ConfigColumns, ConfigColumnDefs, AjaxSettings, Api } from 'datatables.net-dt';
+import React, { KeyboardEvent } from 'react';
 
 /**
  * Extend DataTables Config interface to include our custom options
@@ -32,5 +33,48 @@ export type DataTableColumnDefs = ConfigColumnDefs;
  */
 export interface DataTableProps {
     data?: Array<Record<string, unknown>>;
-        options?: DataTableOptions;
+    options?: DataTableOptions;
+    loading?: boolean;
+    error?: string | null;
+}
+export interface DataTableSettings {
+    aLengthMenu: Array<number | number[]>;
+}
+
+export interface PageInfo {
+    page: number;
+    pages: number;
+    start: number;
+    end: number;
+    length: number;
+    recordsTotal: number;
+    recordsDisplay: number;
+}
+
+export interface LengthSelectProps {
+    tableRef: React.RefObject<{ dt: () => Api<unknown> } | null>;
+    textBefore?: string;
+    textAfter?: string;
+    lengthLabels?: {
+        [key: string]: string;
+    };
+}
+
+export interface SearchProps {
+    onSearchChange: (value: string) => void;
+    placeholder?: string;
+    label?: string;
+}
+
+export interface PaginationProps {
+    tableRef: React.RefObject<{ dt: () => Api<unknown> } | null>;
+}
+
+export interface PaginationButtonProps {
+    page: number;
+    active: boolean;
+    onClick: (page: number) => void;
+    onKeyDown: (event: KeyboardEvent<HTMLButtonElement>, page: number) => void;
+    disabled?: boolean;
+    className?: string;
 }

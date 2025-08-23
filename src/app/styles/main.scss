@@ -30,3 +30,7 @@ table.dataTable td.right-content {
 div.dt-container div.dt-layout-row {
     margin: 1.5em 0;
 }
+
+.dt-processing > div:last-child {
+    display: none; /* Hide DataTables' default spinner container */
+}

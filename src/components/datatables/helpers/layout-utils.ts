@@ -113,3 +113,9 @@ export const processLayout = (
 
     return result;
 };
+
+export const parseLengthMenuText = (lengthMenu?: string) => {
+    if (!lengthMenu) return ["", "entries per page"];
+    const parts = lengthMenu.split('_MENU_');
+    return [parts[0] || "", parts[1] || ""];
+};
