@@ -2,9 +2,10 @@
 
 import { DataTableOptions } from './types';
 import { ControlRenderer } from './helpers';
-import { LengthSelect, Search }  from './controls';
+import { LengthSelect, Search, Pagination } from './controls';
 import { Api } from 'datatables.net-dt';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDebounce } from '../../hooks/use-debounce';
 
 /**
  * Default layout configuration for DataTables
@@ -15,7 +16,7 @@ export const defaultLayout = {
     topStart: 'fluentPageLength',
     topEnd: 'fluentSearch',
     bottomStart: 'info',
-    bottomEnd: 'paging'
+    bottomEnd: 'fluentPagin'
 };
 
 /**
@@ -38,6 +39,15 @@ export const shouldShowSearch = (options: DataTableOptions): boolean => {
 };
 
 /**
+ * Determines if the pagination control should be displayed based on DataTable options
+ * @param options - DataTable configuration options
+ * @returns boolean - True if pagination should be shown
+ */
+export const shouldShowPagination = (options: DataTableOptions): boolean => {
+    return options.paging !== false;
+};
+
+/**
  * Processes the layout configuration for DataTables, handling custom controls
  * like fluentPageLength and fluentSearch by rendering them with React.
  *
@@ -52,39 +62,56 @@ export const processLayout = (
     layoutConfig: Record<string, unknown>,
     options: DataTableOptions,
     tableRef: React.RefObject<{ dt: () => Api<unknown> } | null>,
-    textBefore: string,
-    textAfter: string
+    textBefore: string, // Re-introduce textBefore parameter
+    textAfter: string // Re-introduce textAfter parameter
 ): Record<string, unknown> => {
     const result: Record<string, unknown> = {};
 
-    for (const [key, value] of Object.entries(layoutConfig)) {
-        if (value === 'fluentPageLength') {
-            result[key] = ControlRenderer({
-                component: shouldShowLengthSelect(options) ? (
-                    React.createElement(LengthSelect, {
-                        tableRef,
-                        textBefore,
-                        textAfter,
-                        lengthLabels: options.language?.lengthLabels || {}
-                    })
-                ) : null
-            });
-        } else if (value === 'fluentSearch') {
-            result[key] = ControlRenderer({
-                component: shouldShowSearch(options) ? (
-                    React.createElement(Search, {
-                        onSearchChange: (value: string) => {
-                            if (tableRef.current) {
-                                const table = tableRef.current.dt();
-                                if (table) {
-                                    table.search(value).draw();
-                                }
+    const controlMap: { [key: string]: () => React.ReactElement | null } = {
+        fluentPageLength: () => {
+            return shouldShowLengthSelect(options)
+                ? React.createElement(LengthSelect, {
+                    tableRef,
+                    textBefore: textBefore, // Use the passed textBefore
+                    textAfter: textAfter,   // Use the passed textAfter
+                    lengthLabels: options.language?.lengthLabels, // Use lengthLabels directly from options.language
+                })
+                : null;
+        },
+        fluentSearch: () =>
+            shouldShowSearch(options)
+                ? React.createElement(() => {
+                    const [searchValue, setSearchValue] = useState<string>('');
+                    const debouncedSearchValue = useDebounce<string>(searchValue, 500); // 500ms debounce
+
+                    useEffect(() => {
+                        if (tableRef.current) {
+                            const table = tableRef.current.dt();
+                            if (table) {
+                                table.search(debouncedSearchValue).draw();
                             }
-                        },
-                        placeholder: options.language?.searchPlaceholder || "",
-                        label: options.language?.search || "Search:"
-                    })
-                ) : null
+                        }
+                    }, [debouncedSearchValue]);
+
+                    return React.createElement(Search, {
+                        onSearchChange: setSearchValue,
+                        placeholder: options.language?.searchPlaceholder || '',
+                        label: options.language?.search || 'Search:',
+                    });
+                })
+                : null,
+        fluentPagin: () =>
+            shouldShowPagination(options)
+                ? React.createElement(Pagination, {
+                    tableRef,
+                })
+                : null,
+    };
+
+    for (const [key, value] of Object.entries(layoutConfig)) {
+        if (typeof value === 'string' && controlMap[value]) {
+            result[key] = ControlRenderer({
+                component: controlMap[value](),
             });
         } else {
             result[key] = value;

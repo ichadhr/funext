@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, KeyboardEvent } from 'react';
+import React, { useState, useEffect, useCallback, KeyboardEvent } from 'react';
 import {
   Toolbar,
   ToolbarButton,
@@ -8,9 +8,7 @@ import {
   ToolbarGroup
 } from "@fluentui/react-components";
 import { ArrowPrevious20Filled, ArrowNext20Filled } from "@fluentui/react-icons";
-
 import { Api } from 'datatables.net-dt';
-import React from 'react';
 import { useDataTableStyles } from '../styles';
 import { PageInfo, PaginationProps, PaginationButtonProps } from '../types';
 
@@ -271,7 +269,8 @@ const Pagination = ({ tableRef }: PaginationProps): React.ReactElement => {
           aria-label="Next page"
           tabIndex={currentPage >= totalPages ? -1 : 0}
           appearance="subtle"
-          icon={<ArrowNext20Filled />} />
+          icon={<ArrowNext20Filled />}
+          className={styles.paginationPageButtonLast} />
       </ToolbarGroup>
 
     </Toolbar>

@@ -69,6 +69,19 @@ const FluentDataTable = forwardRef<{ dt: () => Api<unknown> | undefined }, DataT
 
   const processedOptions = useMemo(() => {
       const [textBefore, textAfter] = parseLengthMenuText(options?.language?.lengthMenu);
+
+      // Construct the effective lengthLabels here, similar to what was in processLayout
+      const effectiveLengthLabels = {
+          "-1": 'All', // Our default for "All"
+          ...(options.language?.lengthLabels || {}), // Merge user-provided labels
+      };
+
+      // Construct the effective language object for DataTables
+      const effectiveLanguage = {
+          processing: "",
+          ...options.language, // Merge any other language properties
+          lengthLabels: effectiveLengthLabels, // Explicitly set lengthLabels for DataTables
+      };
   
       return {
         responsive: true,
@@ -78,16 +91,13 @@ const FluentDataTable = forwardRef<{ dt: () => Api<unknown> | undefined }, DataT
         processing: true, // Ensure processing indicator is enabled
         ...options,
         columnDefs: options?.columnDefs || [],
-        language: {
-          processing: "",
-          ...options.language
-        },
+        language: effectiveLanguage, // Use the effective language object
         layout: processLayout(
           options.layout ? options.layout as Record<string, unknown> : defaultLayout,
-          options,
+          { ...options, language: effectiveLanguage }, // Pass the fully constructed options to processLayout
           tableRef,
-          textBefore,
-          textAfter
+          textBefore, // Re-introduce textBefore
+          textAfter // Re-introduce textAfter
         )
       };
     }, [options]);

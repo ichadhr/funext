@@ -45,6 +45,12 @@ export default function Page() {
                             ordering: true,
                             pageLength: 10,
                             lengthChange: true,
+                            lengthMenu: [5, 10, 50, -1],
+                            language: {
+                                lengthLabels: {
+                                    '-1': 'Show all'
+                                }
+                            },
                             ajax: {
                                 url: "http://localhost:8080/dt_json",
                                 type: "POST"

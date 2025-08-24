@@ -115,7 +115,7 @@ export const processLayout = (
 };
 
 export const parseLengthMenuText = (lengthMenu?: string) => {
-    if (!lengthMenu) return ["", "entries per page"];
+    if (!lengthMenu) return ["Show: ", "entries"];
     const parts = lengthMenu.split('_MENU_');
     return [parts[0] || "", parts[1] || ""];
 };
