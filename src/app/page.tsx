@@ -48,7 +48,7 @@ export default function Page() {
                             lengthMenu: [5, 10, 50, -1],
                             language: {
                                 lengthLabels: {
-                                    '-1': 'Show all'
+                                    '-1': 'All'
                                 }
                             },
                             ajax: {

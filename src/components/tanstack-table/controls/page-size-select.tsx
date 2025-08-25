@@ -15,16 +15,8 @@ export function TablePageSizeSelect<TData extends TableData>({ table, label, len
     const styles = useStyles();
     const selectId = useId('select-control');
 
-    // Local state to reflect user's selection immediately (optimistic UI)
-    const [selectedValue, setSelectedValue] = React.useState<string>(() => {
-        const initial = table.getState().pagination.pageSize;
-        return (initial === totalRows) ? '-1' : String(initial);
-    });
-
     const onChange: SelectProps["onChange"] = (e, data) => {
         const value = data.value;
-        // update local state immediately so the UI reflects the selection
-        setSelectedValue(value);
         if (value === '-1') {
             table.setPageSize(totalRows);
         } else {
@@ -38,13 +30,7 @@ export function TablePageSizeSelect<TData extends TableData>({ table, label, len
     // If the pageSize equals totalRows we show '-1' (All) as the selected value.
     const currentPageSize = table.getState().pagination.pageSize;
 
-    // Keep local selectedValue in sync with table state (e.g. after remote load completes)
-    React.useEffect(() => {
-        const derived = (currentPageSize === totalRows) ? '-1' : String(currentPageSize);
-        setSelectedValue(derived);
-    }, [table, totalRows, currentPageSize]);
-
-    const controlledValue = selectedValue;
+    const controlledValue = (currentPageSize === totalRows) ? '-1' : String(currentPageSize);
 
     return (
         <>

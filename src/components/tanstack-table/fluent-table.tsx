@@ -251,8 +251,15 @@ export function FluentTable<TData extends TableData>(props: FluentTableProps<TDa
         const tanstackSort = nextSortState.sortColumn
             ? [{ id: nextSortState.sortColumn.toString(), desc: nextSortState.sortDirection === "descending" }]
             : [];
-        table.setSorting(tanstackSort);
-    }, [table]);
+
+        if (manualSorting && onFetchData) {
+            // If manual sorting, just update the state and let useEffect trigger onFetchData
+            setSorting(tanstackSort);
+        } else {
+            // Otherwise, let TanStack Table handle sorting
+            table.setSorting(tanstackSort);
+        }
+    }, [table, manualSorting, onFetchData]);
 
     const fluentUiDataGridColumns = React.useMemo(() => {
         return table.getAllColumns().map(column => {
