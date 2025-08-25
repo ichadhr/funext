@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { SearchBox, SearchBoxChangeEvent, InputOnChangeData } from "@fluentui/react-components";
+import { SearchBox, SearchBoxChangeEvent, InputOnChangeData, useId } from "@fluentui/react-components";
 import { useDataTableStyles } from '../styles';
 import { useDebounce } from '@hooks/use-debounce';
 import { SearchProps } from '../types';
@@ -22,11 +22,13 @@ const Search = ({ onSearchChange, placeholder = "", label = "Search:" }: SearchP
     }, [debouncedSearchValue, onSearchChange]);
 
     const styles = useDataTableStyles();
+    const tblSearchId = useId();
 
     return (
         <div className={styles.searchContainer}>
             <span className={styles.searchLabel}>{label}</span>
             <SearchBox
+                id={tblSearchId}
                 placeholder={placeholder}
                 value={searchValue}
                 onChange={handleSearchChange}

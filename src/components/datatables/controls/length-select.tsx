@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useState } from 'react';
-import { Select } from "@fluentui/react-components";
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Select, useId } from "@fluentui/react-components";
 import { useDataTableStyles } from '../styles';
 import { DataTableSettings, LengthSelectProps } from '../types';
 
@@ -31,7 +30,7 @@ const LengthSelect = ({ tableRef, textBefore = "", textAfter = "", lengthLabels 
             (settings.aLengthMenu as number[]).every((val, index) => val === dataTablesDefaultSimpleLengthMenu[index])) {
             return [10, 25, 50, -1];
         }
-        
+
         // Otherwise, assume it's a simple array of numbers set by the user
         return settings.aLengthMenu as number[];
     };
@@ -65,6 +64,7 @@ const LengthSelect = ({ tableRef, textBefore = "", textAfter = "", lengthLabels 
     };
 
     const styles = useDataTableStyles();
+    const tblPageLengthtId = useId();
 
     return (
         <div
@@ -74,6 +74,7 @@ const LengthSelect = ({ tableRef, textBefore = "", textAfter = "", lengthLabels 
         >
             <span className={styles.lengthSelectLabel}>{textBefore}</span>
             <Select
+                id={tblPageLengthtId}
                 value={length.toString()}
                 onChange={(e) => handleLengthChange(Number(e.target.value))}
                 className={styles.lengthSelectInput}

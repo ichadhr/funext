@@ -12,6 +12,7 @@
   "dependencies": {
     "@fluentui/react-components": "^9.68.3",
     "@fluentui/react-icons": "^2.0.307",
+    "@fluentui/react-theme-sass": "^9.0.0-alpha.29",
     "@tanstack/react-table": "^8.21.3",
     "datatables.net-dt": "^2.3.2",
     "datatables.net-react": "^1.0.1",

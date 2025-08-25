@@ -5,7 +5,8 @@ import {
   Toolbar,
   ToolbarButton,
   ToolbarDivider,
-  ToolbarGroup
+  ToolbarGroup,
+  useId
 } from "@fluentui/react-components";
 import { ArrowPrevious20Filled, ArrowNext20Filled } from "@fluentui/react-icons";
 import { Api } from 'datatables.net-dt';
@@ -242,8 +243,10 @@ const Pagination = ({ tableRef }: PaginationProps): React.ReactElement => {
     return pageNumbers;
   }, [currentPage, totalPages, goToPage, handleKeyDown, styles]);
 
+  const tblPaginationId = useId();
+
   return (
-    <Toolbar aria-label="Pagination controls" className={styles.paginationContainer}>
+    <Toolbar id={tblPaginationId} aria-label="Pagination controls" className={styles.paginationContainer}>
       <ToolbarGroup className={styles.paginationToolbarGroup}>
         <ToolbarButton
           onClick={() => handlePageChange('prev')}

@@ -818,9 +818,9 @@
     "@swc/helpers" "^0.5.1"
 
 "@fluentui/react-icons@^2.0.237", "@fluentui/react-icons@^2.0.239", "@fluentui/react-icons@^2.0.245", "@fluentui/react-icons@^2.0.307":
-  version "2.0.307"
-  resolved "https://registry.yarnpkg.com/@fluentui/react-icons/-/react-icons-2.0.307.tgz#5fb171cdc1063c02937f7c7293ab53091310ec94"
-  integrity sha512-HSXrzQ6o+RWPnNy68EJN2M/Dh9LAJ8l5U9zWfwaFWDgktMF7dJxItyckA5BsH6inFisi6cqKtazsq9oZdAj32A==
+  version "2.0.308"
+  resolved "https://registry.yarnpkg.com/@fluentui/react-icons/-/react-icons-2.0.308.tgz#bf22566858bde8ad2b3f7a56aad9b6b999a62949"
+  integrity sha512-T8cUCHNNUEzs2WUkPdW7DQznNLdRzoSCVYzVn/niuY+ucxk5E666oMF6OfjlhpePw4WQdyqpmW/rTjSBw5wvvA==
   dependencies:
     "@griffel/react" "^1.0.0"
     tslib "^2.1.0"
@@ -1382,6 +1382,13 @@
     "@fluentui/react-theme" "^9.2.0"
     "@fluentui/react-utilities" "^9.24.0"
     "@griffel/react" "^1.5.22"
+    "@swc/helpers" "^0.5.1"
+
+"@fluentui/react-theme-sass@^9.0.0-alpha.29":
+  version "9.0.0-alpha.29"
+  resolved "https://registry.yarnpkg.com/@fluentui/react-theme-sass/-/react-theme-sass-9.0.0-alpha.29.tgz#415dba99c90d5b7969f49f2fe766c2712a840943"
+  integrity sha512-MJAmtZAb5vixxDujiZB5Y48w1UHdKsQYhzFhCTb8UXolYqLx56jJu0gnDWBwZp9vghbtKdU8hZD+lz+4li4CSw==
+  dependencies:
     "@swc/helpers" "^0.5.1"
 
 "@fluentui/react-theme@^9.1.19", "@fluentui/react-theme@^9.2.0":
