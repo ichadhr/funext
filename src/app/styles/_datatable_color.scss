@@ -1,0 +1,586 @@
+$mainStroke: --colorNeutralStroke1; // 0.3
+$secondStroke: --colorNeutralStroke2; // 0.15
+$thirdStroke: --colorNeutralStroke3; // 0.5
+$hoveHeader: --colorNeutralStencil2Alpha;
+
+$dt-column-ordering: --colorNeutralBackgroundInverted;
+$dt-row-selected: --colorBrandBackgroundSelected;
+$dt-row-hover: --colorNeutralBackgroundInverted;
+$dt-row-stripe: --colorNeutralBackgroundInverted;
+
+$dt-row-selected-text: --colorNeutralBackground4Selected;
+$dt-row-selected-link: --colorNeutralBackground5Selected;
+
+:root {
+    /* --dt-row-selected: 13, 110, 253; */
+    // --dt-row-selected-text: 255, 255, 255;
+    // --dt-row-selected-link: 228, 228, 228;
+    /* --dt-row-stripe: 0, 0, 0; */
+    /* --dt-row-hover: 0, 0, 0; */
+    /* --dt-column-ordering: 0, 0, 0; */
+    --dt-html-background: white;
+}
+
+html.dark {
+    /* --dt-row-hover: 255, 255, 255; */
+    /* --dt-row-stripe: 255, 255, 255; */
+    /* --dt-column-ordering: 255, 255, 255; */
+}
+
+:root {
+    --dt-row-hover-alpha: 0.035;
+    --dt-row-stripe-alpha: 0.023;
+    --dt-column-ordering-alpha: 0.019;
+    --dt-row-selected-stripe-alpha: 0.923;
+    --dt-row-selected-column-ordering-alpha: 0.919;
+}
+
+:root.dark {
+    --dt-html-background: rgb(33, 37, 41);
+}
+
+table.dataTable tbody td.dt-control:before {
+    border-left: 10px solid var($thirdStroke);
+}
+table.dataTable tbody tr.dt-hasChild td.dt-control:before {
+    border-top: 10px solid var($thirdStroke);
+}
+table.dataTable thead > tr > th.dt-orderable-asc span.dt-column-order:before,
+table.dataTable thead > tr > th.dt-ordering-asc span.dt-column-order:before,
+table.dataTable thead > tr > td.dt-orderable-asc span.dt-column-order:before,
+table.dataTable thead > tr > td.dt-ordering-asc span.dt-column-order:before {
+    position: absolute;
+    display: block;
+    bottom: 50%;
+    content: '\25B2';
+    content: '\25B2'/'';
+}
+table.dataTable thead > tr > th.dt-orderable-desc span.dt-column-order:after,
+table.dataTable thead > tr > th.dt-ordering-desc span.dt-column-order:after,
+table.dataTable thead > tr > td.dt-orderable-desc span.dt-column-order:after,
+table.dataTable thead > tr > td.dt-ordering-desc span.dt-column-order:after {
+    position: absolute;
+    display: block;
+    top: 50%;
+    content: '\25BC';
+    content: '\25BC'/'';
+}
+table.dataTable thead > tr > th.dt-orderable-asc:hover,
+table.dataTable thead > tr > th.dt-orderable-desc:hover,
+table.dataTable thead > tr > td.dt-orderable-asc:hover,
+table.dataTable thead > tr > td.dt-orderable-desc:hover {
+    outline: 2px solid var($hoveHeader);
+}
+table.dataTable > thead > tr > th,
+table.dataTable > thead > tr > td {
+    border-bottom: 1px solid var($mainStroke);
+}
+table.dataTable > tfoot > tr > th,
+table.dataTable > tfoot > tr > td {
+    border-top: 1px solid var($mainStroke);
+}
+table.dataTable > tbody > tr.selected > * {
+    box-shadow: inset 0 0 0 9999px
+        color-mix(in srgb, var($dt-row-selected) calc(0.9 * 100%), transparent);
+    color: rgb(var($dt-row-selected-text));
+}
+table.dataTable > tbody > tr.selected a {
+    color: rgb(var($dt-row-selected-link));
+}
+table.dataTable.row-border > tbody > tr > *,
+table.dataTable.display > tbody > tr > * {
+    border-top: 1px solid var($secondStroke);
+}
+table.dataTable.row-border > tbody > tr.selected + tr.selected > td,
+table.dataTable.display > tbody > tr.selected + tr.selected > td {
+    border-top-color: color-mix(
+        in srgb,
+        var($dt-row-selected) calc(0.65 * 100%),
+        transparent
+    );
+}
+table.dataTable.cell-border > tbody > tr > * {
+    border-top: 1px solid var($secondStroke);
+    border-right: 1px solid var($secondStroke);
+}
+table.dataTable.cell-border > tbody > tr > *:first-child {
+    border-left: 1px solid var($secondStroke);
+}
+table.dataTable.cell-border > tbody > tr:first-child > * {
+    border-top: 1px solid var($mainStroke);
+}
+table.dataTable.stripe > tbody > tr:nth-child(odd) > *,
+table.dataTable.display > tbody > tr:nth-child(odd) > * {
+    box-shadow: inset 0 0 0 9999px
+        color-mix(
+            in srgb,
+            var($dt-row-stripe) calc(var(--dt-row-stripe-alpha) * 100%),
+            transparent
+        );
+}
+table.dataTable.stripe > tbody > tr:nth-child(odd).selected > *,
+table.dataTable.display > tbody > tr:nth-child(odd).selected > * {
+    box-shadow: inset 0 0 0 9999px
+        color-mix(
+            in srgb,
+            var($dt-row-selected)
+                calc(var(--dt-row-selected-stripe-alpha) * 100%),
+            transparent
+        );
+}
+table.dataTable.hover > tbody > tr:hover > *,
+table.dataTable.display > tbody > tr:hover > * {
+    box-shadow: inset 0 0 0 9999px
+        color-mix(
+            in srgb,
+            var($dt-row-hover) calc(var(--dt-row-hover-alpha) * 100%),
+            transparent
+        );
+}
+table.dataTable.hover > tbody > tr.selected:hover > *,
+table.dataTable.display > tbody > tr.selected:hover > * {
+    box-shadow: inset 0 0 0 9999px
+        color-mix(in srgb, var($dt-row-selected) 100%, transparent) !important;
+}
+table.dataTable.order-column > tbody tr > .sorting_1,
+table.dataTable.order-column > tbody tr > .sorting_2,
+table.dataTable.order-column > tbody tr > .sorting_3,
+table.dataTable.display > tbody tr > .sorting_1,
+table.dataTable.display > tbody tr > .sorting_2,
+table.dataTable.display > tbody tr > .sorting_3 {
+    box-shadow: inset 0 0 0 9999px
+        color-mix(
+            in srgb,
+            var($dt-column-ordering)
+                calc(var(--dt-column-ordering-alpha) * 100%),
+            transparent
+        );
+}
+table.dataTable.order-column > tbody tr.selected > .sorting_1,
+table.dataTable.order-column > tbody tr.selected > .sorting_2,
+table.dataTable.order-column > tbody tr.selected > .sorting_3,
+table.dataTable.display > tbody tr.selected > .sorting_1,
+table.dataTable.display > tbody tr.selected > .sorting_2,
+table.dataTable.display > tbody tr.selected > .sorting_3 {
+    box-shadow: inset 0 0 0 9999px
+        color-mix(
+            in srgb,
+            var($dt-row-selected)
+                calc(var(--dt-row-selected-column-ordering-alpha) * 100%),
+            transparent
+        );
+}
+table.dataTable.display > tbody > tr:nth-child(odd) > .sorting_1,
+table.dataTable.order-column.stripe > tbody > tr:nth-child(odd) > .sorting_1 {
+    box-shadow: inset 0 0 0 9999px
+        color-mix(
+            in srgb,
+            var($dt-column-ordering)
+                calc(
+                    (
+                            var(--dt-row-stripe-alpha) +
+                                var(--dt-column-ordering-alpha)
+                        ) * 100%
+                ),
+            transparent
+        );
+}
+table.dataTable.display > tbody > tr:nth-child(odd) > .sorting_2,
+table.dataTable.order-column.stripe > tbody > tr:nth-child(odd) > .sorting_2 {
+    box-shadow: inset 0 0 0 9999px
+        color-mix(
+            in srgb,
+            var($dt-column-ordering)
+                calc(
+                    (
+                            var(--dt-row-stripe-alpha) +
+                                var(--dt-column-ordering-alpha) - 0.007
+                        ) * 100%
+                ),
+            transparent
+        );
+}
+table.dataTable.display > tbody > tr:nth-child(odd) > .sorting_3,
+table.dataTable.order-column.stripe > tbody > tr:nth-child(odd) > .sorting_3 {
+    box-shadow: inset 0 0 0 9999px
+        color-mix(
+            in srgb,
+            var($dt-column-ordering)
+                calc(
+                    (
+                            var(--dt-row-stripe-alpha) +
+                                var(--dt-column-ordering-alpha) - 0.015
+                        ) * 100%
+                ),
+            transparent
+        );
+}
+table.dataTable.display > tbody > tr:nth-child(odd).selected > .sorting_1,
+table.dataTable.order-column.stripe
+    > tbody
+    > tr:nth-child(odd).selected
+    > .sorting_1 {
+    box-shadow: inset 0 0 0 9999px
+        color-mix(
+            in srgb,
+            var($dt-row-selected)
+                calc(
+                    (
+                            var(--dt-row-selected-stripe-alpha) +
+                                var(--dt-column-ordering-alpha)
+                        ) * 100%
+                ),
+            transparent
+        );
+}
+table.dataTable.display > tbody > tr:nth-child(odd).selected > .sorting_2,
+table.dataTable.order-column.stripe
+    > tbody
+    > tr:nth-child(odd).selected
+    > .sorting_2 {
+    box-shadow: inset 0 0 0 9999px
+        color-mix(
+            in srgb,
+            var($dt-row-selected)
+                calc(
+                    (
+                            var(--dt-row-selected-stripe-alpha) +
+                                var(--dt-column-ordering-alpha) - 0.007
+                        ) * 100%
+                ),
+            transparent
+        );
+}
+table.dataTable.display > tbody > tr:nth-child(odd).selected > .sorting_3,
+table.dataTable.order-column.stripe
+    > tbody
+    > tr:nth-child(odd).selected
+    > .sorting_3 {
+    box-shadow: inset 0 0 0 9999px
+        color-mix(
+            in srgb,
+            var($dt-row-selected)
+                calc(
+                    (
+                            var(--dt-row-selected-stripe-alpha) +
+                                var(--dt-column-ordering-alpha) - 0.015
+                        ) * 100%
+                ),
+            transparent
+        );
+}
+table.dataTable.display tbody tr:hover > .sorting_1,
+table.dataTable.order-column.hover tbody tr:hover > .sorting_1 {
+    box-shadow: inset 0 0 0 9999px
+        color-mix(
+            in srgb,
+            var($dt-row-hover)
+                calc(
+                    (
+                            var(--dt-row-stripe-alpha) +
+                                var(--dt-column-ordering-alpha) +
+                                var(--dt-row-hover-alpha)
+                        ) * 100%
+                ),
+            transparent
+        );
+}
+table.dataTable.display tbody tr:hover > .sorting_2,
+table.dataTable.order-column.hover tbody tr:hover > .sorting_2 {
+    box-shadow: inset 0 0 0 9999px
+        color-mix(
+            in srgb,
+            var($dt-row-hover)
+                calc(
+                    (
+                            var(--dt-row-stripe-alpha) +
+                                var(--dt-column-ordering-alpha) +
+                                var(--dt-row-hover-alpha) - 0.007
+                        ) * 100%
+                ),
+            transparent
+        );
+}
+table.dataTable.display tbody tr:hover > .sorting_3,
+table.dataTable.order-column.hover tbody tr:hover > .sorting_3 {
+    box-shadow: inset 0 0 0 9999px
+        color-mix(
+            in srgb,
+            var($dt-row-hover)
+                calc(
+                    (
+                            var(--dt-row-stripe-alpha) +
+                                var(--dt-column-ordering-alpha) +
+                                var(--dt-row-hover-alpha) - 0.015
+                        ) * 100%
+                ),
+            transparent
+        );
+}
+table.dataTable.display tbody tr:hover.selected > .sorting_1,
+table.dataTable.order-column.hover tbody tr:hover.selected > .sorting_1 {
+    box-shadow: inset 0 0 0 9999px
+        color-mix(
+            in srgb,
+            var($dt-row-selected)
+                calc(
+                    (
+                            var(--dt-row-selected-stripe-alpha) +
+                                var(--dt-column-ordering-alpha)
+                        ) * 100%
+                ),
+            transparent
+        );
+}
+table.dataTable.display tbody tr:hover.selected > .sorting_2,
+table.dataTable.order-column.hover tbody tr:hover.selected > .sorting_2 {
+    box-shadow: inset 0 0 0 9999px
+        color-mix(
+            in srgb,
+            var($dt-row-selected)
+                calc(
+                    (
+                            var(--dt-row-selected-stripe-alpha) +
+                                var(--dt-column-ordering-alpha) +
+                                var(--dt-row-hover-alpha) - 0.007
+                        ) * 100%
+                ),
+            transparent
+        );
+}
+table.dataTable.display tbody tr:hover.selected > .sorting_3,
+table.dataTable.order-column.hover tbody tr:hover.selected > .sorting_3 {
+    box-shadow: inset 0 0 0 9999px
+        color-mix(
+            in srgb,
+            var($dt-row-selected)
+                calc(
+                    (
+                            var(--dt-row-selected-stripe-alpha) +
+                                var(--dt-column-ordering-alpha) +
+                                var(--dt-row-hover-alpha) - 0.015
+                        ) * 100%
+                ),
+            transparent
+        );
+}
+
+/*
+ * Control feature layout
+ */
+div.dt-container .dt-search input {
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: transparent;
+    color: inherit;
+    margin-left: 3px;
+}
+div.dt-container .dt-input {
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: transparent;
+    color: inherit;
+}
+div.dt-container .dt-paging .dt-paging-button {
+    box-sizing: border-box;
+    display: inline-block;
+    min-width: 1.5em;
+    padding: 0.5em 1em;
+    margin-left: 2px;
+    text-align: center;
+    text-decoration: none !important;
+    cursor: pointer;
+    color: inherit !important;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    background: transparent;
+}
+div.dt-container .dt-paging .dt-paging-button.current,
+div.dt-container .dt-paging .dt-paging-button.current:hover {
+    color: inherit !important;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.05);
+    background: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0%, rgba(229.5, 229.5, 229.5, 0.05)),
+        color-stop(100%, rgba(0, 0, 0, 0.05))
+    ); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(
+        top,
+        rgba(229.5, 229.5, 229.5, 0.05) 0%,
+        rgba(0, 0, 0, 0.05) 100%
+    ); /* Chrome10+,Safari5.1+ */
+    background: -moz-linear-gradient(
+        top,
+        rgba(229.5, 229.5, 229.5, 0.05) 0%,
+        rgba(0, 0, 0, 0.05) 100%
+    ); /* FF3.6+ */
+    background: -ms-linear-gradient(
+        top,
+        rgba(229.5, 229.5, 229.5, 0.05) 0%,
+        rgba(0, 0, 0, 0.05) 100%
+    ); /* IE10+ */
+    background: -o-linear-gradient(
+        top,
+        rgba(229.5, 229.5, 229.5, 0.05) 0%,
+        rgba(0, 0, 0, 0.05) 100%
+    ); /* Opera 11.10+ */
+    background: linear-gradient(
+        to bottom,
+        rgba(229.5, 229.5, 229.5, 0.05) 0%,
+        rgba(0, 0, 0, 0.05) 100%
+    ); /* W3C */
+}
+div.dt-container .dt-paging .dt-paging-button.disabled,
+div.dt-container .dt-paging .dt-paging-button.disabled:hover,
+div.dt-container .dt-paging .dt-paging-button.disabled:active {
+    cursor: default;
+    color: rgba(0, 0, 0, 0.5) !important;
+    border: 1px solid transparent;
+    background: transparent;
+    box-shadow: none;
+}
+div.dt-container .dt-paging .dt-paging-button:hover {
+    color: white !important;
+    border: 1px solid #111;
+    background-color: #111;
+    background: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0%, rgb(88.4, 88.4, 88.4)),
+        color-stop(100%, #111)
+    ); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(
+        top,
+        rgb(88.4, 88.4, 88.4) 0%,
+        #111 100%
+    ); /* Chrome10+,Safari5.1+ */
+    background: -moz-linear-gradient(
+        top,
+        rgb(88.4, 88.4, 88.4) 0%,
+        #111 100%
+    ); /* FF3.6+ */
+    background: -ms-linear-gradient(
+        top,
+        rgb(88.4, 88.4, 88.4) 0%,
+        #111 100%
+    ); /* IE10+ */
+    background: -o-linear-gradient(
+        top,
+        rgb(88.4, 88.4, 88.4) 0%,
+        #111 100%
+    ); /* Opera 11.10+ */
+    background: linear-gradient(
+        to bottom,
+        rgb(88.4, 88.4, 88.4) 0%,
+        #111 100%
+    ); /* W3C */
+}
+div.dt-container .dt-paging .dt-paging-button:active {
+    outline: none;
+    background-color: rgb(11.9, 11.9, 11.9);
+    background: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        color-stop(0%, rgb(42.5, 42.5, 42.5)),
+        color-stop(100%, rgb(11.9, 11.9, 11.9))
+    ); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(
+        top,
+        rgb(42.5, 42.5, 42.5) 0%,
+        rgb(11.9, 11.9, 11.9) 100%
+    ); /* Chrome10+,Safari5.1+ */
+    background: -moz-linear-gradient(
+        top,
+        rgb(42.5, 42.5, 42.5) 0%,
+        rgb(11.9, 11.9, 11.9) 100%
+    ); /* FF3.6+ */
+    background: -ms-linear-gradient(
+        top,
+        rgb(42.5, 42.5, 42.5) 0%,
+        rgb(11.9, 11.9, 11.9) 100%
+    ); /* IE10+ */
+    background: -o-linear-gradient(
+        top,
+        rgb(42.5, 42.5, 42.5) 0%,
+        rgb(11.9, 11.9, 11.9) 100%
+    ); /* Opera 11.10+ */
+    background: linear-gradient(
+        to bottom,
+        rgb(42.5, 42.5, 42.5) 0%,
+        rgb(11.9, 11.9, 11.9) 100%
+    ); /* W3C */
+    box-shadow: inset 0 0 3px #111;
+}
+div.dt-container.dt-empty-footer tbody > tr:last-child > * {
+    border-bottom: 1px solid var($mainStroke);
+}
+div.dt-container.dt-empty-footer .dt-scroll-body {
+    border-bottom: 1px solid var($mainStroke);
+}
+
+// RESPONSIVE SECTION
+$dtr-details-border-bottom: --colorSubtleBackgroundSelected;
+$dtr-modal-display-bg: --colorNeutralCardBackgroundPressed;
+$dtr-modal-display-border: --colorStrokeFocus2;
+$dtr-modal-bg: --colorScrollbarOverlay;
+
+table.dataTable.dtr-inline.collapsed > tbody > tr > td.dtr-control:before,
+table.dataTable.dtr-inline.collapsed > tbody > tr > th.dtr-control:before {
+    border-left: 10px solid var($thirdStroke);
+}
+table.dataTable.dtr-inline.collapsed
+    > tbody
+    > tr
+    > td.dtr-control.arrow-right::before,
+table.dataTable.dtr-inline.collapsed
+    > tbody
+    > tr
+    > th.dtr-control.arrow-right::before {
+    border-right: 10px solid var($thirdStroke);
+}
+table.dataTable.dtr-inline.collapsed
+    > tbody
+    > tr.dtr-expanded
+    > td.dtr-control:before,
+table.dataTable.dtr-inline.collapsed
+    > tbody
+    > tr.dtr-expanded
+    > th.dtr-control:before {
+    border-top: 10px solid var($thirdStroke);
+}
+table.dataTable.dtr-column > tbody > tr > td.dtr-control:before,
+table.dataTable.dtr-column > tbody > tr > th.dtr-control:before,
+table.dataTable.dtr-column > tbody > tr > td.control:before,
+table.dataTable.dtr-column > tbody > tr > th.control:before {
+    border-left: 10px solid var($thirdStroke);
+}
+table.dataTable.dtr-column > tbody > tr > td.dtr-control.arrow-right::before,
+table.dataTable.dtr-column > tbody > tr > th.dtr-control.arrow-right::before,
+table.dataTable.dtr-column > tbody > tr > td.control.arrow-right::before,
+table.dataTable.dtr-column > tbody > tr > th.control.arrow-right::before {
+    border-right: 10px solid var($thirdStroke);
+}
+table.dataTable.dtr-column > tbody > tr.dtr-expanded td.dtr-control:before,
+table.dataTable.dtr-column > tbody > tr.dtr-expanded th.dtr-control:before,
+table.dataTable.dtr-column > tbody > tr.dtr-expanded td.control:before,
+table.dataTable.dtr-column > tbody > tr.dtr-expanded th.control:before {
+    border-top: 10px solid var($thirdStroke);
+}
+table.dataTable > tbody > tr.child ul.dtr-details > li {
+    border-bottom: 1px solid var($dtr-details-border-bottom);
+}
+div.dtr-modal div.dtr-modal-display {
+    background-color: var($dtr-modal-display-bg);
+    border: 1px solid var(--colorStrokeFocus2);
+    box-shadow: 0 12px 30px var($dtr-modal-bg);
+}
+div.dtr-modal div.dtr-modal-background {
+    background: var($dtr-modal-bg);
+}
