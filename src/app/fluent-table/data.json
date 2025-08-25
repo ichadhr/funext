@@ -1,0 +1,902 @@
+[
+    {
+        "file": {
+            "label": "Meeting notes 1",
+            "icon": "DocumentPdfRegular"
+        },
+        "author": {
+            "label": "Peter Jones",
+            "status": "away"
+        },
+        "lastUpdated": {
+            "label": "Last week",
+            "timestamp": 255
+        },
+        "lastUpdate": {
+            "label": "Shared with you",
+            "icon": "DocumentPdfRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Report 2",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Alice Smith",
+            "status": "busy"
+        },
+        "lastUpdated": {
+            "label": "Yesterday at 1:45 PM",
+            "timestamp": 880
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 3",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "7h ago",
+            "timestamp": 313
+        },
+        "lastUpdate": {
+            "label": "You edited this",
+            "icon": "EditRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Meeting notes 4",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Peter Jones",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "Last week",
+            "timestamp": 997
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentPdfRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Training material 5",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Peter Jones",
+            "status": "busy"
+        },
+        "lastUpdated": {
+            "label": "Last week",
+            "timestamp": 435
+        },
+        "lastUpdate": {
+            "label": "You edited this",
+            "icon": "PeopleRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 6",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Alice Smith",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "A month ago",
+            "timestamp": 720
+        },
+        "lastUpdate": {
+            "label": "You shared this in a Teams chat",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 7",
+            "icon": "DocumentPdfRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "busy"
+        },
+        "lastUpdated": {
+            "label": "Last week",
+            "timestamp": 646
+        },
+        "lastUpdate": {
+            "label": "You shared this in a Teams chat",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Marketing brief 8",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Alice Smith",
+            "status": "busy"
+        },
+        "lastUpdated": {
+            "label": "Yesterday at 1:45 PM",
+            "timestamp": 272
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentPdfRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 9",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "John Doe",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "Yesterday at 1:45 PM",
+            "timestamp": 625
+        },
+        "lastUpdate": {
+            "label": "Shared with you",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Training material 10",
+            "icon": "DocumentPdfRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "offline"
+        },
+        "lastUpdated": {
+            "label": "Yesterday at 1:45 PM",
+            "timestamp": 894
+        },
+        "lastUpdate": {
+            "label": "You edited this",
+            "icon": "DocumentPdfRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Report 11",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Jane Doe",
+            "status": "away"
+        },
+        "lastUpdated": {
+            "label": "A month ago",
+            "timestamp": 476
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Invoice 12",
+            "icon": "DocumentPdfRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "busy"
+        },
+        "lastUpdated": {
+            "label": "Yesterday at 1:45 PM",
+            "timestamp": 639
+        },
+        "lastUpdate": {
+            "label": "You shared this in a Teams chat",
+            "icon": "DocumentPdfRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Training material 13",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Peter Jones",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "Last week",
+            "timestamp": 877
+        },
+        "lastUpdate": {
+            "label": "You edited this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Contract 14",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "John Doe",
+            "status": "offline"
+        },
+        "lastUpdated": {
+            "label": "Last week",
+            "timestamp": 850
+        },
+        "lastUpdate": {
+            "label": "You shared this in a Teams chat",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 15",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "A month ago",
+            "timestamp": 204
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Budget 16",
+            "icon": "DocumentPdfRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "busy"
+        },
+        "lastUpdated": {
+            "label": "Yesterday at 1:45 PM",
+            "timestamp": 310
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentPdfRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Report 17",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Peter Jones",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "A month ago",
+            "timestamp": 560
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 18",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Jane Doe",
+            "status": "offline"
+        },
+        "lastUpdated": {
+            "label": "Last week",
+            "timestamp": 724
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Contract 19",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "A month ago",
+            "timestamp": 803
+        },
+        "lastUpdate": {
+            "label": "You shared this in a Teams chat",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Training material 20",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Jane Doe",
+            "status": "away"
+        },
+        "lastUpdated": {
+            "label": "Last week",
+            "timestamp": 605
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Budget 21",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "A month ago",
+            "timestamp": 686
+        },
+        "lastUpdate": {
+            "label": "You shared this in a Teams chat",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 22",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "busy"
+        },
+        "lastUpdated": {
+            "label": "Yesterday at 1:45 PM",
+            "timestamp": 732
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Report 23",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "away"
+        },
+        "lastUpdated": {
+            "label": "Yesterday at 1:45 PM",
+            "timestamp": 53
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Training material 24",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Peter Jones",
+            "status": "busy"
+        },
+        "lastUpdated": {
+            "label": "A month ago",
+            "timestamp": 319
+        },
+        "lastUpdate": {
+            "label": "Shared with you",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Invoice 25",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Max Mustermann",
+            "status": "busy"
+        },
+        "lastUpdated": {
+            "label": "Last week",
+            "timestamp": 765
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 26",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "offline"
+        },
+        "lastUpdated": {
+            "label": "Yesterday at 1:45 PM",
+            "timestamp": 820
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 27",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "busy"
+        },
+        "lastUpdated": {
+            "label": "Last week",
+            "timestamp": 995
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Training material 28",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "John Doe",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "A month ago",
+            "timestamp": 878
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Budget 29",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "away"
+        },
+        "lastUpdated": {
+            "label": "Yesterday at 1:45 PM",
+            "timestamp": 401
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 30",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Alice Smith",
+            "status": "busy"
+        },
+        "lastUpdated": {
+            "label": "A month ago",
+            "timestamp": 743
+        },
+        "lastUpdate": {
+            "label": "You shared this in a Teams chat",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 31",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "A month ago",
+            "timestamp": 668
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Training material 32",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Max Mustermann",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "Last week",
+            "timestamp": 846
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 33",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "away"
+        },
+        "lastUpdated": {
+            "label": "Yesterday at 1:45 PM",
+            "timestamp": 472
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Invoice 34",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Peter Jones",
+            "status": "offline"
+        },
+        "lastUpdated": {
+            "label": "Last week",
+            "timestamp": 128
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Training material 35",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "Yesterday at 1:45 PM",
+            "timestamp": 100
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 36",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "A month ago",
+            "timestamp": 316
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 37",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Peter Jones",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "A month ago",
+            "timestamp": 62
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 38",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Alice Smith",
+            "status": "busy"
+        },
+        "lastUpdated": {
+            "label": "Yesterday at 1:45 PM",
+            "timestamp": 107
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Training material 39",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Max Mustermann",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "Yesterday at 1:45 PM",
+            "timestamp": 918
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 40",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "Last week",
+            "timestamp": 469
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 41",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "Yesterday at 1:45 PM",
+            "timestamp": 986
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 42",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "Yesterday at 1:45 PM",
+            "timestamp": 178
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Budget 43",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "Yesterday at 1:45 PM",
+            "timestamp": 987
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 44",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "Yesterday at 1:45 PM",
+            "timestamp": 966
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 45",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "Yesterday at 1:45 PM",
+            "timestamp": 105
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 46",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "Yesterday at 1:45 PM",
+            "timestamp": 969
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 47",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "Yesterday at 1:45 PM",
+            "timestamp": 662
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 48",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "Yesterday at 1:45 PM",
+            "timestamp": 22
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 49",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "Yesterday at 1:45 PM",
+            "timestamp": 89
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    },
+    {
+        "file": {
+            "label": "Project plan 50",
+            "icon": "DocumentRegular"
+        },
+        "author": {
+            "label": "Clark Kent",
+            "status": "available"
+        },
+        "lastUpdated": {
+            "label": "Yesterday at 1:45 PM",
+            "timestamp": 956
+        },
+        "lastUpdate": {
+            "label": "You recently opened this",
+            "icon": "DocumentRegular"
+        }
+    }
+]

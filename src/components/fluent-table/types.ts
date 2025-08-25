@@ -1,7 +1,7 @@
 // Unified column definition for FluentTable
 export interface FluentColumnDef<T> {
   columnId: string;
-  header: string;
+  header: string | React.ReactNode;
   cell: (item: T) => React.ReactNode;
   enableSorting?: boolean;
   compare?: (a: T, b: T) => number; // Optional custom compare function

@@ -7,15 +7,27 @@ import { Layout } from "@components/ui/layout/layout";
 import { NAVIGATION_SECTIONS, NAV_ICONS } from "../nav-items";
 import { useBreadcrumbs } from "@/hooks/use-breadcrumbs";
 import { CardGrid } from "@/components/grids";
-import { Avatar, Card, CardHeader, Text, TableCellLayout } from "@fluentui/react-components";
+import { Avatar, Card, CardHeader, Text, TableCellLayout, Label } from "@fluentui/react-components";
 import { Default as FluentTable } from "@/components/fluent-table/fluent-table";
 import { FluentColumnDef } from "@/components/fluent-table/types";
 import { PresenceBadgeStatus } from "@fluentui/react-components";
 import { DocumentPdfRegular, DocumentRegular, EditRegular, FolderRegular, OpenRegular, VideoRegular, PeopleRegular } from "@fluentui/react-icons";
+import initialData from "./data.json";
 
 const PAGE_TITLE = "Template";
 const USER_NAME = "Kevin Sturgis";
 const USER_ROLE = "Administrator";
+
+// Define a mapping from string names to React icon components
+const iconMap: { [key: string]: React.ReactElement } = {
+    DocumentRegular: <DocumentRegular />,
+    FolderRegular: <FolderRegular />,
+    VideoRegular: <VideoRegular />,
+    DocumentPdfRegular: <DocumentPdfRegular />,
+    EditRegular: <EditRegular />,
+    OpenRegular: <OpenRegular />,
+    PeopleRegular: <PeopleRegular />,
+};
 
 export type FileCell = {
     label: string;
@@ -41,6 +53,14 @@ export interface Item {
     [key: string]: unknown; // Add index signature to allow dynamic property access
 }
 
+// Define interface for the raw data from data.json
+interface RawItem {
+    file: { label: string; icon: string };
+    author: { label: string; status: string };
+    lastUpdated: { label: string; timestamp: number };
+    lastUpdate: { label: string; icon: string };
+}
+
 const statusMap: Record<string, PresenceBadgeStatus> = {
     available: "available",
     busy: "busy",
@@ -48,49 +68,23 @@ const statusMap: Record<string, PresenceBadgeStatus> = {
     offline: "offline",
 };
 
-const items: Item[] = [
-    {
-        file: { label: "Meeting notes", icon: <DocumentRegular /> },
-        author: { label: "Max Mustermann", status: "available" },
-        lastUpdated: { label: "7h ago", timestamp: 1 },
-        lastUpdate: {
-            label: "You edited this",
-            icon: <EditRegular />,
-        },
+// Map the imported JSON data to the Item interface, replacing string icon names with actual React components
+const items: Item[] = initialData.map((dataItem: RawItem) => ({
+    ...dataItem,
+    file: {
+        ...dataItem.file,
+        icon: iconMap[dataItem.file.icon] || null, // Map string to React component
     },
-    {
-        file: { label: "Thursday presentation", icon: <FolderRegular /> },
-        author: { label: "Erika Mustermann", status: "busy" },
-        lastUpdated: { label: "Yesterday at 1:45 PM", timestamp: 2 },
-        lastUpdate: {
-            label: "You recently opened this",
-            icon: <OpenRegular />,
-        },
+    lastUpdate: {
+        ...dataItem.lastUpdate,
+        icon: iconMap[dataItem.lastUpdate.icon] || null, // Map string to React component
     },
-    {
-        file: { label: "Training recording", icon: <VideoRegular /> },
-        author: { label: "John Doe", status: "away" },
-        lastUpdated: { label: "Yesterday at 1:45 PM", timestamp: 2 },
-        lastUpdate: {
-            label: "You recently opened this",
-            icon: <OpenRegular />,
-        },
-    },
-    {
-        file: { label: "Purchase order", icon: <DocumentPdfRegular /> },
-        author: { label: "Jane Doe", status: "offline" },
-        lastUpdated: { label: "Tue at 9:30 AM", timestamp: 3 },
-        lastUpdate: {
-            label: "You shared this in a Teams chat",
-            icon: <PeopleRegular />,
-        },
-    },
-];
+}));
 
 const columnsAutoDetect: FluentColumnDef<Item>[] = [
     {
         columnId: "file",
-        header: "File",
+        header: <Label weight="semibold">File</Label>,
         cell: (item: Item) => (
             <TableCellLayout media={item.file.icon}>
                 {item.file.label}
@@ -101,7 +95,7 @@ const columnsAutoDetect: FluentColumnDef<Item>[] = [
     },
     {
         columnId: "author",
-        header: "Author",
+        header: <Label weight="semibold">Author</Label>,
         cell: (item: Item) => (
             <TableCellLayout
                 media={
@@ -119,7 +113,7 @@ const columnsAutoDetect: FluentColumnDef<Item>[] = [
     },
     {
         columnId: "lastUpdated",
-        header: "Last updated",
+        header: <Label weight="semibold">Last updated</Label>,
         cell: (item: Item) => item.lastUpdated.label,
         enableSorting: true,
         // For better sorting, specify the timestamp path
@@ -127,7 +121,7 @@ const columnsAutoDetect: FluentColumnDef<Item>[] = [
     },
     {
         columnId: "lastUpdate",
-        header: "Last update",
+        header: <Label weight="semibold">Last update</Label>,
         cell: (item: Item) => (
             <TableCellLayout media={item.lastUpdate.icon}>
                 {item.lastUpdate.label}
