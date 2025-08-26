@@ -8,7 +8,6 @@ import { DataTableProps } from './types';
 import { Spinner } from '@fluentui/react-components';
 import { useDataTableStyles } from './styles';
 
-const TABLE_HEADER_OFFSET = 47.66; // Offset to align loading overlay with table body, likely accounting for header height and/or padding.
 
 const DataTableComponent = dynamic(
   async () => {
@@ -32,6 +31,7 @@ const FluentDataTable = forwardRef<{ dt: () => Api<unknown> | undefined }, DataT
   options = {}
 }, ref) => {
   const tableRef = useRef<{ dt: () => Api<unknown> } | null>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null); // Ref for the wrapper div
   const tbodyRef = useRef<HTMLTableSectionElement>(null); // Ref for tbody
   const [isClient, setIsClient] = useState(false);
   const [isLoading, setIsLoading] = useState(false); // State for loading
@@ -51,18 +51,16 @@ const FluentDataTable = forwardRef<{ dt: () => Api<unknown> | undefined }, DataT
 
   // Effect to calculate tbody dimensions and update overlay style
   useEffect(() => {
-    if (isLoading && tbodyRef.current) {
+    if (isLoading && tbodyRef.current && wrapperRef.current) {
       const tbodyRect = tbodyRef.current.getBoundingClientRect();
-      const tableRect = tableRef.current?.dt().table().node().getBoundingClientRect();
+      const wrapperRect = wrapperRef.current.getBoundingClientRect();
 
-      if (tableRect) {
-        setOverlayStyle({
-          top: tbodyRect.top - tableRect.top + TABLE_HEADER_OFFSET,
-          left: tbodyRect.left - tableRect.left,
-          width: tbodyRect.width,
-          height: tbodyRect.height,
-        });
-      }
+      setOverlayStyle({
+        top: tbodyRect.top - wrapperRect.top,
+        left: tbodyRect.left - wrapperRect.left,
+        width: tbodyRect.width,
+        height: tbodyRect.height,
+      });
     }
   }, [isLoading]);
 
@@ -79,6 +77,7 @@ const FluentDataTable = forwardRef<{ dt: () => Api<unknown> | undefined }, DataT
       // Construct the effective language object for DataTables
       const effectiveLanguage = {
           processing: "",
+          loadingRecords: "",
           ...options.language, // Merge any other language properties
           lengthLabels: effectiveLengthLabels, // Explicitly set lengthLabels for DataTables
       };
@@ -109,7 +108,7 @@ const FluentDataTable = forwardRef<{ dt: () => Api<unknown> | undefined }, DataT
   }
 
   return (
-    <div style={{ position: 'relative' }}> {/* Wrapper div for positioning */}
+    <div style={{ position: 'relative' }} ref={wrapperRef}> {/* Wrapper div for positioning */}
       <DataTableComponent
         ref={tableRef}
         data={data}
