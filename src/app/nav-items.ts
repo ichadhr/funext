@@ -27,6 +27,8 @@ import {
     DataArea20Regular,
     DocumentBulletListMultiple20Filled,
     DocumentBulletListMultiple20Regular,
+    LockClosed20Filled, // New import for login icon
+    LockClosed20Regular, // New import for login icon
 } from "@fluentui/react-icons";
 
 const PATH = "#";
@@ -45,6 +47,7 @@ export const NAV_ICONS = {
     careerDevelopment: bundleIcon(PeopleStar20Filled, PeopleStar20Regular),
     workforceData: bundleIcon(DataArea20Filled, DataArea20Regular),
     reports: bundleIcon(DocumentBulletListMultiple20Filled, DocumentBulletListMultiple20Regular),
+    login: bundleIcon(LockClosed20Filled, LockClosed20Regular), // New login icon
 } as const;
 
 export const NAVIGATION_SECTIONS: NavigationSection[] = [
@@ -105,7 +108,8 @@ export const NAVIGATION_SECTIONS: NavigationSection[] = [
     {
         items: [
             { id: "19", label: "Workforce Data", icon: "workforceData", target: "_blank" },
-            { id: "20", label: "Reports", icon: "reports", href: PATH }
+            { id: "20", label: "Reports", icon: "reports", href: PATH },
+            { id: "21", label: "Login", icon: "login", href: "/login" } // New login page link
         ],
         hasDivider: true
     }

@@ -1,0 +1,71 @@
+/*
+ * Fluent UI Color Tokens used by the @fluentui/react-table components.
+ * These tokens represent CSS custom properties whose actual values are
+ * provided dynamically by the Fluent UI theme system at runtime.
+ *
+ * This file lists the tokens identified within the `node_modules\@fluentui\react-table`
+ * directory, along with their typical usage descriptions.
+ */
+
+/* Used for primary text color (e.g., table cell text) */
+--colorNeutralForeground1: var(--colorNeutralForeground1-value);
+/* Used for text color on hover states (e.g., table row hover) */
+--colorNeutralForeground1Hover: var(--colorNeutralForeground1Hover-value);
+/* Used for text color on pressed states (e.g., table row active) */
+--colorNeutralForeground1Pressed: var(--colorNeutralForeground1Pressed-value);
+/* Used for secondary text color (e.g., table cell description) */
+--colorNeutralForeground2: var(--colorNeutralForeground2-value);
+/* Used for general stroke/border colors (e.g., table resize handle) */
+--colorNeutralStroke1: var(--colorNeutralStroke1-value);
+/* Used for secondary stroke/border colors, often for dividers (e.g., table row border) */
+--colorNeutralStroke2: var(--colorNeutralStroke2-value);
+/* Used for focus outlines (e.g., table cell focus) */
+--colorStrokeFocus2: var(--colorStrokeFocus2-value);
+/* Used for subtle background colors (e.g., table background) */
+--colorSubtleBackground: var(--colorSubtleBackground-value);
+/* Used for subtle background colors on hover states (e.g., table row hover) */
+--colorSubtleBackgroundHover: var(--colorSubtleBackgroundHover-value);
+/* Used for subtle background colors on pressed states (e.g., table row active) */
+--colorSubtleBackgroundPressed: var(--colorSubtleBackgroundPressed-value);
+/* Used for subtle background colors on selected states (e.g., selected table row) */
+--colorSubtleBackgroundSelected: var(--colorSubtleBackgroundSelected-value);
+/* Used for a brand-specific background color (e.g., brand-themed table row) */
+--colorBrandBackground2: var(--colorBrandBackground2-value);
+/* Used for interactive transparent strokes (e.g., brand-themed table row border) */
+--colorTransparentStrokeInteractive: var(--colorTransparentStrokeInteractive-value);
+/* Used for neutral stroke on brand background (e.g., selected table row border) */
+--colorNeutralStrokeOnBrand: var(--colorNeutralStrokeOnBrand-value);
+
+main#
+--colorNeutralBackground1
+
+sidebar# body#
+--colorNeutralBackground4
+
+--colorNeutralBackgroundInverted
+
+for selected#
+--colorBrandBackgroundSelected
+
+main stroke
+--colorNeutralStroke1
+
+second stroke
+--colorNeutralStroke2
+
+
+Examples of Color Tokens found in DataGrid component styles:
+
+--colorNeutralForeground1: Used for primary text color.
+--colorNeutralForeground1Hover: Used for text color on hover states.
+--colorNeutralForeground1Pressed: Used for text color on pressed states.
+--colorNeutralForeground2: Used for secondary text color.
+--colorNeutralStroke1: Used for general stroke/border colors.
+--colorNeutralStroke2: Used for secondary stroke/border colors, often for dividers.
+--colorStrokeFocus2: Used for focus outlines.
+--colorSubtleBackground: Used for subtle background colors.
+--colorSubtleBackgroundHover: Used for subtle background colors on hover states.
+--colorSubtleBackgroundPressed: Used for subtle background colors on pressed states.
+--colorSubtleBackgroundSelected: Used for subtle background colors on selected states.
+--colorBrandBackground2: Used for a brand-specific background color.
+--colorTransparentStrokeInteractive: Used for interactive transparent strokes.

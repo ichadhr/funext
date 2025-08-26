@@ -3,6 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Providers } from "@app/providers";
 import '@styles/main.scss';
 
+// Define the global theme constant
+export const GLOBAL_THEME = "webLightTheme"; // User-specified initial value
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -26,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Providers>{children}</Providers>
+        <Providers themeName={GLOBAL_THEME}>{children}</Providers>
       </body>
     </html>
   );
