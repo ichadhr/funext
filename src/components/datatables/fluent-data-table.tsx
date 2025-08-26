@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import { Api } from 'datatables.net-dt';
 import { defaultLayout, processLayout, parseLengthMenuText } from './helpers/layout-utils';
 import { DataTableProps } from './types';
-import { Spinner } from '@fluentui/react-components';
+import { Spinner, MessageBar, MessageBarBody } from '@fluentui/react-components';
 import { useDataTableStyles } from './styles';
 
 
@@ -28,13 +28,14 @@ const DataTableComponent = dynamic(
 
 const FluentDataTable = forwardRef<{ dt: () => Api<unknown> | undefined }, DataTableProps>(({
   data,
-  options = {}
+  options = {},
 }, ref) => {
   const tableRef = useRef<{ dt: () => Api<unknown> } | null>(null);
   const wrapperRef = useRef<HTMLDivElement>(null); // Ref for the wrapper div
   const tbodyRef = useRef<HTMLTableSectionElement>(null); // Ref for tbody
   const [isClient, setIsClient] = useState(false);
   const [isLoading, setIsLoading] = useState(false); // State for loading
+  const [internalAjaxError, setInternalAjaxError] = useState<string | null>(null); // Internal error state
   const [overlayStyle, setOverlayStyle] = useState({}); // State for overlay style
 
   useEffect(() => {
@@ -66,40 +67,58 @@ const FluentDataTable = forwardRef<{ dt: () => Api<unknown> | undefined }, DataT
 
 
   const processedOptions = useMemo(() => {
-      const [textBefore, textAfter] = parseLengthMenuText(options?.language?.lengthMenu);
+    const [textBefore, textAfter] = parseLengthMenuText(options?.language?.lengthMenu);
 
-      // Construct the effective lengthLabels here, similar to what was in processLayout
-      const effectiveLengthLabels = {
-          "-1": 'All', // Our default for "All"
-          ...(options.language?.lengthLabels || {}), // Merge user-provided labels
-      };
+    // Construct the effective lengthLabels here, similar to what was in processLayout
+    const effectiveLengthLabels = {
+      "-1": 'All', // Our default for "All"
+      ...(options.language?.lengthLabels || {}), // Merge user-provided labels
+    };
 
-      // Construct the effective language object for DataTables
-      const effectiveLanguage = {
-          processing: "",
-          loadingRecords: "",
-          ...options.language, // Merge any other language properties
-          lengthLabels: effectiveLengthLabels, // Explicitly set lengthLabels for DataTables
-      };
-  
-      return {
-        responsive: true,
-        ordering: true,
-        pageLength: 10,
-        lengthChange: true,
-        processing: true, // Ensure processing indicator is enabled
-        ...options,
-        columnDefs: options?.columnDefs || [],
-        language: effectiveLanguage, // Use the effective language object
-        layout: processLayout(
-          options.layout ? options.layout as Record<string, unknown> : defaultLayout,
-          { ...options, language: effectiveLanguage }, // Pass the fully constructed options to processLayout
-          tableRef,
-          textBefore, // Re-introduce textBefore
-          textAfter // Re-introduce textAfter
-        )
-      };
-    }, [options]);
+    // Construct the effective language object for DataTables
+    const effectiveLanguage = {
+      processing: "",
+      loadingRecords: "",
+      ...options.language, // Merge any other language properties
+      lengthLabels: effectiveLengthLabels, // Explicitly set lengthLabels for DataTables
+    };
+
+    return {
+      responsive: true,
+      ordering: true,
+      pageLength: 10,
+      lengthChange: true,
+      processing: true, // Ensure processing indicator is enabled
+      ...options,
+      columnDefs: options?.columnDefs || [],
+      language: effectiveLanguage, // Use the effective language object
+      ajax: options?.ajax ? {
+        ...(options.ajax as object), // Cast to object to spread properties
+        error: function (xhr: JQueryXHR) {
+          setInternalAjaxError(`Failed to load data: ${xhr.statusText}`); // Set internal error state
+          setIsLoading(false); // Ensure spinner stops on error
+          // DataTables will handle displaying its own error message if not handled by dataSrc
+        },
+        dataSrc: function (json: { data?: unknown[] }) { // Explicitly define data as an array
+          if (!json || !json.data) { // Check if json or json.data is missing
+            setInternalAjaxError("Invalid data received from server."); // Set internal error state
+            setIsLoading(false); // Ensure spinner stops on invalid data
+            return []; // Return empty array on invalid data
+          }
+          setInternalAjaxError(null); // Clear error on successful data load
+          setIsLoading(false); // Ensure spinner stops on successful data load
+          return json.data;
+        }
+      } : undefined,
+      layout: processLayout(
+        options.layout ? options.layout as Record<string, unknown> : defaultLayout,
+        { ...options, language: effectiveLanguage }, // Pass the fully constructed options to processLayout
+        tableRef,
+        textBefore, // Re-introduce textBefore
+        textAfter // Re-introduce textAfter
+      )
+    };
+  }, [options]);
 
   const styles = useDataTableStyles();
 
@@ -108,7 +127,14 @@ const FluentDataTable = forwardRef<{ dt: () => Api<unknown> | undefined }, DataT
   }
 
   return (
-    <div style={{ position: 'relative' }} ref={wrapperRef}> {/* Wrapper div for positioning */}
+    <div style={{ position: 'relative' }} ref={wrapperRef}>
+      {internalAjaxError && (
+        <MessageBar intent="error" style={{ marginBottom: '10px' }}>
+          <MessageBarBody>
+            {internalAjaxError}
+          </MessageBarBody>
+        </MessageBar>
+      )}
       <DataTableComponent
         ref={tableRef}
         data={data}

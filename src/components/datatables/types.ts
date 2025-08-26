@@ -36,6 +36,7 @@ export interface DataTableProps {
     options?: DataTableOptions;
     loading?: boolean;
     error?: string | null;
+    onAjaxError?: (xhr: JQueryXHR, error: string, thrown: string) => void;
 }
 export interface DataTableSettings {
     aLengthMenu: Array<number | number[]>;
