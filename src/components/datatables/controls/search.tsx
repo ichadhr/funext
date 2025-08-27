@@ -16,14 +16,13 @@ const Search = ({ onSearchChange, placeholder = "", label = "Search:" }: SearchP
         setSearchValue(value);
     };
 
-    // Ref to track if it's the first render of the debounced value effect
-    const isFirstDebounceRender = useRef(true);
+    const initialRender = useRef(true); // Track initial render
 
-    // Call onSearchChange only when the debounced value changes, and not on the very first render
+    // Call onSearchChange only when the debounced value changes, and not on the very first render with an empty string
     useEffect(() => {
-        if (isFirstDebounceRender.current) {
-            isFirstDebounceRender.current = false;
-            return; // Skip the first execution
+        if (initialRender.current && debouncedSearchValue === '') {
+            initialRender.current = false;
+            return;
         }
         onSearchChange(debouncedSearchValue);
     }, [debouncedSearchValue, onSearchChange]);
