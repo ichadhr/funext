@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { SearchBox, SearchBoxChangeEvent, InputOnChangeData, useId } from "@fluentui/react-components";
 import { useDataTableStyles } from '../styles';
-import { useDebounce } from '@hooks/use-debounce';
+import { useDebounce } from '../hooks/use-debounce';
 import { SearchProps } from '../types';
 
 
@@ -16,8 +16,15 @@ const Search = ({ onSearchChange, placeholder = "", label = "Search:" }: SearchP
         setSearchValue(value);
     };
 
-    // Call onSearchChange only when the debounced value changes
+    // Ref to track if it's the first render of the debounced value effect
+    const isFirstDebounceRender = useRef(true);
+
+    // Call onSearchChange only when the debounced value changes, and not on the very first render
     useEffect(() => {
+        if (isFirstDebounceRender.current) {
+            isFirstDebounceRender.current = false;
+            return; // Skip the first execution
+        }
         onSearchChange(debouncedSearchValue);
     }, [debouncedSearchValue, onSearchChange]);
 
