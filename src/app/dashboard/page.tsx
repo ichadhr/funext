@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
 import * as React from "react";
 import { Layout } from "@components/ui/layout/layout";
-import { NAVIGATION_SECTIONS, NAV_ICONS } from "./nav-items";
+import { NAVIGATION_SECTIONS, NAV_ICONS } from "@contexts/nav-items";
 import { useBreadcrumbs } from "@components/ui/hooks/use-breadcrumbs";
 import { CardGrid, CardGridColumn, CardGridRow } from "@/components/grids";
 import { Card, CardHeader, Text } from "@fluentui/react-components";

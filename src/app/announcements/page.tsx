@@ -7,7 +7,7 @@ import { useBreadcrumbs } from "@components/ui/hooks/use-breadcrumbs";
 import { CardGrid, CardGridColumn, CardGridRow } from "@/components/grids";
 import { Card, CardHeader, Text } from "@fluentui/react-components";
 
-const PAGE_TITLE = "Dashboard";
+const PAGE_TITLE = "Announcements";
 const USER_NAME = "Kevin Sturgis";
 const USER_ROLE = "Administrator";
 

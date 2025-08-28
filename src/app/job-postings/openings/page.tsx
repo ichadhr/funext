@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
 import * as React from "react";
 import { Layout } from "@components/ui/layout/layout";
 import { NAVIGATION_SECTIONS, NAV_ICONS } from "@contexts/nav-items";
 import { useBreadcrumbs } from "@components/ui/hooks/use-breadcrumbs";
-import { CardGrid } from "@/components/grids";
+import { CardGrid } from "@components/grids";
 import { Card } from "@fluentui/react-components";
 
-const PAGE_TITLE = "Template";
+const PAGE_TITLE = "Openings";
 const USER_NAME = "Kevin Sturgis";
 const USER_ROLE = "Administrator";
 
@@ -23,7 +23,10 @@ export default function Page() {
             userRole={USER_ROLE}
         >
             <CardGrid type="fluid">
-                <Card appearance="subtle"></Card>
+                <Card appearance="subtle">
+                    <h2>Openings</h2>
+                    <p>This is a sample page for Job Postings &gt; Openings.</p>
+                </Card>
             </CardGrid>
         </Layout>
     );

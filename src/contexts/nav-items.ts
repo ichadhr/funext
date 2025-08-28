@@ -27,6 +27,8 @@ import {
     DataArea20Regular,
     DocumentBulletListMultiple20Filled,
     DocumentBulletListMultiple20Regular,
+    LockClosed20Filled, // New import for login icon
+    LockClosed20Regular, // New import for login icon
 } from "@fluentui/react-icons";
 
 const PATH = "#";
@@ -45,13 +47,14 @@ export const NAV_ICONS = {
     careerDevelopment: bundleIcon(PeopleStar20Filled, PeopleStar20Regular),
     workforceData: bundleIcon(DataArea20Filled, DataArea20Regular),
     reports: bundleIcon(DocumentBulletListMultiple20Filled, DocumentBulletListMultiple20Regular),
+    login: bundleIcon(LockClosed20Filled, LockClosed20Regular),
 } as const;
 
 export const NAVIGATION_SECTIONS: NavigationSection[] = [
     {
         items: [
-            { id: "1", label: "Dashboard", icon: "dashboard", href: PATH },
-            { id: "2", label: "Announcements", icon: "announcements", href: PATH },
+            { id: "1", label: "Dashboard", icon: "dashboard", href: "/" },
+            { id: "2", label: "Announcements", icon: "announcements", href: "/announcements" },
             { id: "3", label: "Employee Spotlight", icon: "employeeSpotlight", href: PATH },
             { id: "4", label: "Profile Search", icon: "profileSearch", href: PATH },
             { id: "5", label: "Performance Reviews", icon: "performanceReviews", href: PATH }
@@ -65,7 +68,7 @@ export const NAVIGATION_SECTIONS: NavigationSection[] = [
                 label: "Job Postings",
                 icon: "jobPostings",
                 subItems: [
-                    { id: "7", label: "Openings", href: PATH },
+                    { id: "7", label: "Openings", href: "/job-postings/openings" },
                     { id: "8", label: "Submissions", href: PATH }
                 ]
             },
@@ -105,7 +108,8 @@ export const NAVIGATION_SECTIONS: NavigationSection[] = [
     {
         items: [
             { id: "19", label: "Workforce Data", icon: "workforceData", target: "_blank" },
-            { id: "20", label: "Reports", icon: "reports", href: PATH }
+            { id: "20", label: "Reports", icon: "reports", href: PATH },
+            { id: "21", label: "Login", icon: "login", href: "/login" } // New login page link
         ],
         hasDivider: true
     }
