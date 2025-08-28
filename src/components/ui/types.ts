@@ -27,6 +27,7 @@ export interface SidebarProps {
     styles: Record<string, string>;
     navigationSections: NavigationSection[];
     navIcons: Record<string, React.ElementType>;
+    multiple: boolean;
 }
 
 export interface ContentAreaProps {

@@ -14,9 +14,10 @@ interface LayoutProps {
     breadcrumbs: BreadcrumbItemType[];
     userName: string;
     userRole: string;
+    multiple?: boolean; // Add multiple prop to LayoutProps
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children, navigationSections, navIcons, breadcrumbs, userName, userRole }) => {
+export const Layout: React.FC<LayoutProps> = ({ children, navigationSections, navIcons, breadcrumbs, userName, userRole, multiple = true }) => { // Set default to false
     const styles = useStyles();
     const { isMobile, isTablet, isOpen, toggle, setIsOpen } = useSidebar();
 
@@ -32,6 +33,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, navigationSections, na
                 styles={styles}
                 navigationSections={navigationSections}
                 navIcons={navIcons}
+                multiple={multiple} // Pass multiple prop to Sidebar
             />
             <main className={styles.main}>
                 <AppToolbar
