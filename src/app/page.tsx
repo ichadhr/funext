@@ -12,6 +12,35 @@ const PAGE_TITLE = "Dashboard";
 const USER_NAME = "Kevin Sturgis";
 const USER_ROLE = "Administrator";
 
+const dataTableOptions = {
+    columns: [
+        { title: "Album ID" },
+        { title: "Album Title" },
+        { title: "Artist Name" },
+        { title: "Track Count" },
+        { title: "Genres" },
+        { title: "Min Price" },
+        { title: "Max Price" },
+        { title: "Avg Price" }
+    ],
+    processing: true,
+    serverSide: true,
+    responsive: true,
+    ordering: true,
+    pageLength: 10,
+    lengthChange: true,
+    lengthMenu: [5, 10, 50, -1],
+    language: {
+        lengthLabels: {
+            '-1': 'All'
+        }
+    },
+    ajax: {
+        url: "http://localhost:8080/dt_json",
+        type: "POST"
+    }
+};
+
 export default function Page() {
     const breadcrumbs = useBreadcrumbs(PAGE_TITLE);
 
@@ -27,36 +56,7 @@ export default function Page() {
             <CardGrid type="fluid">
                 <Card appearance="subtle">
                     <h2>Album Data (DataTables with AJAX)</h2>
-                    <FluentDataTable
-                        options={{
-                            columns: [
-                                { title: "Album ID" },
-                                { title: "Album Title" },
-                                { title: "Artist Name" },
-                                { title: "Track Count" },
-                                { title: "Genres" },
-                                { title: "Min Price" },
-                                { title: "Max Price" },
-                                { title: "Avg Price" }
-                            ],
-                            processing: true,
-                            serverSide: true,
-                            responsive: true,
-                            ordering: true,
-                            pageLength: 10,
-                            lengthChange: true,
-                            lengthMenu: [5, 10, 50, -1],
-                            language: {
-                                lengthLabels: {
-                                    '-1': 'All'
-                                }
-                            },
-                            ajax: {
-                                url: "http://localhost:8080/dt_json",
-                                type: "POST"
-                            }
-                        }}
-                    />
+                    <FluentDataTable options={dataTableOptions} />
                 </Card>
             </CardGrid>
             <CardGrid type="fluid">
