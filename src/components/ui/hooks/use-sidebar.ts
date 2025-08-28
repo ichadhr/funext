@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BREAKPOINTS } from "../components/ui/constants";
+import { BREAKPOINTS } from "../constants";
 
 
 const useSidebar = () => {
