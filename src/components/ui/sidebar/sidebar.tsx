@@ -86,7 +86,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     router.push(href);
                 }
             }
-        }, [router, findHrefById]
+            // If multiple is false and a non-category item is selected, close all categories
+            if (!multiple && !data.categoryValue) {
+                setOpenCategories([]);
+            }
+        }, [router, findHrefById, multiple]
     );
 
     const handleNavCategoryItemToggle = React.useCallback(
