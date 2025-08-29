@@ -25,9 +25,8 @@ export interface SidebarProps {
     isOpen: boolean;
     onOpenChange: (open: boolean) => void;
     styles: Record<string, string>;
-    navigationSections: NavigationSection[];
     navIcons: Record<string, React.ElementType>;
-    multiple: boolean;
+    multiple: boolean; // Keep multiple as a prop
 }
 
 export interface ContentAreaProps {

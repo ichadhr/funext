@@ -1,16 +1,9 @@
 "use client"
 
 import * as React from "react";
-import { Layout } from "@components/ui/layout/layout";
-import { NAVIGATION_SECTIONS, NAV_ICONS } from "@contexts/nav-items";
-import { useBreadcrumbs } from "@components/ui/hooks/use-breadcrumbs";
 import { CardGrid, CardGridColumn, CardGridRow } from "@/components/grids";
 import { Card, CardHeader, Text } from "@fluentui/react-components";
 import { FluentDataTable } from "@/components/datatables";
-
-const PAGE_TITLE = "Dashboard";
-const USER_NAME = "Kevin Sturgis";
-const USER_ROLE = "Administrator";
 
 const dataTableOptions = {
     columns: [
@@ -42,16 +35,9 @@ const dataTableOptions = {
 };
 
 export default function Page() {
-    const breadcrumbs = useBreadcrumbs(PAGE_TITLE);
 
     return (
-        <Layout
-            navigationSections={NAVIGATION_SECTIONS}
-            navIcons={NAV_ICONS}
-            breadcrumbs={breadcrumbs}
-            userName={USER_NAME}
-            userRole={USER_ROLE}
-        >
+        <React.Fragment>
             {/* DataTables component with AJAX */}
             <CardGrid type="fluid">
                 <Card appearance="subtle">
@@ -639,6 +625,6 @@ export default function Page() {
                     </Card>
                 </CardGridColumn>
             </CardGridRow>
-        </Layout>
+        </React.Fragment>
     );
 }

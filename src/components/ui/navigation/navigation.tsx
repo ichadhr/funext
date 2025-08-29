@@ -13,11 +13,9 @@ import { NavigationSection, NavigationItem, NavigationSubItem } from "../types";
 interface NavigationProps {
     navigationSections: NavigationSection[];
     navIcons: Record<string, React.ElementType>;
-    onNavCategoryItemToggle: (event: Event | React.SyntheticEvent<Element, Event>, data: { value: string; categoryValue?: string }) => void;
-    openCategories: string[];
 }
 
-export const Navigation: React.FC<NavigationProps> = ({ navigationSections, navIcons, onNavCategoryItemToggle, openCategories }) => {
+export const Navigation: React.FC<NavigationProps> = ({ navigationSections, navIcons }) => {
     return (
         <>
             {navigationSections.map((section: NavigationSection, sectionIndex: number) => (
@@ -26,25 +24,19 @@ export const Navigation: React.FC<NavigationProps> = ({ navigationSections, navI
                     {section.title && <NavSectionHeader>{section.title}</NavSectionHeader>}
                     {section.items.map((item: NavigationItem) => {
                         const IconComponent = navIcons[item.icon];
-                        const isCategoryOpen = openCategories.includes(item.id); // Check if category should be open
 
                         return item.subItems ? (
                             <NavCategory key={item.id} value={item.id}>
-                                <NavCategoryItem
-                                    icon={<IconComponent />}
-                                    onClick={(e) => onNavCategoryItemToggle(e, { value: item.id })}
-                                >
+                                <NavCategoryItem icon={<IconComponent />}>
                                     {item.label}
                                 </NavCategoryItem>
-                                {isCategoryOpen && ( // Conditionally render NavSubItemGroup
-                                    <NavSubItemGroup>
-                                        {item.subItems.map((subItem: NavigationSubItem) => (
-                                            <NavSubItem key={subItem.id} value={subItem.id}>
-                                                {subItem.label}
-                                            </NavSubItem>
-                                        ))}
-                                    </NavSubItemGroup>
-                                )}
+                                <NavSubItemGroup>
+                                    {item.subItems.map((subItem: NavigationSubItem) => (
+                                        <NavSubItem key={subItem.id} value={subItem.id}>
+                                            {subItem.label}
+                                        </NavSubItem>
+                                    ))}
+                                </NavSubItemGroup>
                             </NavCategory>
                         ) : (
                             <NavItem

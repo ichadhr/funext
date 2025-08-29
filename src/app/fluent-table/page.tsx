@@ -1,27 +1,13 @@
 "use client"
 
 import * as React from "react";
-import { Layout } from "@components/ui/layout/layout";
-import { NAVIGATION_SECTIONS, NAV_ICONS } from "@contexts/nav-items";
-import { useBreadcrumbs } from "@components/ui/hooks/use-breadcrumbs";
 import { CardGrid, CardGridColumn, CardGridRow } from "@/components/grids";
 import { Card, CardHeader, Text } from "@fluentui/react-components";
 
-const PAGE_TITLE = "Dashboard";
-const USER_NAME = "Kevin Sturgis";
-const USER_ROLE = "Administrator";
-
 export default function Page() {
-    const breadcrumbs = useBreadcrumbs(PAGE_TITLE);
 
     return (
-        <Layout
-            navigationSections={NAVIGATION_SECTIONS}
-            navIcons={NAV_ICONS}
-            breadcrumbs={breadcrumbs}
-            userName={USER_NAME}
-            userRole={USER_ROLE}
-        >
+        <React.Fragment>
             <CardGrid type="fluid">
                 <Card appearance="subtle">
                     <CardHeader header={<Text weight="semibold">CardGrid with `fluid` container type</Text>} />
@@ -602,6 +588,6 @@ export default function Page() {
                     </Card>
                 </CardGridColumn>
             </CardGridRow>
-        </Layout>
+        </React.Fragment>
     );
 }

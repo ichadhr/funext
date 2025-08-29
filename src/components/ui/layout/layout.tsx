@@ -5,19 +5,19 @@ import { ContentArea } from "../content-area/content-area";
 import { useStyles } from "../styles";
 import useSidebar from "../hooks/use-sidebar";
 
-import { NavigationSection, BreadcrumbItemType } from "../types";
+import { BreadcrumbItemType } from "../types";
 
 interface LayoutProps {
     children: React.ReactNode;
-    navigationSections: NavigationSection[];
-    navIcons: Record<string, React.ElementType>;
+    multiple?: boolean; // Make multiple optional
+    // Re-adding props for AppToolbar
     breadcrumbs: BreadcrumbItemType[];
     userName: string;
     userRole: string;
-    multiple?: boolean; // Add multiple prop to LayoutProps
+    navIcons: Record<string, React.ElementType>; // Add navIcons
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children, navigationSections, navIcons, breadcrumbs, userName, userRole, multiple = true }) => { // Set default to false
+export const Layout: React.FC<LayoutProps> = ({ children, multiple = true, breadcrumbs, userName, userRole, navIcons }) => {
     const styles = useStyles();
     const { isMobile, isTablet, isOpen, toggle, setIsOpen } = useSidebar();
 
@@ -26,14 +26,14 @@ export const Layout: React.FC<LayoutProps> = ({ children, navigationSections, na
     return (
         <section className={sectionClass}>
             <Sidebar
+                key="main-sidebar" // Add a static key to force persistence
                 isMobile={isMobile}
                 isTablet={isTablet}
                 isOpen={isOpen}
                 onOpenChange={setIsOpen}
                 styles={styles}
-                navigationSections={navigationSections}
                 navIcons={navIcons}
-                multiple={multiple} // Pass multiple prop to Sidebar
+                multiple={multiple} // Pass multiple to Sidebar
             />
             <main className={styles.main}>
                 <AppToolbar
@@ -42,6 +42,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, navigationSections, na
                     styles={styles}
                     isMobile={isMobile}
                     isTablet={isTablet}
+                    // Re-passing props to AppToolbar
                     breadcrumbs={breadcrumbs}
                     userName={userName}
                     userRole={userRole}

@@ -1,0 +1,35 @@
+'use client';
+
+import React from 'react';
+import { usePathname } from 'next/navigation';
+import { Providers } from './providers';
+import { Layout } from '../components/ui/layout/layout';
+import { NAV_ICONS } from '../contexts/nav-items';
+
+import { useBreadcrumbs } from '../components/ui/hooks/use-breadcrumbs';
+
+interface PersistentLayoutClientProps {
+    children: React.ReactNode;
+    multiple?: boolean;
+}
+
+export default function PersistentLayoutClient({ children, multiple = false }: PersistentLayoutClientProps) {
+    const pathname = usePathname();
+    // Derive a simple page title from the pathname for useBreadcrumbs
+    const currentPageTitle = pathname.split('/').pop() || 'Dashboard';
+    const breadcrumbs = useBreadcrumbs(currentPageTitle);
+
+    return (
+        <Providers themeName="webLightTheme">
+            <Layout
+                breadcrumbs={breadcrumbs}
+                userName="User Name" // Placeholder
+                userRole="User Role" // Placeholder
+                navIcons={NAV_ICONS as Record<string, React.ElementType>} // Pass NAV_ICONS directly
+                multiple={multiple} // Pass the multiple prop
+            >
+                {children}
+            </Layout>
+        </Providers>
+    );
+}
