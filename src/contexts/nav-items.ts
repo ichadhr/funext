@@ -55,7 +55,7 @@ export const NAVIGATION_SECTIONS: NavigationSection[] = [
         items: [
             { id: "1", label: "Dashboard", icon: "dashboard", href: "/" },
             { id: "2", label: "Announcements", icon: "announcements", href: "/announcements" },
-            { id: "3", label: "Employee Spotlight", icon: "employeeSpotlight", href: PATH },
+            { id: "3", label: "Fluent Table", icon: "employeeSpotlight", href: "/fluent-table" },
             { id: "4", label: "Profile Search", icon: "profileSearch", href: PATH },
             { id: "5", label: "Performance Reviews", icon: "performanceReviews", href: PATH }
         ]

@@ -7,7 +7,7 @@ import { Card, CardHeader, Text } from "@fluentui/react-components";
 export default function Page() {
 
     return (
-        <React.Fragment>
+        <>
             <CardGrid type="fluid">
                 <Card appearance="subtle">
                     <CardHeader header={<Text weight="semibold">CardGrid with `fluid` container type</Text>} />
@@ -588,6 +588,6 @@ export default function Page() {
                     </Card>
                 </CardGridColumn>
             </CardGridRow>
-        </React.Fragment>
+        </>
     );
 }
