@@ -49,7 +49,7 @@ const findNavItemByPathSegment = (
     return NAV_LOOKUP_MAP[segment];
 };
 
-export const useBreadcrumbs = (currentPageTitle: string): BreadcrumbItemType[] => {
+export const useBreadcrumbs = (): BreadcrumbItemType[] => {
     const pathname = usePathname();
 
     const breadcrumbs = useMemo(() => {
@@ -99,16 +99,12 @@ export const useBreadcrumbs = (currentPageTitle: string): BreadcrumbItemType[] =
                 href: "/",
                 current: true,
             });
-        }
-
-        // Update the last breadcrumb item to reflect the current page title and set current to true
-        if (generatedBreadcrumbs.length > 0) {
-            generatedBreadcrumbs[generatedBreadcrumbs.length - 1].label = currentPageTitle;
+        } else if (generatedBreadcrumbs.length > 0) { // Set the last breadcrumb to current if not root
             generatedBreadcrumbs[generatedBreadcrumbs.length - 1].current = true;
         }
 
         return generatedBreadcrumbs;
-    }, [pathname, currentPageTitle]);
+    }, [pathname]);
 
     return breadcrumbs;
 };
