@@ -10,7 +10,7 @@ import {
 } from "@fluentui/react-components";
 import { ArrowPrevious20Filled, ArrowNext20Filled } from "@fluentui/react-icons";
 import { Table } from "@tanstack/react-table"; // Keep TanStack Table import
-import { useStyles } from "./style"; // Keep useStyles import
+import { useStyles } from "../styles"; // Keep useStyles import
 
 // Define props for PaginationButton
 interface PaginationButtonProps {

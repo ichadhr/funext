@@ -27,7 +27,7 @@ import { SearchControl } from "./controls/search-control";
 import { PageSizeControl } from "./controls/page-size-control";
 import { PaginationControl } from "./controls/pagination-control";
 import { InfoControl } from "./controls/info-control";
-import { useStyles } from "./controls/style"; // Import useStyles
+import { useStyles } from "./styles"; // Import useStyles
 
 const FluentTable = <TData extends object>({
   data,

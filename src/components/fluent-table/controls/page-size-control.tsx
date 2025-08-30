@@ -1,7 +1,7 @@
 import React from "react";
 import { Dropdown, Option, Label, useId, DropdownProps } from "@fluentui/react-components";
 import { Table } from "@tanstack/react-table";
-import { useStyles } from "./style";
+import { useStyles } from "../styles";
 
 interface PageSizeControlProps<TData extends object> extends Partial<DropdownProps> { // Extend DropdownProps
     table: Table<TData>;

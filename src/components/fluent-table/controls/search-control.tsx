@@ -1,7 +1,7 @@
 import React from "react";
 import { Label, SearchBox, useId, mergeClasses } from "@fluentui/react-components";
 import { Table } from "@tanstack/react-table";
-import { useStyles } from "./style"; // Re-import to refresh types
+import { useStyles } from "../styles"; // Re-import to refresh types
 
 interface SearchControlProps<TData extends object> {
     table: Table<TData>;

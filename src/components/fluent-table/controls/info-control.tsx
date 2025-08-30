@@ -1,6 +1,6 @@
 import React from "react";
 import { Table } from "@tanstack/react-table";
-import { useStyles } from "./style";
+import { useStyles } from "../styles";
 import { Label } from "@fluentui/react-components";
 
 interface InfoControlProps<TData extends object> {
