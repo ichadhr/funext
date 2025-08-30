@@ -1,0 +1,3472 @@
+[
+    {
+        "AlbumId": "1",
+        "AlbumTitile": "For Those About To Rock We Salute You",
+        "ArtistName": "AC/DC",
+        "TrackCount": "10",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "2",
+        "AlbumTitile": "Balls to the Wall",
+        "ArtistName": "Accept",
+        "TrackCount": "1",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "3",
+        "AlbumTitile": "Restless and Wild",
+        "ArtistName": "Accept",
+        "TrackCount": "3",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "4",
+        "AlbumTitile": "Let There Be Rock",
+        "ArtistName": "AC/DC",
+        "TrackCount": "8",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "5",
+        "AlbumTitile": "Big Ones",
+        "ArtistName": "Aerosmith",
+        "TrackCount": "15",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "6",
+        "AlbumTitile": "Jagged Little Pill",
+        "ArtistName": "Alanis Morissette",
+        "TrackCount": "13",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "7",
+        "AlbumTitile": "Facelift",
+        "ArtistName": "Alice In Chains",
+        "TrackCount": "12",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "8",
+        "AlbumTitile": "Warner 25 Anos",
+        "ArtistName": "Antônio Carlos Jobim",
+        "TrackCount": "14",
+        "Genres": "Jazz",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "9",
+        "AlbumTitile": "Plays Metallica By Four Cellos",
+        "ArtistName": "Apocalyptica",
+        "TrackCount": "8",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "10",
+        "AlbumTitile": "Audioslave",
+        "ArtistName": "Audioslave",
+        "TrackCount": "14",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "11",
+        "AlbumTitile": "Out Of Exile",
+        "ArtistName": "Audioslave",
+        "TrackCount": "12",
+        "Genres": "Alternative & Punk",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "12",
+        "AlbumTitile": "BackBeat Soundtrack",
+        "ArtistName": "BackBeat",
+        "TrackCount": "12",
+        "Genres": "Rock And Roll",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "13",
+        "AlbumTitile": "The Best Of Billy Cobham",
+        "ArtistName": "Billy Cobham",
+        "TrackCount": "8",
+        "Genres": "Jazz",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "14",
+        "AlbumTitile": "Alcohol Fueled Brewtality Live! [Disc 1]",
+        "ArtistName": "Black Label Society",
+        "TrackCount": "13",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "15",
+        "AlbumTitile": "Alcohol Fueled Brewtality Live! [Disc 2]",
+        "ArtistName": "Black Label Society",
+        "TrackCount": "5",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "16",
+        "AlbumTitile": "Black Sabbath",
+        "ArtistName": "Black Sabbath",
+        "TrackCount": "7",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "17",
+        "AlbumTitile": "Black Sabbath Vol. 4 (Remaster)",
+        "ArtistName": "Black Sabbath",
+        "TrackCount": "10",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "18",
+        "AlbumTitile": "Body Count",
+        "ArtistName": "Body Count",
+        "TrackCount": "17",
+        "Genres": "Alternative & Punk",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "19",
+        "AlbumTitile": "Chemical Wedding",
+        "ArtistName": "Bruce Dickinson",
+        "TrackCount": "11",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "20",
+        "AlbumTitile": "The Best Of Buddy Guy - The Millenium Collection",
+        "ArtistName": "Buddy Guy",
+        "TrackCount": "11",
+        "Genres": "Blues",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "21",
+        "AlbumTitile": "Prenda Minha",
+        "ArtistName": "Caetano Veloso",
+        "TrackCount": "18",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "22",
+        "AlbumTitile": "Sozinho Remix Ao Vivo",
+        "ArtistName": "Caetano Veloso",
+        "TrackCount": "3",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "23",
+        "AlbumTitile": "Minha Historia",
+        "ArtistName": "Chico Buarque",
+        "TrackCount": "34",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "24",
+        "AlbumTitile": "Afrociberdelia",
+        "ArtistName": "Chico Science & Nação Zumbi",
+        "TrackCount": "23",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "25",
+        "AlbumTitile": "Da Lama Ao Caos",
+        "ArtistName": "Chico Science & Nação Zumbi",
+        "TrackCount": "13",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "26",
+        "AlbumTitile": "Acústico MTV [Live]",
+        "ArtistName": "Cidade Negra",
+        "TrackCount": "17",
+        "Genres": "Reggae",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "27",
+        "AlbumTitile": "Cidade Negra - Hits",
+        "ArtistName": "Cidade Negra",
+        "TrackCount": "14",
+        "Genres": "Reggae",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "28",
+        "AlbumTitile": "Na Pista",
+        "ArtistName": "Cláudio Zoli",
+        "TrackCount": "10",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "29",
+        "AlbumTitile": "Axé Bahia 2001",
+        "ArtistName": "Various Artists",
+        "TrackCount": "14",
+        "Genres": "Pop",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "30",
+        "AlbumTitile": "BBC Sessions [Disc 1] [Live]",
+        "ArtistName": "Led Zeppelin",
+        "TrackCount": "14",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "31",
+        "AlbumTitile": "Bongo Fury",
+        "ArtistName": "Frank Zappa & Captain Beefheart",
+        "TrackCount": "9",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "32",
+        "AlbumTitile": "Carnaval 2001",
+        "ArtistName": "Various Artists",
+        "TrackCount": "14",
+        "Genres": "Soundtrack",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "33",
+        "AlbumTitile": "Chill: Brazil (Disc 1)",
+        "ArtistName": "Marcos Valle",
+        "TrackCount": "17",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "34",
+        "AlbumTitile": "Chill: Brazil (Disc 2)",
+        "ArtistName": "Antônio Carlos Jobim",
+        "TrackCount": "17",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "35",
+        "AlbumTitile": "Garage Inc. (Disc 1)",
+        "ArtistName": "Metallica",
+        "TrackCount": "11",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "36",
+        "AlbumTitile": "Greatest Hits II",
+        "ArtistName": "Queen",
+        "TrackCount": "17",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "37",
+        "AlbumTitile": "Greatest Kiss",
+        "ArtistName": "Kiss",
+        "TrackCount": "20",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "38",
+        "AlbumTitile": "Heart of the Night",
+        "ArtistName": "Spyro Gyra",
+        "TrackCount": "12",
+        "Genres": "Jazz",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "39",
+        "AlbumTitile": "International Superhits",
+        "ArtistName": "Green Day",
+        "TrackCount": "21",
+        "Genres": "Alternative & Punk",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "40",
+        "AlbumTitile": "Into The Light",
+        "ArtistName": "David Coverdale",
+        "TrackCount": "12",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "41",
+        "AlbumTitile": "Meus Momentos",
+        "ArtistName": "Gonzaguinha",
+        "TrackCount": "14",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "42",
+        "AlbumTitile": "Minha História",
+        "ArtistName": "Os Mutantes",
+        "TrackCount": "14",
+        "Genres": "Alternative & Punk",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "43",
+        "AlbumTitile": "MK III The Final Concerts [Disc 1]",
+        "ArtistName": "Deep Purple",
+        "TrackCount": "7",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "44",
+        "AlbumTitile": "Physical Graffiti [Disc 1]",
+        "ArtistName": "Led Zeppelin",
+        "TrackCount": "6",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "45",
+        "AlbumTitile": "Sambas De Enredo 2001",
+        "ArtistName": "Various Artists",
+        "TrackCount": "14",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "46",
+        "AlbumTitile": "Supernatural",
+        "ArtistName": "Santana",
+        "TrackCount": "13",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "47",
+        "AlbumTitile": "The Best of Ed Motta",
+        "ArtistName": "Ed Motta",
+        "TrackCount": "14",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "48",
+        "AlbumTitile": "The Essential Miles Davis [Disc 1]",
+        "ArtistName": "Miles Davis",
+        "TrackCount": "13",
+        "Genres": "Jazz",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "49",
+        "AlbumTitile": "The Essential Miles Davis [Disc 2]",
+        "ArtistName": "Miles Davis",
+        "TrackCount": "10",
+        "Genres": "Jazz",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "50",
+        "AlbumTitile": "The Final Concerts (Disc 2)",
+        "ArtistName": "Deep Purple",
+        "TrackCount": "4",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "51",
+        "AlbumTitile": "Up An' Atom",
+        "ArtistName": "Gene Krupa",
+        "TrackCount": "22",
+        "Genres": "Jazz",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "52",
+        "AlbumTitile": "Vinícius De Moraes - Sem Limite",
+        "ArtistName": "Toquinho & Vinícius",
+        "TrackCount": "15",
+        "Genres": "Bossa Nova",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "53",
+        "AlbumTitile": "Vozes do MPB",
+        "ArtistName": "Various Artists",
+        "TrackCount": "14",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "54",
+        "AlbumTitile": "Chronicle, Vol. 1",
+        "ArtistName": "Creedence Clearwater Revival",
+        "TrackCount": "20",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "55",
+        "AlbumTitile": "Chronicle, Vol. 2",
+        "ArtistName": "Creedence Clearwater Revival",
+        "TrackCount": "20",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "56",
+        "AlbumTitile": "Cássia Eller - Coleção Sem Limite [Disc 2]",
+        "ArtistName": "Cássia Eller",
+        "TrackCount": "15",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "57",
+        "AlbumTitile": "Cássia Eller - Sem Limite [Disc 1]",
+        "ArtistName": "Cássia Eller",
+        "TrackCount": "15",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "58",
+        "AlbumTitile": "Come Taste The Band",
+        "ArtistName": "Deep Purple",
+        "TrackCount": "9",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "59",
+        "AlbumTitile": "Deep Purple In Rock",
+        "ArtistName": "Deep Purple",
+        "TrackCount": "7",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "60",
+        "AlbumTitile": "Fireball",
+        "ArtistName": "Deep Purple",
+        "TrackCount": "7",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "61",
+        "AlbumTitile": "Knocking at Your Back Door: The Best Of Deep Purple in the 80's",
+        "ArtistName": "Deep Purple",
+        "TrackCount": "11",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "62",
+        "AlbumTitile": "Machine Head",
+        "ArtistName": "Deep Purple",
+        "TrackCount": "7",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "63",
+        "AlbumTitile": "Purpendicular",
+        "ArtistName": "Deep Purple",
+        "TrackCount": "12",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "64",
+        "AlbumTitile": "Slaves And Masters",
+        "ArtistName": "Deep Purple",
+        "TrackCount": "9",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "65",
+        "AlbumTitile": "Stormbringer",
+        "ArtistName": "Deep Purple",
+        "TrackCount": "9",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "66",
+        "AlbumTitile": "The Battle Rages On",
+        "ArtistName": "Deep Purple",
+        "TrackCount": "10",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "67",
+        "AlbumTitile": "Vault: Def Leppard's Greatest Hits",
+        "ArtistName": "Def Leppard",
+        "TrackCount": "16",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "68",
+        "AlbumTitile": "Outbreak",
+        "ArtistName": "Dennis Chambers",
+        "TrackCount": "9",
+        "Genres": "Jazz",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "69",
+        "AlbumTitile": "Djavan Ao Vivo - Vol. 02",
+        "ArtistName": "Djavan",
+        "TrackCount": "13",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "70",
+        "AlbumTitile": "Djavan Ao Vivo - Vol. 1",
+        "ArtistName": "Djavan",
+        "TrackCount": "13",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "71",
+        "AlbumTitile": "Elis Regina-Minha História",
+        "ArtistName": "Elis Regina",
+        "TrackCount": "14",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "72",
+        "AlbumTitile": "The Cream Of Clapton",
+        "ArtistName": "Eric Clapton",
+        "TrackCount": "18",
+        "Genres": "Blues",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "73",
+        "AlbumTitile": "Unplugged",
+        "ArtistName": "Eric Clapton",
+        "TrackCount": "30",
+        "Genres": "Blues, Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "74",
+        "AlbumTitile": "Album Of The Year",
+        "ArtistName": "Faith No More",
+        "TrackCount": "12",
+        "Genres": "Alternative & Punk",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "75",
+        "AlbumTitile": "Angel Dust",
+        "ArtistName": "Faith No More",
+        "TrackCount": "14",
+        "Genres": "Alternative & Punk",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "76",
+        "AlbumTitile": "King For A Day Fool For A Lifetime",
+        "ArtistName": "Faith No More",
+        "TrackCount": "15",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "77",
+        "AlbumTitile": "The Real Thing",
+        "ArtistName": "Faith No More",
+        "TrackCount": "11",
+        "Genres": "Alternative & Punk",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "78",
+        "AlbumTitile": "Deixa Entrar",
+        "ArtistName": "Falamansa",
+        "TrackCount": "14",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "79",
+        "AlbumTitile": "In Your Honor [Disc 1]",
+        "ArtistName": "Foo Fighters",
+        "TrackCount": "10",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "80",
+        "AlbumTitile": "In Your Honor [Disc 2]",
+        "ArtistName": "Foo Fighters",
+        "TrackCount": "10",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "81",
+        "AlbumTitile": "One By One",
+        "ArtistName": "Foo Fighters",
+        "TrackCount": "11",
+        "Genres": "Alternative & Punk",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "82",
+        "AlbumTitile": "The Colour And The Shape",
+        "ArtistName": "Foo Fighters",
+        "TrackCount": "13",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "83",
+        "AlbumTitile": "My Way: The Best Of Frank Sinatra [Disc 1]",
+        "ArtistName": "Frank Sinatra",
+        "TrackCount": "24",
+        "Genres": "Easy Listening",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "84",
+        "AlbumTitile": "Roda De Funk",
+        "ArtistName": "Funk Como Le Gusta",
+        "TrackCount": "16",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "85",
+        "AlbumTitile": "As Canções de Eu Tu Eles",
+        "ArtistName": "Gilberto Gil",
+        "TrackCount": "14",
+        "Genres": "Soundtrack",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "86",
+        "AlbumTitile": "Quanta Gente Veio Ver (Live)",
+        "ArtistName": "Gilberto Gil",
+        "TrackCount": "15",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "87",
+        "AlbumTitile": "Quanta Gente Veio ver--Bônus De Carnaval",
+        "ArtistName": "Gilberto Gil",
+        "TrackCount": "3",
+        "Genres": "Jazz",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "88",
+        "AlbumTitile": "Faceless",
+        "ArtistName": "Godsmack",
+        "TrackCount": "12",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "89",
+        "AlbumTitile": "American Idiot",
+        "ArtistName": "Green Day",
+        "TrackCount": "13",
+        "Genres": "Alternative & Punk",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "90",
+        "AlbumTitile": "Appetite for Destruction",
+        "ArtistName": "Guns N' Roses",
+        "TrackCount": "12",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "91",
+        "AlbumTitile": "Use Your Illusion I",
+        "ArtistName": "Guns N' Roses",
+        "TrackCount": "16",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "92",
+        "AlbumTitile": "Use Your Illusion II",
+        "ArtistName": "Guns N' Roses",
+        "TrackCount": "14",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "93",
+        "AlbumTitile": "Blue Moods",
+        "ArtistName": "Incognito",
+        "TrackCount": "13",
+        "Genres": "Jazz",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "94",
+        "AlbumTitile": "A Matter of Life and Death",
+        "ArtistName": "Iron Maiden",
+        "TrackCount": "11",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "95",
+        "AlbumTitile": "A Real Dead One",
+        "ArtistName": "Iron Maiden",
+        "TrackCount": "12",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "96",
+        "AlbumTitile": "A Real Live One",
+        "ArtistName": "Iron Maiden",
+        "TrackCount": "11",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "97",
+        "AlbumTitile": "Brave New World",
+        "ArtistName": "Iron Maiden",
+        "TrackCount": "10",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "98",
+        "AlbumTitile": "Dance Of Death",
+        "ArtistName": "Iron Maiden",
+        "TrackCount": "11",
+        "Genres": "Heavy Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "99",
+        "AlbumTitile": "Fear Of The Dark",
+        "ArtistName": "Iron Maiden",
+        "TrackCount": "12",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "100",
+        "AlbumTitile": "Iron Maiden",
+        "ArtistName": "Iron Maiden",
+        "TrackCount": "9",
+        "Genres": "Blues",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "101",
+        "AlbumTitile": "Killers",
+        "ArtistName": "Iron Maiden",
+        "TrackCount": "10",
+        "Genres": "Heavy Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "102",
+        "AlbumTitile": "Live After Death",
+        "ArtistName": "Iron Maiden",
+        "TrackCount": "18",
+        "Genres": "Heavy Metal, Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "103",
+        "AlbumTitile": "Live At Donington 1992 (Disc 1)",
+        "ArtistName": "Iron Maiden",
+        "TrackCount": "10",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "104",
+        "AlbumTitile": "Live At Donington 1992 (Disc 2)",
+        "ArtistName": "Iron Maiden",
+        "TrackCount": "10",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "105",
+        "AlbumTitile": "No Prayer For The Dying",
+        "ArtistName": "Iron Maiden",
+        "TrackCount": "10",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "106",
+        "AlbumTitile": "Piece Of Mind",
+        "ArtistName": "Iron Maiden",
+        "TrackCount": "9",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "107",
+        "AlbumTitile": "Powerslave",
+        "ArtistName": "Iron Maiden",
+        "TrackCount": "8",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "108",
+        "AlbumTitile": "Rock In Rio [CD1]",
+        "ArtistName": "Iron Maiden",
+        "TrackCount": "10",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "109",
+        "AlbumTitile": "Rock In Rio [CD2]",
+        "ArtistName": "Iron Maiden",
+        "TrackCount": "9",
+        "Genres": "Metal, Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "110",
+        "AlbumTitile": "Seventh Son of a Seventh Son",
+        "ArtistName": "Iron Maiden",
+        "TrackCount": "8",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "111",
+        "AlbumTitile": "Somewhere in Time",
+        "ArtistName": "Iron Maiden",
+        "TrackCount": "8",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "112",
+        "AlbumTitile": "The Number of The Beast",
+        "ArtistName": "Iron Maiden",
+        "TrackCount": "8",
+        "Genres": "Metal, Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "113",
+        "AlbumTitile": "The X Factor",
+        "ArtistName": "Iron Maiden",
+        "TrackCount": "11",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "114",
+        "AlbumTitile": "Virtual XI",
+        "ArtistName": "Iron Maiden",
+        "TrackCount": "8",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "115",
+        "AlbumTitile": "Sex Machine",
+        "ArtistName": "James Brown",
+        "TrackCount": "20",
+        "Genres": "R&B/Soul",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "116",
+        "AlbumTitile": "Emergency On Planet Earth",
+        "ArtistName": "Jamiroquai",
+        "TrackCount": "10",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "117",
+        "AlbumTitile": "Synkronized",
+        "ArtistName": "Jamiroquai",
+        "TrackCount": "11",
+        "Genres": "R&B/Soul",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "118",
+        "AlbumTitile": "The Return Of The Space Cowboy",
+        "ArtistName": "Jamiroquai",
+        "TrackCount": "11",
+        "Genres": "Electronica/Dance",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "119",
+        "AlbumTitile": "Get Born",
+        "ArtistName": "JET",
+        "TrackCount": "13",
+        "Genres": "Alternative & Punk",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "120",
+        "AlbumTitile": "Are You Experienced?",
+        "ArtistName": "Jimi Hendrix",
+        "TrackCount": "17",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "121",
+        "AlbumTitile": "Surfing with the Alien (Remastered)",
+        "ArtistName": "Joe Satriani",
+        "TrackCount": "10",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "122",
+        "AlbumTitile": "Jorge Ben Jor 25 Anos",
+        "ArtistName": "Jorge Ben",
+        "TrackCount": "14",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "123",
+        "AlbumTitile": "Jota Quest-1995",
+        "ArtistName": "Jota Quest",
+        "TrackCount": "12",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "124",
+        "AlbumTitile": "Cafezinho",
+        "ArtistName": "João Suplicy",
+        "TrackCount": "14",
+        "Genres": "World",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "125",
+        "AlbumTitile": "Living After Midnight",
+        "ArtistName": "Judas Priest",
+        "TrackCount": "16",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "126",
+        "AlbumTitile": "Unplugged [Live]",
+        "ArtistName": "Kiss",
+        "TrackCount": "15",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "127",
+        "AlbumTitile": "BBC Sessions [Disc 2] [Live]",
+        "ArtistName": "Led Zeppelin",
+        "TrackCount": "10",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "128",
+        "AlbumTitile": "Coda",
+        "ArtistName": "Led Zeppelin",
+        "TrackCount": "8",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "129",
+        "AlbumTitile": "Houses Of The Holy",
+        "ArtistName": "Led Zeppelin",
+        "TrackCount": "8",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "130",
+        "AlbumTitile": "In Through The Out Door",
+        "ArtistName": "Led Zeppelin",
+        "TrackCount": "7",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "131",
+        "AlbumTitile": "IV",
+        "ArtistName": "Led Zeppelin",
+        "TrackCount": "8",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "132",
+        "AlbumTitile": "Led Zeppelin I",
+        "ArtistName": "Led Zeppelin",
+        "TrackCount": "9",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "133",
+        "AlbumTitile": "Led Zeppelin II",
+        "ArtistName": "Led Zeppelin",
+        "TrackCount": "9",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "134",
+        "AlbumTitile": "Led Zeppelin III",
+        "ArtistName": "Led Zeppelin",
+        "TrackCount": "10",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "135",
+        "AlbumTitile": "Physical Graffiti [Disc 2]",
+        "ArtistName": "Led Zeppelin",
+        "TrackCount": "9",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "136",
+        "AlbumTitile": "Presence",
+        "ArtistName": "Led Zeppelin",
+        "TrackCount": "7",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "137",
+        "AlbumTitile": "The Song Remains The Same (Disc 1)",
+        "ArtistName": "Led Zeppelin",
+        "TrackCount": "5",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "138",
+        "AlbumTitile": "The Song Remains The Same (Disc 2)",
+        "ArtistName": "Led Zeppelin",
+        "TrackCount": "4",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "139",
+        "AlbumTitile": "A TempestadeTempestade Ou O Livro Dos Dias",
+        "ArtistName": "Legião Urbana",
+        "TrackCount": "15",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "140",
+        "AlbumTitile": "Mais Do Mesmo",
+        "ArtistName": "Legião Urbana",
+        "TrackCount": "16",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "141",
+        "AlbumTitile": "Greatest Hits",
+        "ArtistName": "Lenny Kravitz",
+        "TrackCount": "57",
+        "Genres": "Metal, Reggae, Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "142",
+        "AlbumTitile": "Lulu Santos - RCA 100 Anos De Música - Álbum 01",
+        "ArtistName": "Lulu Santos",
+        "TrackCount": "14",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "143",
+        "AlbumTitile": "Lulu Santos - RCA 100 Anos De Música - Álbum 02",
+        "ArtistName": "Lulu Santos",
+        "TrackCount": "14",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "144",
+        "AlbumTitile": "Misplaced Childhood",
+        "ArtistName": "Marillion",
+        "TrackCount": "10",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "145",
+        "AlbumTitile": "Barulhinho Bom",
+        "ArtistName": "Marisa Monte",
+        "TrackCount": "18",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "146",
+        "AlbumTitile": "Seek And Shall Find: More Of The Best (1963-1981)",
+        "ArtistName": "Marvin Gaye",
+        "TrackCount": "18",
+        "Genres": "R&B/Soul",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "147",
+        "AlbumTitile": "The Best Of Men At Work",
+        "ArtistName": "Men At Work",
+        "TrackCount": "10",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "148",
+        "AlbumTitile": "Black Album",
+        "ArtistName": "Metallica",
+        "TrackCount": "12",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "149",
+        "AlbumTitile": "Garage Inc. (Disc 2)",
+        "ArtistName": "Metallica",
+        "TrackCount": "16",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "150",
+        "AlbumTitile": "Kill 'Em All",
+        "ArtistName": "Metallica",
+        "TrackCount": "10",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "151",
+        "AlbumTitile": "Load",
+        "ArtistName": "Metallica",
+        "TrackCount": "14",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "152",
+        "AlbumTitile": "Master Of Puppets",
+        "ArtistName": "Metallica",
+        "TrackCount": "8",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "153",
+        "AlbumTitile": "ReLoad",
+        "ArtistName": "Metallica",
+        "TrackCount": "13",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "154",
+        "AlbumTitile": "Ride The Lightning",
+        "ArtistName": "Metallica",
+        "TrackCount": "8",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "155",
+        "AlbumTitile": "St. Anger",
+        "ArtistName": "Metallica",
+        "TrackCount": "11",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "156",
+        "AlbumTitile": "...And Justice For All",
+        "ArtistName": "Metallica",
+        "TrackCount": "9",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "157",
+        "AlbumTitile": "Miles Ahead",
+        "ArtistName": "Miles Davis",
+        "TrackCount": "14",
+        "Genres": "Jazz",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "158",
+        "AlbumTitile": "Milton Nascimento Ao Vivo",
+        "ArtistName": "Milton Nascimento",
+        "TrackCount": "13",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "159",
+        "AlbumTitile": "Minas",
+        "ArtistName": "Milton Nascimento",
+        "TrackCount": "13",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "160",
+        "AlbumTitile": "Ace Of Spades",
+        "ArtistName": "Motörhead",
+        "TrackCount": "15",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "161",
+        "AlbumTitile": "Demorou...",
+        "ArtistName": "Mônica Marianno",
+        "TrackCount": "12",
+        "Genres": "World",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "162",
+        "AlbumTitile": "Motley Crue Greatest Hits",
+        "ArtistName": "Mötley Crüe",
+        "TrackCount": "17",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "163",
+        "AlbumTitile": "From The Muddy Banks Of The Wishkah [Live]",
+        "ArtistName": "Nirvana",
+        "TrackCount": "17",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "164",
+        "AlbumTitile": "Nevermind",
+        "ArtistName": "Nirvana",
+        "TrackCount": "12",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "165",
+        "AlbumTitile": "Compositores",
+        "ArtistName": "O Terço",
+        "TrackCount": "15",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "166",
+        "AlbumTitile": "Olodum",
+        "ArtistName": "Olodum",
+        "TrackCount": "14",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "167",
+        "AlbumTitile": "Acústico MTV",
+        "ArtistName": "Os Paralamas Do Sucesso",
+        "TrackCount": "21",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "168",
+        "AlbumTitile": "Arquivo II",
+        "ArtistName": "Os Paralamas Do Sucesso",
+        "TrackCount": "12",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "169",
+        "AlbumTitile": "Arquivo Os Paralamas Do Sucesso",
+        "ArtistName": "Os Paralamas Do Sucesso",
+        "TrackCount": "16",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "170",
+        "AlbumTitile": "Bark at the Moon (Remastered)",
+        "ArtistName": "Ozzy Osbourne",
+        "TrackCount": "1",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "171",
+        "AlbumTitile": "Blizzard of Ozz",
+        "ArtistName": "Ozzy Osbourne",
+        "TrackCount": "2",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "172",
+        "AlbumTitile": "Diary of a Madman (Remastered)",
+        "ArtistName": "Ozzy Osbourne",
+        "TrackCount": "1",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "173",
+        "AlbumTitile": "No More Tears (Remastered)",
+        "ArtistName": "Ozzy Osbourne",
+        "TrackCount": "2",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "174",
+        "AlbumTitile": "Tribute",
+        "ArtistName": "Ozzy Osbourne",
+        "TrackCount": "14",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "175",
+        "AlbumTitile": "Walking Into Clarksdale",
+        "ArtistName": "Page & Plant",
+        "TrackCount": "12",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "176",
+        "AlbumTitile": "Original Soundtracks 1",
+        "ArtistName": "Passengers",
+        "TrackCount": "14",
+        "Genres": "Soundtrack",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "177",
+        "AlbumTitile": "The Beast Live",
+        "ArtistName": "Paul D'Ianno",
+        "TrackCount": "10",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "178",
+        "AlbumTitile": "Live On Two Legs [Live]",
+        "ArtistName": "Pearl Jam",
+        "TrackCount": "16",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "179",
+        "AlbumTitile": "Pearl Jam",
+        "ArtistName": "Pearl Jam",
+        "TrackCount": "13",
+        "Genres": "Alternative & Punk",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "180",
+        "AlbumTitile": "Riot Act",
+        "ArtistName": "Pearl Jam",
+        "TrackCount": "15",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "181",
+        "AlbumTitile": "Ten",
+        "ArtistName": "Pearl Jam",
+        "TrackCount": "11",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "182",
+        "AlbumTitile": "Vs.",
+        "ArtistName": "Pearl Jam",
+        "TrackCount": "12",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "183",
+        "AlbumTitile": "Dark Side Of The Moon",
+        "ArtistName": "Pink Floyd",
+        "TrackCount": "9",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "184",
+        "AlbumTitile": "Os Cães Ladram Mas A Caravana Não Pára",
+        "ArtistName": "Planet Hemp",
+        "TrackCount": "16",
+        "Genres": "Hip Hop/Rap",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "185",
+        "AlbumTitile": "Greatest Hits I",
+        "ArtistName": "Queen",
+        "TrackCount": "17",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "186",
+        "AlbumTitile": "News Of The World",
+        "ArtistName": "Queen",
+        "TrackCount": "11",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "187",
+        "AlbumTitile": "Out Of Time",
+        "ArtistName": "R.E.M. Feat. Kate Pearson",
+        "TrackCount": "11",
+        "Genres": "Alternative & Punk",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "188",
+        "AlbumTitile": "Green",
+        "ArtistName": "R.E.M.",
+        "TrackCount": "11",
+        "Genres": "Alternative & Punk",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "189",
+        "AlbumTitile": "New Adventures In Hi-Fi",
+        "ArtistName": "R.E.M.",
+        "TrackCount": "14",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "190",
+        "AlbumTitile": "The Best Of R.E.M.: The IRS Years",
+        "ArtistName": "R.E.M.",
+        "TrackCount": "16",
+        "Genres": "Alternative & Punk",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "191",
+        "AlbumTitile": "Cesta Básica",
+        "ArtistName": "Raimundos",
+        "TrackCount": "10",
+        "Genres": "Alternative & Punk",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "192",
+        "AlbumTitile": "Raul Seixas",
+        "ArtistName": "Raul Seixas",
+        "TrackCount": "14",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "193",
+        "AlbumTitile": "Blood Sugar Sex Magik",
+        "ArtistName": "Red Hot Chili Peppers",
+        "TrackCount": "17",
+        "Genres": "Alternative & Punk",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "194",
+        "AlbumTitile": "By The Way",
+        "ArtistName": "Red Hot Chili Peppers",
+        "TrackCount": "16",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "195",
+        "AlbumTitile": "Californication",
+        "ArtistName": "Red Hot Chili Peppers",
+        "TrackCount": "15",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "196",
+        "AlbumTitile": "Retrospective I (1974-1980)",
+        "ArtistName": "Rush",
+        "TrackCount": "14",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "197",
+        "AlbumTitile": "Santana - As Years Go By",
+        "ArtistName": "Santana",
+        "TrackCount": "8",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "198",
+        "AlbumTitile": "Santana Live",
+        "ArtistName": "Santana",
+        "TrackCount": "6",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "199",
+        "AlbumTitile": "Maquinarama",
+        "ArtistName": "Skank",
+        "TrackCount": "12",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "200",
+        "AlbumTitile": "O Samba Poconé",
+        "ArtistName": "Skank",
+        "TrackCount": "11",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "201",
+        "AlbumTitile": "Judas 0: B-Sides and Rarities",
+        "ArtistName": "Smashing Pumpkins",
+        "TrackCount": "16",
+        "Genres": "Alternative & Punk",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "202",
+        "AlbumTitile": "Rotten Apples: Greatest Hits",
+        "ArtistName": "Smashing Pumpkins",
+        "TrackCount": "18",
+        "Genres": "Alternative & Punk",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "203",
+        "AlbumTitile": "A-Sides",
+        "ArtistName": "Soundgarden",
+        "TrackCount": "17",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "204",
+        "AlbumTitile": "Morning Dance",
+        "ArtistName": "Spyro Gyra",
+        "TrackCount": "9",
+        "Genres": "Jazz",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "205",
+        "AlbumTitile": "In Step",
+        "ArtistName": "Stevie Ray Vaughan & Double Trouble",
+        "TrackCount": "10",
+        "Genres": "Blues",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "206",
+        "AlbumTitile": "Core",
+        "ArtistName": "Stone Temple Pilots",
+        "TrackCount": "12",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "207",
+        "AlbumTitile": "Mezmerize",
+        "ArtistName": "System Of A Down",
+        "TrackCount": "11",
+        "Genres": "Metal",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "208",
+        "AlbumTitile": "[1997] Black Light Syndrome",
+        "ArtistName": "Terry Bozzio, Tony Levin & Steve Stevens",
+        "TrackCount": "7",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "209",
+        "AlbumTitile": "Live [Disc 1]",
+        "ArtistName": "The Black Crowes",
+        "TrackCount": "10",
+        "Genres": "Blues",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "210",
+        "AlbumTitile": "Live [Disc 2]",
+        "ArtistName": "The Black Crowes",
+        "TrackCount": "9",
+        "Genres": "Blues",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "211",
+        "AlbumTitile": "The Singles",
+        "ArtistName": "The Clash",
+        "TrackCount": "18",
+        "Genres": "Alternative & Punk",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "212",
+        "AlbumTitile": "Beyond Good And Evil",
+        "ArtistName": "The Cult",
+        "TrackCount": "12",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "213",
+        "AlbumTitile": "Pure Cult: The Best Of The Cult (For Rockers, Ravers, Lovers & Sinners) [UK]",
+        "ArtistName": "The Cult",
+        "TrackCount": "18",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "214",
+        "AlbumTitile": "The Doors",
+        "ArtistName": "The Doors",
+        "TrackCount": "11",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "215",
+        "AlbumTitile": "The Police Greatest Hits",
+        "ArtistName": "The Police",
+        "TrackCount": "14",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "216",
+        "AlbumTitile": "Hot Rocks, 1964-1971 (Disc 1)",
+        "ArtistName": "The Rolling Stones",
+        "TrackCount": "12",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "217",
+        "AlbumTitile": "No Security",
+        "ArtistName": "The Rolling Stones",
+        "TrackCount": "14",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "218",
+        "AlbumTitile": "Voodoo Lounge",
+        "ArtistName": "The Rolling Stones",
+        "TrackCount": "15",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "219",
+        "AlbumTitile": "Tangents",
+        "ArtistName": "The Tea Party",
+        "TrackCount": "15",
+        "Genres": "Alternative & Punk",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "220",
+        "AlbumTitile": "Transmission",
+        "ArtistName": "The Tea Party",
+        "TrackCount": "11",
+        "Genres": "Alternative & Punk",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "221",
+        "AlbumTitile": "My Generation - The Very Best Of The Who",
+        "ArtistName": "The Who",
+        "TrackCount": "20",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "222",
+        "AlbumTitile": "Serie Sem Limite (Disc 1)",
+        "ArtistName": "Tim Maia",
+        "TrackCount": "15",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "223",
+        "AlbumTitile": "Serie Sem Limite (Disc 2)",
+        "ArtistName": "Tim Maia",
+        "TrackCount": "15",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "224",
+        "AlbumTitile": "Acústico",
+        "ArtistName": "Titãs",
+        "TrackCount": "22",
+        "Genres": "Alternative & Punk",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "225",
+        "AlbumTitile": "Volume Dois",
+        "ArtistName": "Titãs",
+        "TrackCount": "16",
+        "Genres": "Alternative & Punk",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "226",
+        "AlbumTitile": "Battlestar Galactica: The Story So Far",
+        "ArtistName": "Battlestar Galactica",
+        "TrackCount": "1",
+        "Genres": "Science Fiction",
+        "MinPrice": "1.99",
+        "MaxPrice": "1.99",
+        "AvgPrice": "1.99000000000000000000"
+    },
+    {
+        "AlbumId": "227",
+        "AlbumTitile": "Battlestar Galactica, Season 3",
+        "ArtistName": "Battlestar Galactica",
+        "TrackCount": "19",
+        "Genres": "Science Fiction, Sci Fi & Fantasy, TV Shows",
+        "MinPrice": "1.99",
+        "MaxPrice": "1.99",
+        "AvgPrice": "1.9900000000000000"
+    },
+    {
+        "AlbumId": "228",
+        "AlbumTitile": "Heroes, Season 1",
+        "ArtistName": "Heroes",
+        "TrackCount": "23",
+        "Genres": "Drama, TV Shows",
+        "MinPrice": "1.99",
+        "MaxPrice": "1.99",
+        "AvgPrice": "1.9900000000000000"
+    },
+    {
+        "AlbumId": "229",
+        "AlbumTitile": "Lost, Season 3",
+        "ArtistName": "Lost",
+        "TrackCount": "26",
+        "Genres": "Drama, TV Shows",
+        "MinPrice": "1.99",
+        "MaxPrice": "1.99",
+        "AvgPrice": "1.9900000000000000"
+    },
+    {
+        "AlbumId": "230",
+        "AlbumTitile": "Lost, Season 1",
+        "ArtistName": "Lost",
+        "TrackCount": "25",
+        "Genres": "TV Shows",
+        "MinPrice": "1.99",
+        "MaxPrice": "1.99",
+        "AvgPrice": "1.9900000000000000"
+    },
+    {
+        "AlbumId": "231",
+        "AlbumTitile": "Lost, Season 2",
+        "ArtistName": "Lost",
+        "TrackCount": "24",
+        "Genres": "Drama, TV Shows",
+        "MinPrice": "1.99",
+        "MaxPrice": "1.99",
+        "AvgPrice": "1.9900000000000000"
+    },
+    {
+        "AlbumId": "232",
+        "AlbumTitile": "Achtung Baby",
+        "ArtistName": "U2",
+        "TrackCount": "12",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "233",
+        "AlbumTitile": "All That You Can't Leave Behind",
+        "ArtistName": "U2",
+        "TrackCount": "11",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "234",
+        "AlbumTitile": "B-Sides 1980-1990",
+        "ArtistName": "U2",
+        "TrackCount": "15",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "235",
+        "AlbumTitile": "How To Dismantle An Atomic Bomb",
+        "ArtistName": "U2",
+        "TrackCount": "11",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "236",
+        "AlbumTitile": "Pop",
+        "ArtistName": "U2",
+        "TrackCount": "12",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "237",
+        "AlbumTitile": "Rattle And Hum",
+        "ArtistName": "U2",
+        "TrackCount": "17",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "238",
+        "AlbumTitile": "The Best Of 1980-1990",
+        "ArtistName": "U2",
+        "TrackCount": "14",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "239",
+        "AlbumTitile": "War",
+        "ArtistName": "U2",
+        "TrackCount": "10",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "240",
+        "AlbumTitile": "Zooropa",
+        "ArtistName": "U2",
+        "TrackCount": "10",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "241",
+        "AlbumTitile": "UB40 The Best Of - Volume Two [UK]",
+        "ArtistName": "UB40",
+        "TrackCount": "14",
+        "Genres": "Reggae",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "242",
+        "AlbumTitile": "Diver Down",
+        "ArtistName": "Van Halen",
+        "TrackCount": "12",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "243",
+        "AlbumTitile": "The Best Of Van Halen, Vol. I",
+        "ArtistName": "Van Halen",
+        "TrackCount": "17",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "244",
+        "AlbumTitile": "Van Halen",
+        "ArtistName": "Van Halen",
+        "TrackCount": "11",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "245",
+        "AlbumTitile": "Van Halen III",
+        "ArtistName": "Van Halen",
+        "TrackCount": "12",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "246",
+        "AlbumTitile": "Contraband",
+        "ArtistName": "Velvet Revolver",
+        "TrackCount": "13",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "247",
+        "AlbumTitile": "Vinicius De Moraes",
+        "ArtistName": "Vinícius De Moraes",
+        "TrackCount": "15",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "248",
+        "AlbumTitile": "Ao Vivo [IMPORT]",
+        "ArtistName": "Zeca Pagodinho",
+        "TrackCount": "19",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "249",
+        "AlbumTitile": "The Office, Season 1",
+        "ArtistName": "The Office",
+        "TrackCount": "6",
+        "Genres": "TV Shows",
+        "MinPrice": "1.99",
+        "MaxPrice": "1.99",
+        "AvgPrice": "1.9900000000000000"
+    },
+    {
+        "AlbumId": "250",
+        "AlbumTitile": "The Office, Season 2",
+        "ArtistName": "The Office",
+        "TrackCount": "22",
+        "Genres": "TV Shows",
+        "MinPrice": "1.99",
+        "MaxPrice": "1.99",
+        "AvgPrice": "1.9900000000000000"
+    },
+    {
+        "AlbumId": "251",
+        "AlbumTitile": "The Office, Season 3",
+        "ArtistName": "The Office",
+        "TrackCount": "25",
+        "Genres": "Comedy, TV Shows",
+        "MinPrice": "1.99",
+        "MaxPrice": "1.99",
+        "AvgPrice": "1.9900000000000000"
+    },
+    {
+        "AlbumId": "252",
+        "AlbumTitile": "Un-Led-Ed",
+        "ArtistName": "Dread Zeppelin",
+        "TrackCount": "1",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "253",
+        "AlbumTitile": "Battlestar Galactica (Classic), Season 1",
+        "ArtistName": "Battlestar Galactica (Classic)",
+        "TrackCount": "24",
+        "Genres": "Sci Fi & Fantasy",
+        "MinPrice": "1.99",
+        "MaxPrice": "1.99",
+        "AvgPrice": "1.9900000000000000"
+    },
+    {
+        "AlbumId": "254",
+        "AlbumTitile": "Aquaman",
+        "ArtistName": "Aquaman",
+        "TrackCount": "1",
+        "Genres": "TV Shows",
+        "MinPrice": "1.99",
+        "MaxPrice": "1.99",
+        "AvgPrice": "1.99000000000000000000"
+    },
+    {
+        "AlbumId": "255",
+        "AlbumTitile": "Instant Karma: The Amnesty International Campaign to Save Darfur",
+        "ArtistName": "U2",
+        "TrackCount": "23",
+        "Genres": "Pop",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "256",
+        "AlbumTitile": "Speak of the Devil",
+        "ArtistName": "Ozzy Osbourne",
+        "TrackCount": "12",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "257",
+        "AlbumTitile": "20th Century Masters - The Millennium Collection: The Best of Scorpions",
+        "ArtistName": "Scorpions",
+        "TrackCount": "12",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "258",
+        "AlbumTitile": "House of Pain",
+        "ArtistName": "House Of Pain",
+        "TrackCount": "19",
+        "Genres": "Hip Hop/Rap",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "259",
+        "AlbumTitile": "Radio Brasil (O Som da Jovem Vanguarda) - Seleccao de Henrique Amaro",
+        "ArtistName": "O Rappa",
+        "TrackCount": "17",
+        "Genres": "Electronica/Dance",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "260",
+        "AlbumTitile": "Cake: B-Sides and Rarities",
+        "ArtistName": "Cake",
+        "TrackCount": "1",
+        "Genres": "Alternative",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "261",
+        "AlbumTitile": "LOST, Season 4",
+        "ArtistName": "Lost",
+        "TrackCount": "17",
+        "Genres": "Drama, TV Shows",
+        "MinPrice": "1.99",
+        "MaxPrice": "1.99",
+        "AvgPrice": "1.9900000000000000"
+    },
+    {
+        "AlbumId": "262",
+        "AlbumTitile": "Quiet Songs",
+        "ArtistName": "Aisha Duo",
+        "TrackCount": "2",
+        "Genres": "Jazz",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "263",
+        "AlbumTitile": "Muso Ko",
+        "ArtistName": "Habib Koité and Bamada",
+        "TrackCount": "2",
+        "Genres": "World",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "264",
+        "AlbumTitile": "Realize",
+        "ArtistName": "Karsh Kale",
+        "TrackCount": "2",
+        "Genres": "Electronica/Dance",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "265",
+        "AlbumTitile": "Every Kind of Light",
+        "ArtistName": "The Posies",
+        "TrackCount": "2",
+        "Genres": "Rock",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "266",
+        "AlbumTitile": "Duos II",
+        "ArtistName": "Luciana Souza/Romero Lubambo",
+        "TrackCount": "1",
+        "Genres": "Latin",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "267",
+        "AlbumTitile": "Worlds",
+        "ArtistName": "Aaron Goldberg",
+        "TrackCount": "1",
+        "Genres": "Jazz",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "268",
+        "AlbumTitile": "The Best of Beethoven",
+        "ArtistName": "Nicolaus Esterhazy Sinfonia",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "269",
+        "AlbumTitile": "Temple of the Dog",
+        "ArtistName": "Temple of the Dog",
+        "TrackCount": "10",
+        "Genres": "Alternative",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "270",
+        "AlbumTitile": "Carry On",
+        "ArtistName": "Chris Cornell",
+        "TrackCount": "14",
+        "Genres": "Alternative",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "271",
+        "AlbumTitile": "Revelations",
+        "ArtistName": "Audioslave",
+        "TrackCount": "14",
+        "Genres": "Alternative",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "272",
+        "AlbumTitile": "Adorate Deum: Gregorian Chant from the Proper of the Mass",
+        "ArtistName": "Alberto Turco & Nova Schola Gregoriana",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "273",
+        "AlbumTitile": "Allegri: Miserere",
+        "ArtistName": "Richard Marlow & The Choir of Trinity College, Cambridge",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "274",
+        "AlbumTitile": "Pachelbel: Canon & Gigue",
+        "ArtistName": "English Concert & Trevor Pinnock",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "275",
+        "AlbumTitile": "Vivaldi: The Four Seasons",
+        "ArtistName": "Anne-Sophie Mutter, Herbert Von Karajan & Wiener Philharmoniker",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "276",
+        "AlbumTitile": "Bach: Violin Concertos",
+        "ArtistName": "Hilary Hahn, Jeffrey Kahane, Los Angeles Chamber Orchestra & Margaret Batjer",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "277",
+        "AlbumTitile": "Bach: Goldberg Variations",
+        "ArtistName": "Wilhelm Kempff",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "278",
+        "AlbumTitile": "Bach: The Cello Suites",
+        "ArtistName": "Yo-Yo Ma",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "279",
+        "AlbumTitile": "Handel: The Messiah (Highlights)",
+        "ArtistName": "Scholars Baroque Ensemble",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "280",
+        "AlbumTitile": "The World of Classical Favourites",
+        "ArtistName": "Academy of St. Martin in the Fields & Sir Neville Marriner",
+        "TrackCount": "2",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "281",
+        "AlbumTitile": "Sir Neville Marriner: A Celebration",
+        "ArtistName": "Academy of St. Martin in the Fields Chamber Ensemble & Sir Neville Marriner",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "282",
+        "AlbumTitile": "Mozart: Wind Concertos",
+        "ArtistName": "Berliner Philharmoniker, Claudio Abbado & Sabine Meyer",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "283",
+        "AlbumTitile": "Haydn: Symphonies 99 - 104",
+        "ArtistName": "Royal Philharmonic Orchestra & Sir Thomas Beecham",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "284",
+        "AlbumTitile": "Beethoven: Symhonies Nos. 5 & 6",
+        "ArtistName": "Orchestre Révolutionnaire et Romantique & John Eliot Gardiner",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "285",
+        "AlbumTitile": "A Soprano Inspired",
+        "ArtistName": "Britten Sinfonia, Ivor Bolton & Lesley Garrett",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "286",
+        "AlbumTitile": "Great Opera Choruses",
+        "ArtistName": "Chicago Symphony Chorus, Chicago Symphony Orchestra & Sir Georg Solti",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "287",
+        "AlbumTitile": "Wagner: Favourite Overtures",
+        "ArtistName": "Sir Georg Solti & Wiener Philharmoniker",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "288",
+        "AlbumTitile": "Fauré: Requiem, Ravel: Pavane & Others",
+        "ArtistName": "Academy of St. Martin in the Fields, John Birch, Sir Neville Marriner & Sylvia McNair",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "289",
+        "AlbumTitile": "Tchaikovsky: The Nutcracker",
+        "ArtistName": "London Symphony Orchestra & Sir Charles Mackerras",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "290",
+        "AlbumTitile": "The Last Night of the Proms",
+        "ArtistName": "Barry Wordsworth & BBC Concert Orchestra",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "291",
+        "AlbumTitile": "Puccini: Madama Butterfly - Highlights",
+        "ArtistName": "Herbert Von Karajan, Mirella Freni & Wiener Philharmoniker",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "292",
+        "AlbumTitile": "Holst: The Planets, Op. 32 & Vaughan Williams: Fantasies",
+        "ArtistName": "Eugene Ormandy",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "293",
+        "AlbumTitile": "Pavarotti's Opera Made Easy",
+        "ArtistName": "Luciano Pavarotti",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "294",
+        "AlbumTitile": "Great Performances - Barber's Adagio and Other Romantic Favorites for Strings",
+        "ArtistName": "Leonard Bernstein & New York Philharmonic",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "295",
+        "AlbumTitile": "Carmina Burana",
+        "ArtistName": "Boston Symphony Orchestra & Seiji Ozawa",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "296",
+        "AlbumTitile": "A Copland Celebration, Vol. I",
+        "ArtistName": "Aaron Copland & London Symphony Orchestra",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "297",
+        "AlbumTitile": "Bach: Toccata & Fugue in D Minor",
+        "ArtistName": "Ton Koopman",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "298",
+        "AlbumTitile": "Prokofiev: Symphony No.1",
+        "ArtistName": "Sergei Prokofiev & Yuri Temirkanov",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "299",
+        "AlbumTitile": "Scheherazade",
+        "ArtistName": "Chicago Symphony Orchestra & Fritz Reiner",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "300",
+        "AlbumTitile": "Bach: The Brandenburg Concertos",
+        "ArtistName": "Orchestra of The Age of Enlightenment",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "301",
+        "AlbumTitile": "Chopin: Piano Concertos Nos. 1 & 2",
+        "ArtistName": "Emanuel Ax, Eugene Ormandy & Philadelphia Orchestra",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "302",
+        "AlbumTitile": "Mascagni: Cavalleria Rusticana",
+        "ArtistName": "James Levine",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "303",
+        "AlbumTitile": "Sibelius: Finlandia",
+        "ArtistName": "Berliner Philharmoniker & Hans Rosbaud",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "304",
+        "AlbumTitile": "Beethoven Piano Sonatas: Moonlight & Pastorale",
+        "ArtistName": "Maurizio Pollini",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "305",
+        "AlbumTitile": "Great Recordings of the Century - Mahler: Das Lied von der Erde",
+        "ArtistName": "Gustav Mahler",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "306",
+        "AlbumTitile": "Elgar: Cello Concerto & Vaughan Williams: Fantasias",
+        "ArtistName": "Felix Schmidt, London Symphony Orchestra & Rafael Frühbeck de Burgos",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "307",
+        "AlbumTitile": "Adams, John: The Chairman Dances",
+        "ArtistName": "Edo de Waart & San Francisco Symphony",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "308",
+        "AlbumTitile": "Tchaikovsky: 1812 Festival Overture, Op.49, Capriccio Italien & Beethoven: Wellington's Victory",
+        "ArtistName": "Antal Doráti & London Symphony Orchestra",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "309",
+        "AlbumTitile": "Palestrina: Missa Papae Marcelli & Allegri: Miserere",
+        "ArtistName": "Choir Of Westminster Abbey & Simon Preston",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "310",
+        "AlbumTitile": "Prokofiev: Romeo & Juliet",
+        "ArtistName": "Michael Tilson Thomas & San Francisco Symphony",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "311",
+        "AlbumTitile": "Strauss: Waltzes",
+        "ArtistName": "Eugene Ormandy",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "312",
+        "AlbumTitile": "Berlioz: Symphonie Fantastique",
+        "ArtistName": "Michael Tilson Thomas & San Francisco Symphony",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "313",
+        "AlbumTitile": "Bizet: Carmen Highlights",
+        "ArtistName": "Chor der Wiener Staatsoper, Herbert Von Karajan & Wiener Philharmoniker",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "314",
+        "AlbumTitile": "English Renaissance",
+        "ArtistName": "The King's Singers",
+        "TrackCount": "2",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "315",
+        "AlbumTitile": "Handel: Music for the Royal Fireworks (Original Version 1749)",
+        "ArtistName": "English Concert & Trevor Pinnock",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "316",
+        "AlbumTitile": "Grieg: Peer Gynt Suites & Sibelius: Pelléas et Mélisande",
+        "ArtistName": "Berliner Philharmoniker & Herbert Von Karajan",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "317",
+        "AlbumTitile": "Mozart Gala: Famous Arias",
+        "ArtistName": "Sir Georg Solti, Sumi Jo & Wiener Philharmoniker",
+        "TrackCount": "1",
+        "Genres": "Opera",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "318",
+        "AlbumTitile": "SCRIABIN: Vers la flamme",
+        "ArtistName": "Christopher O'Riley",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "319",
+        "AlbumTitile": "Armada: Music from the Courts of England and Spain",
+        "ArtistName": "Fretwork",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "320",
+        "AlbumTitile": "Mozart: Symphonies Nos. 40 & 41",
+        "ArtistName": "Berliner Philharmoniker & Herbert Von Karajan",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "321",
+        "AlbumTitile": "Back to Black",
+        "ArtistName": "Amy Winehouse",
+        "TrackCount": "12",
+        "Genres": "R&B/Soul",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "322",
+        "AlbumTitile": "Frank",
+        "ArtistName": "Amy Winehouse",
+        "TrackCount": "11",
+        "Genres": "Pop",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "323",
+        "AlbumTitile": "Carried to Dust (Bonus Track Version)",
+        "ArtistName": "Calexico",
+        "TrackCount": "1",
+        "Genres": "Alternative",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "324",
+        "AlbumTitile": "Beethoven: Symphony No. 6 'Pastoral' Etc.",
+        "ArtistName": "Otto Klemperer & Philharmonia Orchestra",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "325",
+        "AlbumTitile": "Bartok: Violin & Viola Concertos",
+        "ArtistName": "Yehudi Menuhin",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "326",
+        "AlbumTitile": "Mendelssohn: A Midsummer Night's Dream",
+        "ArtistName": "Philharmonia Orchestra & Sir Neville Marriner",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "327",
+        "AlbumTitile": "Bach: Orchestral Suites Nos. 1 - 4",
+        "ArtistName": "Academy of St. Martin in the Fields, Sir Neville Marriner & Thurston Dart",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "328",
+        "AlbumTitile": "Charpentier: Divertissements, Airs & Concerts",
+        "ArtistName": "Les Arts Florissants & William Christie",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "329",
+        "AlbumTitile": "South American Getaway",
+        "ArtistName": "The 12 Cellists of The Berlin Philharmonic",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "330",
+        "AlbumTitile": "Górecki: Symphony No. 3",
+        "ArtistName": "Adrian Leaper & Doreen de Feis",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "331",
+        "AlbumTitile": "Purcell: The Fairy Queen",
+        "ArtistName": "Roger Norrington, London Classical Players",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "332",
+        "AlbumTitile": "The Ultimate Relexation Album",
+        "ArtistName": "Charles Dutoit & L'Orchestre Symphonique de Montréal",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "333",
+        "AlbumTitile": "Purcell: Music for the Queen Mary",
+        "ArtistName": "Equale Brass Ensemble, John Eliot Gardiner & Munich Monteverdi Orchestra and Choir",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "334",
+        "AlbumTitile": "Weill: The Seven Deadly Sins",
+        "ArtistName": "Kent Nagano and Orchestre de l'Opéra de Lyon",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "335",
+        "AlbumTitile": "J.S. Bach: Chaconne, Suite in E Minor, Partita in E Major & Prelude, Fugue and Allegro",
+        "ArtistName": "Julian Bream",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "336",
+        "AlbumTitile": "Prokofiev: Symphony No.5 & Stravinksy: Le Sacre Du Printemps",
+        "ArtistName": "Berliner Philharmoniker & Herbert Von Karajan",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "337",
+        "AlbumTitile": "Szymanowski: Piano Works, Vol. 1",
+        "ArtistName": "Martin Roscoe",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "338",
+        "AlbumTitile": "Nielsen: The Six Symphonies",
+        "ArtistName": "Göteborgs Symfoniker & Neeme Järvi",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "339",
+        "AlbumTitile": "Great Recordings of the Century: Paganini's 24 Caprices",
+        "ArtistName": "Itzhak Perlman",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "340",
+        "AlbumTitile": "Liszt - 12 Études D'Execution Transcendante",
+        "ArtistName": "Michele Campanella",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "341",
+        "AlbumTitile": "Great Recordings of the Century - Shubert: Schwanengesang, 4 Lieder",
+        "ArtistName": "Gerald Moore",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "342",
+        "AlbumTitile": "Locatelli: Concertos for Violin, Strings and Continuo, Vol. 3",
+        "ArtistName": "Mela Tenenbaum, Pro Musica Prague & Richard Kapp",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "343",
+        "AlbumTitile": "Respighi:Pines of Rome",
+        "ArtistName": "Eugene Ormandy",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "344",
+        "AlbumTitile": "Schubert: The Late String Quartets & String Quintet (3 CD's)",
+        "ArtistName": "Emerson String Quartet",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "345",
+        "AlbumTitile": "Monteverdi: L'Orfeo",
+        "ArtistName": "C. Monteverdi, Nigel Rogers - Chiaroscuro; London Baroque; London Cornett & Sackbu",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "346",
+        "AlbumTitile": "Mozart: Chamber Music",
+        "ArtistName": "Nash Ensemble",
+        "TrackCount": "1",
+        "Genres": "Classical",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    },
+    {
+        "AlbumId": "347",
+        "AlbumTitile": "Koyaanisqatsi (Soundtrack from the Motion Picture)",
+        "ArtistName": "Philip Glass Ensemble",
+        "TrackCount": "1",
+        "Genres": "Soundtrack",
+        "MinPrice": "0.99",
+        "MaxPrice": "0.99",
+        "AvgPrice": "0.99000000000000000000"
+    }
+]

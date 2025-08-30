@@ -1,7 +1,7 @@
 import React from "react";
-import { Label, SearchBox, useId } from "@fluentui/react-components";
+import { Label, SearchBox, useId, mergeClasses } from "@fluentui/react-components";
 import { Table } from "@tanstack/react-table";
-import { useStyles } from "./style";
+import { useStyles } from "./style"; // Re-import to refresh types
 
 interface SearchControlProps<TData extends object> {
     table: Table<TData>;
@@ -16,11 +16,11 @@ export const SearchControl = <TData extends object>({
     const searchId = useId();
     const classes = useStyles();
     return (
-        <div className={classes.controlWrapper}>
+        <div className={classes.stackedControlWrapper}>
             <Label htmlFor={searchId}>Search</Label>
             <SearchBox
                 id={searchId}
-                className={classes.searchSize}
+                className={mergeClasses(classes.searchSize, classes.mobileSearchBox)}
                 placeholder="Search..."
                 value={globalFilter ?? ""}
                 onChange={(e, data) => setGlobalFilter(data.value ?? "")}

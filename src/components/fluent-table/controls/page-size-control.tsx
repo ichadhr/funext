@@ -18,7 +18,7 @@ export const PageSizeControl = <TData extends object>({
     const pageSizeId = useId();
     const classes = useStyles();
     return (
-        <div className={classes.controlWrapper}>
+        <div className={classes.stackedControlWrapper}>
             <Label htmlFor={pageSizeId}>Show</Label>
             <Dropdown
                 id={pageSizeId}

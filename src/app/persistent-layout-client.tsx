@@ -11,16 +11,17 @@ import { useBreadcrumbs } from '../components/ui/hooks/use-breadcrumbs';
 interface PersistentLayoutClientProps {
     children: React.ReactNode;
     multiple?: boolean;
+    initialTheme: string; // Add initialTheme prop
 }
 
-export default function PersistentLayoutClient({ children, multiple = false }: PersistentLayoutClientProps) {
+export default function PersistentLayoutClient({ children, multiple = false, initialTheme }: PersistentLayoutClientProps) {
     const pathname = usePathname();
     // Derive a simple page title from the pathname for useBreadcrumbs
     const currentPageTitle = pathname.split('/').pop() || 'Dashboard';
     const breadcrumbs = useBreadcrumbs(currentPageTitle);
 
     return (
-        <Providers themeName="webLightTheme">
+        <Providers themeName={initialTheme}>
             <Layout
                 breadcrumbs={breadcrumbs}
                 userName="User Name" // Placeholder

@@ -4,7 +4,7 @@ import PersistentLayoutClient from "./persistent-layout-client";
 import '@styles/main.scss';
 
 // Define the global theme constant
-export const GLOBAL_THEME = "webLightTheme"; // User-specified initial value
+export const GLOBAL_THEME = "webDarkTheme"; // User-specified initial value
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -32,7 +32,7 @@ export default function RootLayout({
                 <link rel="preload" href="/fluent.svg" as="image" />
             </head>
             <body className={`${geistSans.variable} ${geistMono.variable}`}>
-                <PersistentLayoutClient multiple={false}>
+                <PersistentLayoutClient multiple={false} initialTheme={GLOBAL_THEME}>
                     {children}
                 </PersistentLayoutClient>
             </body>

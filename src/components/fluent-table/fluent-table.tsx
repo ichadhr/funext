@@ -7,6 +7,7 @@ import {
   TableHeader,
   TableHeaderCell,
   Label,
+  mergeClasses, // Import mergeClasses
 } from "@fluentui/react-components";
 import {
   useReactTable,
@@ -20,6 +21,7 @@ import {
 import { useTableFiltering } from "./hooks/use-table-filtering";
 import { useTablePagination } from "./hooks/use-table-pagination";
 import { useTableSorting } from "./hooks/use-table-sorting";
+import { useIsMobile } from "@components/ui/hooks/use-mobile"; // Import useIsMobile hook
 import { TableControl, TableLayout, FluentTableProps } from "./types";
 import { SearchControl } from "./controls/search-control";
 import { PageSizeControl } from "./controls/page-size-control";
@@ -49,6 +51,7 @@ const FluentTable = <TData extends object>({
   });
 
   const classes = useStyles(); // Call useStyles at the top level
+  const isMobile = useIsMobile(); // Use the useIsMobile hook
 
   const { globalFilter, setGlobalFilter } = useTableFiltering(table);
   const {
@@ -164,17 +167,40 @@ const FluentTable = <TData extends object>({
 
   return (
     <div>
-      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "10px" }}>
-        <div>{renderControl(layout?.topStart)}</div>
-        <div>{renderControl(layout?.topEnd)}</div>
+      <div className={classes.topControlsWrapper} style={{ marginBottom: "10px" }}>
+        <div style={{ display: "flex" }}>{renderControl(layout?.topStart)}</div>
+        <div style={{ display: "flex" }}>{renderControl(layout?.topEnd)}</div>
       </div>
-      <Table
-        size={size} // Pass the size prop here
-        aria-label="Fluent table"
-      >
-        <TableHeaderContent classes={classes} /><TableBodySection classes={classes} />
-      </Table>
-      <div style={{ display: "flex", justifyContent: "space-between", marginTop: "10px" }}>
+      {isMobile ? (
+        <div className={mergeClasses(classes.mobileCardViewContainer, striped && classes.stripedCards)}>
+          {table.getRowModel().rows.map((row) => (
+            <div key={row.id} className={classes.mobileCard}>
+              {row.getVisibleCells().map((cell) => (
+                <div key={cell.id} className={classes.mobileCardItem}>
+                  <span className={classes.mobileCardLabel}>
+                    {typeof cell.column.columnDef.header === 'string'
+                      ? cell.column.columnDef.header
+                      : cell.column.id}: {/* Fallback to column ID if header is not a string */}
+                  </span>
+                  <span className={classes.mobileCardValue}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </span>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className={classes.tableScrollContainer}>
+          <Table
+            size={size} // Pass the size prop here
+            aria-label="Fluent table"
+          >
+            <TableHeaderContent classes={classes} /><TableBodySection classes={classes} />
+          </Table>
+        </div>
+      )}
+      <div className={classes.bottomControlsWrapper} style={{ marginTop: "10px" }}>
         <div>{renderControl(layout?.bottomStart)}</div>
         <div>{renderControl(layout?.bottomEnd)}</div>
       </div>
