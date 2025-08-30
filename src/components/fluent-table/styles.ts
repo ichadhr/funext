@@ -56,8 +56,10 @@ export const useStyles = makeStyles({
     },
     // Force underline border for dropdowns
     forceUnderlineBorder: {
-        minWidth: "80px  !important", // Set a fixed width for the dropdown
         borderBottomColor: `${tokens.colorNeutralStrokeAccessible} !important`
+    },
+    dropdownRootWidth: {
+        minWidth: "80px  !important", // Set a minimum width for the dropdown root, allowing it to auto-resize
     },
     // Striped row styling for tables
     stripedRows: {

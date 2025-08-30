@@ -1,5 +1,5 @@
 import React from "react";
-import { Dropdown, Option, Label, useId, DropdownProps } from "@fluentui/react-components";
+import { Dropdown, Option, Label, useId, DropdownProps, mergeClasses } from "@fluentui/react-components";
 import { Table } from "@tanstack/react-table";
 import { useStyles } from "../styles";
 
@@ -22,12 +22,13 @@ export const PageSizeControl = <TData extends object>({
             <Label htmlFor={pageSizeId}>Show</Label>
             <Dropdown
                 id={pageSizeId}
-                className={classes.forceUnderlineBorder} // Apply the new class
+                className={mergeClasses(classes.forceUnderlineBorder, classes.dropdownRootWidth)} // Apply both classes using mergeClasses
                 value={getStatePagination.pageSize.toString()}
                 selectedOptions={[getStatePagination.pageSize.toString()]}
                 onOptionSelect={(e, data) => {
                     setPageSize(Number(data.optionValue));
                 }}
+                listbox={{ className: classes.dropdownRootWidth }} // Apply class to the listbox slot
                 {...rest} // Spread rest props
             >
                 {[10, 20, 30, 40, 50].map((pageSize) => (
