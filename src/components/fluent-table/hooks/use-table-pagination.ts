@@ -1,17 +1,13 @@
-import { useState } from "react";
 import { Table } from "@tanstack/react-table";
 
 export const useTablePagination = <TData extends object>(table: Table<TData>) => {
-    const [pagination, setPagination] = useState({
-        pageIndex: 0,
-        pageSize: 10,
-    });
+    const pagination = table.getState().pagination;
 
     return {
         pagination,
-        setPagination,
+        setPagination: table.setPagination, // Expose table's setPagination
         getPaginationRowModel: table.getPaginationRowModel(),
-        onPaginationChange: table.setPagination,
+        onPaginationChange: table.setPagination, // This is already correct
         previousPage: table.previousPage,
         nextPage: table.nextPage,
         getCanPreviousPage: table.getCanPreviousPage,

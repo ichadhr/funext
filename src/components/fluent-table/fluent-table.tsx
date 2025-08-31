@@ -1,5 +1,6 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useRef } from "react";
 import {
+  useId,
   TableBody,
   TableCell,
   TableRow,
@@ -7,7 +8,7 @@ import {
   TableHeader,
   TableHeaderCell,
   Label,
-  mergeClasses, // Import mergeClasses
+  mergeClasses,
 } from "@fluentui/react-components";
 import {
   useReactTable,
@@ -18,9 +19,12 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
 } from "@tanstack/react-table";
+
+export type { ColumnDef };
 import { useTableFiltering } from "./hooks/use-table-filtering";
 import { useTablePagination } from "./hooks/use-table-pagination";
 import { useTableSorting } from "./hooks/use-table-sorting";
+import { useDebounce } from "./hooks/use-debounce"; // Import useDebounce hook
 import { useIsMobile } from "@components/ui/hooks/use-mobile"; // Import useIsMobile hook
 import { TableControl, TableLayout, FluentTableProps } from "./types";
 import { SearchControl } from "./controls/search-control";
@@ -28,8 +32,11 @@ import { PageSizeControl } from "./controls/page-size-control";
 import { PaginationControl } from "./controls/pagination-control";
 import { InfoControl } from "./controls/info-control";
 import { useStyles } from "./styles"; // Import useStyles
+import ErrorBoundary from "./error-boundary"; // Import ErrorBoundary
 
-const FluentTable = <TData extends object>({
+
+
+export const FluentTable = <TData extends object>({
   data,
   columns,
   layout = {
@@ -40,7 +47,9 @@ const FluentTable = <TData extends object>({
   },
   striped,
   size = "small", // Destructure size prop and set default to "small"
+  event, // Destructure event prop
 }: FluentTableProps<TData>) => {
+  const { onDraw, onError, onInit, onSearch, onOrder } = event || {}; // Destructure individual event handlers from event
   const table = useReactTable({
     data,
     columns,
@@ -50,10 +59,11 @@ const FluentTable = <TData extends object>({
     getPaginationRowModel: getPaginationRowModel(),
   });
 
-  const classes = useStyles(); // Call useStyles at the top level
-  const isMobile = useIsMobile(); // Use the useIsMobile hook
 
-  const { globalFilter, setGlobalFilter } = useTableFiltering(table);
+  const tableId = useId();
+
+  // Extract state values for useEffect dependencies
+  const { globalFilter, setGlobalFilter, debouncedGlobalFilter } = useTableFiltering(table);
   const {
     pagination,
     setPagination,
@@ -68,11 +78,79 @@ const FluentTable = <TData extends object>({
   } = useTablePagination(table);
   const { sorting, setSorting } = useTableSorting(table);
 
-  useMemo(() => {
-    table.setGlobalFilter(globalFilter);
-    table.setPagination(pagination);
-    table.setSorting(sorting);
-  }, [globalFilter, pagination, sorting, table]);
+  // Memoize the combined stable table state for onDraw dependencies
+  // Memoize columnFilters separately to ensure referential stability
+  const currentColumnFilters = table.getState().columnFilters;
+  const memoizedColumnFilters = useMemo(() => currentColumnFilters, [currentColumnFilters]);
+
+  // Memoize the combined stable table state for onDraw dependencies
+  const onDrawDependencies = useMemo(() => ({
+    pagination,
+    sorting,
+    debouncedGlobalFilter,
+    columnFilters: memoizedColumnFilters,
+    data,
+    columns,
+  }), [
+    pagination,
+    sorting,
+    debouncedGlobalFilter,
+    memoizedColumnFilters,
+    data,
+    columns,
+  ]);
+
+  // Debounce the combined dependencies
+  const debouncedOnDrawDependencies = useDebounce(onDrawDependencies, 100);
+
+  // Use useEffect to trigger onDraw when the debounced dependencies change
+  // Ref to track if onDraw has already been called on mount (for StrictMode)
+  const hasDrawnInitialized = useRef(false);
+
+  React.useEffect(() => {
+    if (onDraw) {
+      // Only call onDraw once on initial mount, then on subsequent debounced dependency changes
+      if (!hasDrawnInitialized.current) {
+        // (Initial)
+        onDraw();
+        hasDrawnInitialized.current = true;
+      } else {
+        // (Debounced Change)
+        onDraw();
+      }
+    }
+  }, [debouncedOnDrawDependencies, onDraw]);
+
+  React.useEffect(() => {
+    onOrder?.(sorting);
+  }, [sorting, onOrder]);
+
+  // Use useEffect to trigger onInit once after initial render and data loading
+  // Ref to track if onInit has already been called
+  const hasInitialized = useRef(false);
+
+  React.useEffect(() => {
+    if (!hasInitialized.current) {
+      onInit?.();
+      hasInitialized.current = true;
+    }
+  }, [onInit]);
+
+  const classes = useStyles(); // Call useStyles at the top level
+  const isMobile = useIsMobile(); // Use the useIsMobile hook
+
+  useMemo(
+    () => {
+      table.setGlobalFilter(debouncedGlobalFilter);
+      table.setPagination(pagination);
+      table.setSorting(sorting);
+    },
+    [debouncedGlobalFilter, pagination, sorting, table]
+  );
+
+  React.useEffect(() => {
+    onSearch?.(debouncedGlobalFilter);
+  }, [debouncedGlobalFilter, onSearch]);
 
   const sortableColumns = useMemo(
     () => table.getAllColumns().filter((column) => column.getCanSort()),
@@ -166,7 +244,7 @@ const FluentTable = <TData extends object>({
   };
 
   return (
-    <div>
+    <ErrorBoundary onError={onError}>
       <div className={classes.topControlsWrapper} style={{ marginBottom: "10px" }}>
         <div style={{ display: "flex" }}>{renderControl(layout?.topStart)}</div>
         <div style={{ display: "flex" }}>{renderControl(layout?.topEnd)}</div>
@@ -193,6 +271,7 @@ const FluentTable = <TData extends object>({
       ) : (
         <div className={classes.tableScrollContainer}>
           <Table
+            id={tableId}
             size={size} // Pass the size prop here
             aria-label="Fluent table"
           >
@@ -204,8 +283,6 @@ const FluentTable = <TData extends object>({
         <div>{renderControl(layout?.bottomStart)}</div>
         <div>{renderControl(layout?.bottomEnd)}</div>
       </div>
-    </div>
+    </ErrorBoundary>
   );
 };
-
-export default FluentTable;

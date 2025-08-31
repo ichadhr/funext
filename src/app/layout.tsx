@@ -4,7 +4,7 @@ import PersistentLayoutClient from "./persistent-layout-client";
 import '@styles/main.scss';
 
 // Define the global theme constant
-export const GLOBAL_THEME = "webDarkTheme"; // User-specified initial value
+export const GLOBAL_THEME = "webLightTheme"; // specified initial value
 
 const geistSans = Geist({
     variable: "--font-geist-sans",

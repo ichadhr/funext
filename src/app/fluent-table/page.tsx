@@ -17,8 +17,7 @@ import {
     OpenRegular,
     VideoRegular,
 } from "@fluentui/react-icons";
-import { ColumnDef } from "@tanstack/react-table"; // Import ColumnDef
-import FluentTable from "@/components/fluent-table/fluent-table";
+import { FluentTable, ColumnDef } from "@/components/fluent-table/fluent-table";
 import data from "./data.json";
 
 type TableItem = (typeof data)[0];
@@ -108,14 +107,37 @@ const columns: ColumnDef<TableItem>[] = [
 ];
 
 export default function Page() {
+
     return (
         <>
             <CardGrid type="fluid">
                 <Card appearance="subtle">
                     <h2>Fluent Table</h2>
-                    <FluentTable data={data} columns={columns} striped={true} />
+                    <FluentTable
+                        data={data}
+                        columns={columns}
+                        striped={true}
+                        event={{
+                            onDraw: () => {
+                                console.log("Table has drawn!");
+                                // You can add any logic here that needs to run after a table draw
+                            },
+                            // onError: handleError,
+                            onInit: () => {
+                                console.log("Table has initialized!");
+                                // You can add any logic here that needs to run after table initialization
+                            },
+                            onSearch: (filterValue) => {
+                                console.log("Table search filter changed:", filterValue);
+                            },
+                            onOrder: (sorting) => {
+                                console.log("Table order changed:", sorting);
+                            },
+                        }}
+                    />
                 </Card>
             </CardGrid>
         </>
     );
 }
+
