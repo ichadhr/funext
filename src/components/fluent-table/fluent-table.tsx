@@ -18,6 +18,7 @@ import {
   getSortedRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
+  Row,
 } from "@tanstack/react-table";
 
 export type { ColumnDef };
@@ -79,6 +80,10 @@ export const FluentTable = <TData extends object>({
   } = useTablePagination(table);
   const { sorting, setSorting } = useTableSorting(table);
 
+  // Memoize table state values to ensure stable references for useEffect dependencies
+  const memoizedPagination = useMemo(() => pagination, [pagination]);
+  const memoizedSorting = useMemo(() => sorting, [sorting]);
+
   // Memoize the combined stable table state for onDraw dependencies
   // Memoize columnFilters separately to ensure referential stability
   const currentColumnFilters = table.getState().columnFilters;
@@ -86,15 +91,15 @@ export const FluentTable = <TData extends object>({
 
   // Memoize the combined stable table state for onDraw dependencies
   const onDrawDependencies = useMemo(() => ({
-    pagination,
-    sorting,
+    pagination: memoizedPagination,
+    sorting: memoizedSorting,
     debouncedGlobalFilter,
     columnFilters: memoizedColumnFilters,
     data,
     columns,
   }), [
-    pagination,
-    sorting,
+    memoizedPagination,
+    memoizedSorting,
     debouncedGlobalFilter,
     memoizedColumnFilters,
     data,
@@ -139,21 +144,21 @@ export const FluentTable = <TData extends object>({
 
   React.useEffect(() => {
     if (onOrder) { // Removed !isInitializing guard
-      onOrder?.(sorting);
+      onOrder?.(memoizedSorting);
     }
-  }, [sorting, onOrder]); // Removed isInitializing from dependencies
+  }, [memoizedSorting, onOrder]); // Removed isInitializing from dependencies
 
   React.useEffect(() => {
     if (onPageChange) { // Removed !isInitializing guard
-      onPageChange?.(pagination.pageIndex, pagination.pageSize);
+      onPageChange?.(memoizedPagination.pageIndex, memoizedPagination.pageSize);
     }
-  }, [pagination.pageIndex, pagination.pageSize, onPageChange]); // Removed isInitializing from dependencies
+  }, [memoizedPagination.pageIndex, memoizedPagination.pageSize, onPageChange]); // Removed isInitializing from dependencies
 
   React.useEffect(() => {
     if (onPageLengthChange) { // Removed !isInitializing guard
-      onPageLengthChange?.(pagination.pageSize);
+      onPageLengthChange?.(memoizedPagination.pageSize);
     }
-  }, [pagination.pageSize, onPageLengthChange]); // Removed isInitializing from dependencies
+  }, [memoizedPagination.pageSize, onPageLengthChange]); // Removed isInitializing from dependencies
 
 
   const classes = useStyles(); // Call useStyles at the top level
@@ -168,10 +173,10 @@ export const FluentTable = <TData extends object>({
         processingStartedRef.current = true; // Mark processing as started
       }
       table.setGlobalFilter(debouncedGlobalFilter);
-      table.setPagination(pagination);
-      table.setSorting(sorting);
+      table.setPagination(memoizedPagination);
+      table.setSorting(memoizedSorting);
     },
-    [debouncedGlobalFilter, pagination, sorting, table, onProcessing, isInitializing]
+    [debouncedGlobalFilter, memoizedPagination, memoizedSorting, table, onProcessing, isInitializing]
   );
 
   React.useEffect(() => {
@@ -188,13 +193,13 @@ export const FluentTable = <TData extends object>({
   const isSingleSortableColumn = sortableColumns.length === 1;
   const singleSortableColumn = isSingleSortableColumn ? sortableColumns[0] : undefined;
 
-  const handleRowClick = () => {
+  const handleRowClick = React.useCallback(() => {
     if (singleSortableColumn) {
       singleSortableColumn.toggleSorting();
     }
-  };
+  }, [singleSortableColumn]);
 
-  const TableHeaderContent = (props: { classes: ReturnType<typeof useStyles> }) => (
+  const TableHeaderContent = React.useCallback((props: { classes: ReturnType<typeof useStyles> }) => (
     <TableHeader>
       {table.getHeaderGroups().map((headerGroup) => (
         <TableRow
@@ -229,9 +234,9 @@ export const FluentTable = <TData extends object>({
         </TableRow>
       ))}
     </TableHeader>
-  );
+  ), [table, isSingleSortableColumn, handleRowClick]);
 
-  const TableBodySection = (props: { classes: ReturnType<typeof useStyles> }) => (
+  const TableBodySection = React.useCallback((props: { classes: ReturnType<typeof useStyles> }) => (
     <TableBody className={striped ? props.classes.stripedRows : undefined}>
       {table.getRowModel().rows.length === 0 ? (
         <TableRow>
@@ -254,9 +259,9 @@ export const FluentTable = <TData extends object>({
         ))
       )}
     </TableBody>
-  );
+  ), [table, striped, columns.length]);
 
-  const renderControl = (controlType?: TableControl) => {
+  const renderControl = React.useCallback((controlType?: TableControl) => {
     switch (controlType) {
       case "pageSize":
         return <PageSizeControl table={table} getStatePagination={getStatePagination} setPageSize={setPageSize} />;
@@ -269,7 +274,25 @@ export const FluentTable = <TData extends object>({
       default:
         return null;
     }
-  };
+  }, [table, getStatePagination, setPageSize, globalFilter, setGlobalFilter, previousPage, getCanPreviousPage, nextPage, getCanNextPage, getPageCount, setPageIndex]);
+
+  const MobileCardRow = React.memo<{ row: Row<TData>; classes: ReturnType<typeof useStyles> }>(({ row, classes }) => (
+    <div className={classes.mobileCard}>
+      {row.getVisibleCells().map((cell) => (
+        <div key={cell.id} className={classes.mobileCardItem}>
+          <span className={classes.mobileCardLabel}>
+            {typeof cell.column.columnDef.header === 'string'
+              ? cell.column.columnDef.header
+              : cell.column.id}: {/* Fallback to column ID if header is not a string */}
+          </span>
+          <span className={classes.mobileCardValue}>
+            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+          </span>
+        </div>
+      ))}
+    </div>
+  ));
+  MobileCardRow.displayName = 'MobileCardRow';
 
   return (
     <ErrorBoundary onError={onError}>
@@ -280,20 +303,7 @@ export const FluentTable = <TData extends object>({
       {isMobile ? (
         <div className={mergeClasses(classes.mobileCardViewContainer, striped && classes.stripedCards)}>
           {table.getRowModel().rows.map((row) => (
-            <div key={row.id} className={classes.mobileCard}>
-              {row.getVisibleCells().map((cell) => (
-                <div key={cell.id} className={classes.mobileCardItem}>
-                  <span className={classes.mobileCardLabel}>
-                    {typeof cell.column.columnDef.header === 'string'
-                      ? cell.column.columnDef.header
-                      : cell.column.id}: {/* Fallback to column ID if header is not a string */}
-                  </span>
-                  <span className={classes.mobileCardValue}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </span>
-                </div>
-              ))}
-            </div>
+            <MobileCardRow key={row.id} row={row} classes={classes} />
           ))}
         </div>
       ) : (
