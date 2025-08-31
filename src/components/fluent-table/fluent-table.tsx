@@ -49,7 +49,8 @@ export const FluentTable = <TData extends object>({
   size = "small", // Destructure size prop and set default to "small"
   event, // Destructure event prop
 }: FluentTableProps<TData>) => {
-  const { onDraw, onError, onInit, onSearch, onOrder } = event || {}; // Destructure individual event handlers from event
+  const { onInitializing, onInit, onSearch, onDraw, onOrder, onPageChange, onPageLengthChange, onPreDraw, onPreInit, onProcessing, onError } = event || {}; // Destructure individual event handlers from event
+
   const table = useReactTable({
     data,
     columns,
@@ -105,52 +106,79 @@ export const FluentTable = <TData extends object>({
 
   // Use useEffect to trigger onDraw when the debounced dependencies change
   // Ref to track if onDraw has already been called on mount (for StrictMode)
-  const hasDrawnInitialized = useRef(false);
+  const isMounted = useRef(false); // New ref to track if component is mounted
+  const processingStartedRef = useRef(false); // New ref
+  const [isProcessing, setIsProcessing] = React.useState(false);
+  const [isInitializing, setIsInitializing] = React.useState(true); // New state for initialization
 
   React.useEffect(() => {
-    if (onDraw) {
-      // Only call onDraw once on initial mount, then on subsequent debounced dependency changes
-      if (!hasDrawnInitialized.current) {
-        // (Initial)
-        onDraw();
-        hasDrawnInitialized.current = true;
-      } else {
-        // (Debounced Change)
-        onDraw();
-      }
+    if (!isMounted.current) {
+      isMounted.current = true;
+      onInitializing?.(true); // Notify that initialization has started
     }
-  }, [debouncedOnDrawDependencies, onDraw]);
+  }, [onInitializing]); // This useEffect runs only once on mount
 
   React.useEffect(() => {
-    onOrder?.(sorting);
-  }, [sorting, onOrder]);
-
-  // Use useEffect to trigger onInit once after initial render and data loading
-  // Ref to track if onInit has already been called
-  const hasInitialized = useRef(false);
-
-  React.useEffect(() => {
-    if (!hasInitialized.current) {
-      onInit?.();
-      hasInitialized.current = true;
+    if (isMounted.current) { // Ensure it runs only after initial mount setup
+      onPreInit?.(); // Call onPreInit before onInit
+      onInit?.(); // Call onInit after onPreInit
+      setIsInitializing(false); // Initialization ends
+      onInitializing?.(false); // Notify that initialization has ended
     }
-  }, [onInit]);
+  }, [onPreInit, onInit, onInitializing, isMounted]); // Remove table state dependencies
+
+  React.useEffect(() => {
+    if (onDraw && !isInitializing) { // Only fire if not initializing
+      onPreDraw?.(); // Call onPreDraw before onDraw
+      onDraw();
+      setIsProcessing(false); // Processing ends after draw
+      onProcessing?.(false); // Notify that processing has ended
+      processingStartedRef.current = false; // Reset processing started flag
+    }
+  }, [debouncedOnDrawDependencies, onDraw, onPreDraw, onProcessing, isInitializing]);
+
+  React.useEffect(() => {
+    if (onOrder) { // Removed !isInitializing guard
+      onOrder?.(sorting);
+    }
+  }, [sorting, onOrder]); // Removed isInitializing from dependencies
+
+  React.useEffect(() => {
+    if (onPageChange) { // Removed !isInitializing guard
+      onPageChange?.(pagination.pageIndex, pagination.pageSize);
+    }
+  }, [pagination.pageIndex, pagination.pageSize, onPageChange]); // Removed isInitializing from dependencies
+
+  React.useEffect(() => {
+    if (onPageLengthChange) { // Removed !isInitializing guard
+      onPageLengthChange?.(pagination.pageSize);
+    }
+  }, [pagination.pageSize, onPageLengthChange]); // Removed isInitializing from dependencies
+
 
   const classes = useStyles(); // Call useStyles at the top level
   const isMobile = useIsMobile(); // Use the useIsMobile hook
 
-  useMemo(
+  React.useMemo(
     () => {
+      // Only start processing if not in the initial initialization phase AND processing hasn't started yet for this cycle
+      if (!isInitializing && !processingStartedRef.current) { // Add processingStartedRef.current check
+        setIsProcessing(true); // Processing starts
+        onProcessing?.(true); // Notify that processing has started
+        processingStartedRef.current = true; // Mark processing as started
+      }
       table.setGlobalFilter(debouncedGlobalFilter);
       table.setPagination(pagination);
       table.setSorting(sorting);
     },
-    [debouncedGlobalFilter, pagination, sorting, table]
+    [debouncedGlobalFilter, pagination, sorting, table, onProcessing, isInitializing]
   );
 
   React.useEffect(() => {
-    onSearch?.(debouncedGlobalFilter);
-  }, [debouncedGlobalFilter, onSearch]);
+    if (onSearch) { // Removed !isInitializing guard
+      onSearch?.(debouncedGlobalFilter);
+    }
+  }, [debouncedGlobalFilter, onSearch]); // Removed isInitializing from dependencies
 
   const sortableColumns = useMemo(
     () => table.getAllColumns().filter((column) => column.getCanSort()),

@@ -18,6 +18,7 @@ import {
     VideoRegular,
 } from "@fluentui/react-icons";
 import { FluentTable, ColumnDef } from "@/components/fluent-table/fluent-table";
+import { SortingState } from "@tanstack/react-table"; // Import SortingState
 import data from "./data.json";
 
 type TableItem = (typeof data)[0];
@@ -118,21 +119,37 @@ export default function Page() {
                         columns={columns}
                         striped={true}
                         event={{
-                            onDraw: () => {
-                                console.log("Table has drawn!");
-                                // You can add any logic here that needs to run after a table draw
-                            },
-                            // onError: handleError,
-                            onInit: () => {
+                            onInitializing: React.useCallback((initializing: boolean) => {
+                                console.log("Table initializing state:", initializing);
+                            }, []),
+                            onPreInit: React.useCallback(() => {
+                                console.log("Table is about to initialize!");
+                            }, []),
+                            onInit: React.useCallback(() => {
                                 console.log("Table has initialized!");
-                                // You can add any logic here that needs to run after table initialization
-                            },
-                            onSearch: (filterValue) => {
+                            }, []),
+                            onPreDraw: React.useCallback(() => {
+                                console.log("Table is about to draw!");
+                            }, []),
+                            onDraw: React.useCallback(() => {
+                                console.log("Table has drawn!");
+                            }, []),
+                            
+                            onSearch: React.useCallback((filterValue: string) => {
                                 console.log("Table search filter changed:", filterValue);
-                            },
-                            onOrder: (sorting) => {
+                            }, []),
+                            onOrder: React.useCallback((sorting: SortingState) => {
                                 console.log("Table order changed:", sorting);
-                            },
+                            }, []),
+                            onPageChange: React.useCallback((pageIndex: number, pageSize: number) => {
+                                console.log("Table page changed: Page Index", pageIndex, "Page Size", pageSize);
+                            }, []),
+                            onPageLengthChange: React.useCallback((pageSize: number) => {
+                                console.log("Table page length changed: Page Size", pageSize);
+                            }, []),
+                            onProcessing: React.useCallback((processing: boolean) => {
+                                console.log("Table processing state:", processing);
+                            }, []),
                         }}
                     />
                 </Card>

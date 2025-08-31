@@ -10,11 +10,17 @@ export interface TableLayout {
 }
 
 export interface FluentTableEventHandlers {
-    onDraw?: () => void;
-    onError?: (error: Error) => void;
+    onInitializing?: (initializing: boolean) => void;
+    onPreInit?: () => void;
     onInit?: () => void;
+    onPreDraw?: () => void;
+    onDraw?: () => void;
     onSearch?: (filterValue: string) => void;
     onOrder?: (sorting: SortingState) => void; // Add onOrder event handler
+    onPageChange?: (pageIndex: number, pageSize: number) => void; // table's paging is updated
+    onPageLengthChange?: (pageSize: number) => void;
+    onProcessing?: (processing: boolean) => void;
+    onError?: (error: Error) => void;
 }
 
 export interface FluentTableProps<TData extends object> {
