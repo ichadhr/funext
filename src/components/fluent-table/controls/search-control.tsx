@@ -4,7 +4,7 @@ import { Table } from "@tanstack/react-table";
 import { useStyles } from "../styles"; // Re-import to refresh types
 
 interface SearchControlProps<TData extends object> {
-    table: Table<TData>;
+    table?: Table<TData>;
     globalFilter: string;
     setGlobalFilter: (filter: string) => void;
 }

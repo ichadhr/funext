@@ -2,85 +2,90 @@
 
 import React, { useState, useEffect, useCallback, KeyboardEvent } from 'react';
 import {
-  Toolbar,
-  ToolbarButton,
-  ToolbarDivider,
-  ToolbarGroup,
-  useId
+    Toolbar,
+    ToolbarButton,
+    ToolbarDivider,
+    ToolbarGroup,
+    useId
 } from "@fluentui/react-components";
 import { ArrowPrevious20Filled, ArrowNext20Filled } from "@fluentui/react-icons";
-import { Table } from "@tanstack/react-table"; // Keep TanStack Table import
-import { useStyles } from "../styles"; // Keep useStyles import
+import { useStyles } from "../styles";
 
-// Define props for PaginationButton
+// Props for individual pagination buttons
 interface PaginationButtonProps {
-  page: number;
-  active: boolean;
-  onClick: (page: number) => void;
-  onKeyDown: (event: KeyboardEvent<HTMLButtonElement>, page: number) => void;
-  disabled?: boolean;
-  className?: string;
+    page: number;
+    active: boolean;
+    onClick: (page: number) => void;
+    onKeyDown: (event: KeyboardEvent<HTMLButtonElement>, page: number) => void;
+    disabled?: boolean;
+    className?: string;
 }
 
 const PaginationButton: React.FC<PaginationButtonProps> = ({
-  page,
-  active,
-  onClick,
-  onKeyDown,
-  disabled = false,
-  className
+    page,
+    active,
+    onClick,
+    onKeyDown,
+    disabled = false,
+    className
 }) => {
-  const handleClick = () => {
-    if (!active) {
-      onClick(page);
-    }
-  };
+    const handleClick = () => {
+        if (!active) {
+            onClick(page);
+        }
+    };
 
-  return (
-    <ToolbarButton
-      onClick={handleClick}
-      onKeyDown={(event) => onKeyDown(event, page)}
-      aria-label={`Page ${page}`}
-      {...(active && { 'aria-current': 'page' })}
-      disabled={disabled}
-      {...(active && { appearance: "primary" })}
-      className={className}
-      tabIndex={0}
-    >
-      {page}
-    </ToolbarButton>
-  );
+    return (
+        <ToolbarButton
+            onClick={handleClick}
+            onKeyDown={(event) => onKeyDown(event, page)}
+            aria-label={`Page ${page}`}
+            {...(active && { 'aria-current': 'page' })}
+            disabled={disabled}
+            {...(active && { appearance: "primary" })}
+            className={className}
+            tabIndex={0}
+        >
+            {page}
+        </ToolbarButton>
+    );
 };
 
-interface PaginationControlProps<TData extends object> {
-    table: Table<TData>;
+// Props for the main pagination control component
+interface PaginationControlProps {
     previousPage: () => void;
     getCanPreviousPage: () => boolean;
     nextPage: () => void;
     getCanNextPage: () => boolean;
     getPageCount: () => number;
     getStatePagination: { pageIndex: number };
-    setPageIndex: (updater: number | ((old: number) => number)) => void; // Add setPageIndex
+    setPageIndex: (updater: number | ((old: number) => number)) => void;
+    disabled?: boolean; // Disable all controls
+    isFetching?: boolean; // Show loading state
 }
 
-export const PaginationControl = <TData extends object>({
-    table, // Add table prop
+export const PaginationControl = ({
     previousPage,
     getCanPreviousPage,
     nextPage,
     getCanNextPage,
     getPageCount,
     getStatePagination,
-    setPageIndex, // Destructure setPageIndex
-}: PaginationControlProps<TData>) => {
+    setPageIndex,
+    disabled = false,
+    isFetching = false,
+}: PaginationControlProps) => {
     const classes = useStyles();
     const [currentPage, setCurrentPage] = useState(getStatePagination.pageIndex + 1);
     const [totalPages, setTotalPages] = useState(getPageCount());
 
     useEffect(() => {
-        setCurrentPage(getStatePagination.pageIndex + 1);
+        // Update currentPage only when fetch is complete (isFetching becomes false)
+        if (!isFetching) {
+            setCurrentPage(getStatePagination.pageIndex + 1);
+        }
         setTotalPages(getPageCount());
-    }, [getStatePagination.pageIndex, getPageCount]);
+    }, [getStatePagination.pageIndex, getPageCount, isFetching]);
 
     const goToPage = useCallback((page: number) => {
         setPageIndex(page - 1); // TanStack Table uses 0-based indexing
@@ -94,17 +99,20 @@ export const PaginationControl = <TData extends object>({
         }
     }, [previousPage, getCanPreviousPage, nextPage, getCanNextPage]);
 
+    // Active page for keyboard navigation (always matches current page)
+    const activePage = currentPage;
+
     const handleKeyDown = useCallback((event: KeyboardEvent<HTMLButtonElement>, page: number) => {
         switch (event.key) {
             case 'ArrowLeft':
-                if (page > 1) {
-                    goToPage(page - 1);
+                if (currentPage > 1) {
+                    goToPage(currentPage - 1);
                     event.preventDefault();
                 }
                 break;
             case 'ArrowRight':
-                if (page < totalPages) {
-                    goToPage(page + 1);
+                if (currentPage < totalPages) {
+                    goToPage(currentPage + 1);
                     event.preventDefault();
                 }
                 break;
@@ -119,8 +127,9 @@ export const PaginationControl = <TData extends object>({
             default:
                 break;
         }
-    }, [goToPage, totalPages]);
+    }, [goToPage, totalPages, currentPage]);
 
+    // Render pagination buttons with smart ellipsis for large page counts
     const renderPageNumbers = useCallback(() => {
         const pageNumbers = [];
         const maxVisiblePages = 7;
@@ -134,7 +143,7 @@ export const PaginationControl = <TData extends object>({
                         active={currentPage === i}
                         onClick={goToPage}
                         onKeyDown={handleKeyDown}
-                        disabled={false}
+                        disabled={disabled || isFetching} // Use the disabled prop from parent
                         className={classes.paginationPageButton}
                     />
                 );
@@ -158,7 +167,7 @@ export const PaginationControl = <TData extends object>({
                     active={currentPage === 1}
                     onClick={goToPage}
                     onKeyDown={handleKeyDown}
-                    disabled={false}
+                    disabled={disabled || isFetching}
                     className={classes.paginationPageButton}
                 />
             );
@@ -175,7 +184,7 @@ export const PaginationControl = <TData extends object>({
                         active={currentPage === i}
                         onClick={goToPage}
                         onKeyDown={handleKeyDown}
-                        disabled={false}
+                        disabled={disabled || isFetching}
                         className={classes.paginationPageButton}
                     />
                 );
@@ -192,13 +201,13 @@ export const PaginationControl = <TData extends object>({
                     active={currentPage === totalPages}
                     onClick={goToPage}
                     onKeyDown={handleKeyDown}
-                    disabled={false}
+                    disabled={disabled || isFetching}
                     className={classes.paginationPageButton}
                 />
             );
         }
         return pageNumbers;
-    }, [currentPage, totalPages, goToPage, handleKeyDown, classes]);
+    }, [currentPage, totalPages, goToPage, handleKeyDown, classes, disabled, isFetching]);
 
     const tblPaginationId = useId();
 
@@ -207,8 +216,8 @@ export const PaginationControl = <TData extends object>({
             <ToolbarGroup className={classes.paginationToolbarGroup}>
                 <ToolbarButton
                     onClick={() => handlePageChange('prev')}
-                    onKeyDown={(event) => handleKeyDown(event, currentPage - 1)}
-                    disabled={currentPage <= 1}
+                    onKeyDown={(event) => handleKeyDown(event, activePage - 1)}
+                    disabled={currentPage <= 1 || disabled || isFetching}
                     aria-label="Previous page"
                     tabIndex={currentPage <= 1 ? -1 : 0}
                     appearance="subtle"
@@ -224,8 +233,8 @@ export const PaginationControl = <TData extends object>({
                 <ToolbarDivider className={classes.paginationToolbarDivider} />
                 <ToolbarButton
                     onClick={() => handlePageChange('next')}
-                    onKeyDown={(event) => handleKeyDown(event, currentPage + 1)}
-                    disabled={currentPage >= totalPages}
+                    onKeyDown={(event) => handleKeyDown(event, activePage + 1)}
+                    disabled={currentPage >= totalPages || disabled || isFetching}
                     aria-label="Next page"
                     tabIndex={currentPage >= totalPages ? -1 : 0}
                     appearance="subtle"

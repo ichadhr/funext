@@ -201,6 +201,8 @@ export const useStyles = makeStyles({
     topControlsWrapper: {
         display: "flex",
         justifyContent: "space-between",
+        paddingTop: tokens.spacingVerticalXS,
+        paddingBottom: tokens.spacingVerticalXS,
         "@media (max-width: 768px)": {
             flexWrap: 'wrap', // Allow items to wrap to the next line
             width: '100%', // Ensure it takes full width
@@ -209,9 +211,12 @@ export const useStyles = makeStyles({
     bottomControlsWrapper: {
         display: "flex",
         justifyContent: "space-between",
+        paddingTop: tokens.spacingVerticalXS,
+        paddingBottom: tokens.spacingVerticalXS,
+        color: tokens.colorBrandForeground2,
         "@media (max-width: 768px)": {
             flexDirection: 'column', // Stack items vertically on small screens
-            gap: tokens.spacingVerticalM, // Adjust gap for vertical stacking
+            gap: tokens.spacingVerticalS, // Adjust gap for vertical stacking
             alignItems: 'center', // Center items when stacked
         },
     },

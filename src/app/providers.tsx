@@ -12,6 +12,7 @@ import {
     Theme,
 } from '@fluentui/react-components';
 import { useServerInsertedHTML } from 'next/navigation';
+import { QueryProvider } from '../providers/query-client-provider';
 
 // Create the context without an explicit interface, letting TypeScript infer
 const ThemeContext = React.createContext<
@@ -51,9 +52,11 @@ export function Providers({ children, themeName }: { children: React.ReactNode; 
     return (
         <RendererProvider renderer={renderer}>
             <SSRProvider>
-                <ThemeContext.Provider value={{ currentTheme, toggleTheme, isDarkTheme }}>
-                    <FluentProvider theme={currentTheme}>{children}</FluentProvider>
-                </ThemeContext.Provider>
+                <QueryProvider>
+                    <ThemeContext.Provider value={{ currentTheme, toggleTheme, isDarkTheme }}>
+                        <FluentProvider theme={currentTheme}>{children}</FluentProvider>
+                    </ThemeContext.Provider>
+                </QueryProvider>
             </SSRProvider>
         </RendererProvider>
     );

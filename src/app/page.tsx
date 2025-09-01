@@ -30,7 +30,7 @@ const dataTableOptions = {
     },
     ajax: {
         url: "http://localhost:8080/dt_json",
-        type: "GET"
+        type: "POST"
     }
 };
 
