@@ -1,4 +1,4 @@
-import { ServerResponse, ServerSideParams } from '../../types';
+import { ServerResponse, ServerSideParams } from '../../../types';
 import { ColumnDef } from '@tanstack/react-table';
 
 export interface DataTablesResponse {

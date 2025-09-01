@@ -1,4 +1,4 @@
-import { ServerResponse, ServerSideParams } from '../../types';
+import { ServerResponse, ServerSideParams } from '../../../types';
 
 export interface GraphQLResponse<TData = unknown> {
     data: {
@@ -177,42 +177,42 @@ export function formatGraphQLRequest(params: ServerSideParams): {
  * Makes a GraphQL request with proper formatting
  */
 export async function makeGraphQLRequest(
-  url: string,
-  params: ServerSideParams
+    url: string,
+    params: ServerSideParams
 ): Promise<unknown> {
-  const { query, variables } = formatGraphQLRequest(params);
+    const { query, variables } = formatGraphQLRequest(params);
 
-  const response = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      query,
-      variables,
-    }),
-  });
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            query,
+            variables,
+        }),
+    });
 
-  if (!response.ok) {
-    throw new Error(`GraphQL request failed: ${response.statusText}`);
-  }
+    if (!response.ok) {
+        throw new Error(`GraphQL request failed: ${response.statusText}`);
+    }
 
-  const result = await response.json();
+    const result = await response.json();
 
-  // Check for GraphQL errors
-  if (result.errors) {
-    throw new Error(`GraphQL errors: ${result.errors.map((e: { message: string }) => e.message).join(', ')}`);
-  }
+    // Check for GraphQL errors
+    if (result.errors) {
+        throw new Error(`GraphQL errors: ${result.errors.map((e: { message: string }) => e.message).join(', ')}`);
+    }
 
-  return result;
+    return result;
 }
 
 /**
  * Creates a GraphQL query function for use with TanStack Query
  */
 export function createGraphQLQueryFn<TData = unknown>(url: string) {
-  return async (params: ServerSideParams): Promise<ServerResponse<TData>> => {
-    const response = await makeGraphQLRequest(url, params);
-    return response as ServerResponse<TData>;
-  };
+    return async (params: ServerSideParams): Promise<ServerResponse<TData>> => {
+        const response = await makeGraphQLRequest(url, params);
+        return response as ServerResponse<TData>;
+    };
 }

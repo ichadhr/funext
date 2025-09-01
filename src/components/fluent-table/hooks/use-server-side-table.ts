@@ -6,9 +6,9 @@ import {
     ServerSideOptions,
     ServerError
 } from '../types';
-import { transformDataTablesResponse, isDataTablesFormat, makeDataTablesRequest } from '../ext/server-side/datatables';
-import { makeRestApiRequest } from '../ext/server-side/api';
-import { makeGraphQLRequest, transformGraphQLResponse } from '../ext/server-side/graphql';
+import { transformDataTablesResponse, isDataTablesFormat, makeDataTablesRequest } from '../ext/server-side/api/datatables';
+import { makeRestRequest } from '../ext/server-side/api/rest';
+import { makeGraphQLRequest, transformGraphQLResponse } from '../ext/server-side/api/graphql';
 import { ColumnDef } from '@tanstack/react-table';
 
 export interface UseServerSideTableResult<TData> {

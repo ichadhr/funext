@@ -127,11 +127,11 @@ export const FluentTable = <TData extends object>({
       case "info":
         return <InfoControl table={table} />;
       case "pagination":
-        return <PaginationControl table={table} previousPage={previousPage} getCanPreviousPage={getCanPreviousPage} nextPage={nextPage} getCanNextPage={getCanNextPage} getPageCount={getPageCount} getStatePagination={getStatePagination} setPageIndex={setPageIndex} />;
+        return <PaginationControl previousPage={previousPage} getCanPreviousPage={getCanPreviousPage} nextPage={nextPage} getCanNextPage={getCanNextPage} getPageCount={getPageCount} getStatePagination={getStatePagination} setPageIndex={setPageIndex} />;
       default:
         return null;
     }
-  }, [table, getStatePagination, setPageSize, globalFilter, setGlobalFilter, previousPage, getCanPreviousPage, nextPage, getCanNextPage, getPageCount, setPageIndex]);
+  }, [getStatePagination, setPageSize, globalFilter, setGlobalFilter, previousPage, getCanPreviousPage, nextPage, getCanNextPage, getPageCount, setPageIndex]);
 
   // Check if server-side processing is enabled
   if (serverSide) {

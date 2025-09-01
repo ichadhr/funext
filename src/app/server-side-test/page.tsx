@@ -5,9 +5,9 @@ import { FluentTable } from "@components/fluent-table/fluent-table";
 import { ColumnDef } from '@tanstack/react-table';
 import { ServerSideParams, ServerResponse } from '@components/fluent-table/types';
 import { SortingState } from '@tanstack/react-table';
-import { createRestApiQueryFn } from '@components/fluent-table/ext/server-side/api';
-import { createDataTablesQueryFn } from '@components/fluent-table/ext/server-side/datatables';
-import { createGraphQLQueryFn } from '@components/fluent-table/ext/server-side/graphql';
+import { createRestQueryFn } from '@components/fluent-table/ext/server-side/api/rest';
+import { createDataTablesQueryFn } from '@components/fluent-table/ext/server-side/api/datatables';
+import { createGraphQLQueryFn } from '@components/fluent-table/ext/server-side/api/graphql';
 
 // Sample data for testing backward compatibility
 const sampleData = [
@@ -163,7 +163,7 @@ export default function ServerSideTestPage() {
                 serverSide={testMode === 'server' ? {
                     url: '/api/table-data',
                     queryKey: (params: ServerSideParams) => ['rest-data', params],
-                    queryFn: createRestApiQueryFn('/api/table-data'),
+                    queryFn: createRestQueryFn('/api/table-data'),
                     dataFormat: 'rest',
                 } : testMode === 'datatables' ? {
                     url: 'http://localhost:8080/dt_json',
