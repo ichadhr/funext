@@ -1,4 +1,4 @@
-import { ColumnDef, SortingState } from "@tanstack/react-table";
+import { ColumnDef, SortingState, Table, PaginationState, ColumnFiltersState } from "@tanstack/react-table";
 import { QueryKey } from "@tanstack/react-query";
 
 export type TableControl = "pageSize" | "search" | "info" | "pagination";
@@ -73,4 +73,48 @@ export interface FluentTableProps<TData extends object> {
     size?: "small" | "medium" | "extra-small";
     event?: FluentTableEventHandlers;
     serverSide?: ServerSideOptions<TData>;
+}
+
+export interface UseServerSideTableResult<TData> {
+    data: TData[];
+    isLoading: boolean;
+    isFetching: boolean;
+    isRefetching: boolean; // Background refetch indicator
+    isError: boolean;
+    error: ServerError | null;
+    recordsFiltered: number;
+    recordsTotal: number;
+    refetch: () => void;
+}
+
+export interface UseTableEventsProps<TData extends object> {
+    table: Table<TData>;
+    event?: FluentTableProps<TData>['event'];
+    pagination: PaginationState;
+    sorting: SortingState;
+    debouncedGlobalFilter: string;
+    data: TData[];
+    columns: ColumnDef<TData>[];
+    debouncedOnDrawDependencies: {
+        pagination: PaginationState;
+        sorting: SortingState;
+        debouncedGlobalFilter: string;
+        columnFilters: ColumnFiltersState;
+        data: TData[];
+        columns: ColumnDef<TData>[];
+    };
+}
+
+export interface TableRendererProps<TData extends object> {
+    tableId: string;
+    table: Table<TData>;
+    columns: ColumnDef<TData>[];
+    data: TData[];
+    striped?: boolean;
+    size?: 'small' | 'medium' | 'extra-small';
+    isMobile: boolean;
+}
+
+export interface ServerSideFluentTableProps<TData extends object> extends Omit<FluentTableProps<TData>, 'data'> {
+    serverSide: NonNullable<FluentTableProps<TData>['serverSide']>;
 }

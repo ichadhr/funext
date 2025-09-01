@@ -17,17 +17,13 @@ import { useId, TableBody, TableCell, TableRow, Table, TableHeader, TableHeaderC
 import { useServerSideTable } from '../../hooks/use-server-side-table';
 import { useDebounce } from '../../hooks/use-debounce';
 import { useIsMobile } from '@components/ui/hooks/use-mobile';
-import { TableControl, TableLayout, FluentTableProps, ServerSideParams } from '../../types';
+import { TableControl, TableLayout, FluentTableProps, ServerSideParams, ServerSideFluentTableProps } from '../../types';
 import { SearchControl } from '../../controls/search-control';
 import { PageSizeControl } from '../../controls/page-size-control';
 import { PaginationControl } from '../../controls/pagination-control';
 import { InfoControl } from '../../controls/info-control';
 import { useStyles } from '../../styles';
 import ErrorBoundary from '../../error-boundary';
-
-interface ServerSideFluentTableProps<TData extends object> extends Omit<FluentTableProps<TData>, 'data'> {
-  serverSide: NonNullable<FluentTableProps<TData>['serverSide']>;
-}
 
 export const ServerSideFluentTable = <TData extends object>({
   columns,
@@ -312,7 +308,7 @@ export const ServerSideFluentTable = <TData extends object>({
       default:
         return null;
     }
-  }, [table, pagination, setPagination, globalFilter, setGlobalFilter, displayRecordsFiltered, isFetching]);
+  }, [table, pagination, setPagination, globalFilter, setGlobalFilter, displayRecordsFiltered, displayData, isFetching]);
 
   const MobileCardRow = React.memo<{ row: Row<TData>; classes: ReturnType<typeof useStyles> }>(({ row, classes }) => (
     <div className={classes.mobileCard}>

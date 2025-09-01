@@ -131,7 +131,7 @@ export const FluentTable = <TData extends object>({
       default:
         return null;
     }
-  }, [getStatePagination, setPageSize, globalFilter, setGlobalFilter, previousPage, getCanPreviousPage, nextPage, getCanNextPage, getPageCount, setPageIndex]);
+  }, [table, getStatePagination, setPageSize, globalFilter, setGlobalFilter, previousPage, getCanPreviousPage, nextPage, getCanNextPage, getPageCount, setPageIndex]);
 
   // Check if server-side processing is enabled
   if (serverSide) {

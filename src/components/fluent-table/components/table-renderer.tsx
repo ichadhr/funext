@@ -9,18 +9,9 @@ import {
   Label,
   mergeClasses,
 } from '@fluentui/react-components';
-import { Row, ColumnDef, Table as TanStackTable, flexRender, Column, HeaderGroup, Header } from '@tanstack/react-table';
+import { Row, ColumnDef, flexRender, Column, HeaderGroup, Header } from '@tanstack/react-table';
 import { useStyles } from '../styles';
-
-interface TableRendererProps<TData extends object> {
-  tableId: string;
-  table: TanStackTable<TData>;
-  columns: ColumnDef<TData>[];
-  data: TData[];
-  striped?: boolean;
-  size?: 'small' | 'medium' | 'extra-small';
-  isMobile: boolean;
-}
+import { TableRendererProps } from '../types';
 
 export const TableRenderer = <TData extends object>({
     tableId,

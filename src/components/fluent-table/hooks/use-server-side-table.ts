@@ -4,24 +4,13 @@ import {
     ServerSideParams,
     ServerResponse,
     ServerSideOptions,
-    ServerError
+    ServerError,
+    UseServerSideTableResult
 } from '../types';
 import { transformDataTablesResponse, isDataTablesFormat, makeDataTablesRequest } from '../ext/server-side/api/datatables';
 import { makeRestRequest } from '../ext/server-side/api/rest';
 import { makeGraphQLRequest, transformGraphQLResponse } from '../ext/server-side/api/graphql';
 import { ColumnDef } from '@tanstack/react-table';
-
-export interface UseServerSideTableResult<TData> {
-    data: TData[];
-    isLoading: boolean;
-    isFetching: boolean;
-    isRefetching: boolean; // Background refetch indicator
-    isError: boolean;
-    error: ServerError | null;
-    recordsFiltered: number;
-    recordsTotal: number;
-    refetch: () => void;
-}
 
 export function useServerSideTable<TData extends object>(
     params: ServerSideParams,
@@ -39,12 +28,10 @@ export function useServerSideTable<TData extends object>(
     }, [params, eventHandlers]);
 
     const queryKey = options.queryKey(params);
-    console.log('🔑 useServerSideTable Query key:', queryKey);
 
     const query = useQuery({
         queryKey,
         queryFn: async (): Promise<ServerResponse<TData>> => {
-            console.log('🚀 useServerSideTable queryFn triggered for queryKey:', queryKey);
             try {
                 let rawResponse: unknown;
 
@@ -129,14 +116,5 @@ export function useServerSideTable<TData extends object>(
         refetch: query.refetch,
     }), [query]);
 
-    console.log('📊 useServerSideTable result:', {
-        dataLength: query.data?.data?.length ?? 0,
-        isLoading: query.isLoading,
-        isFetching: query.isFetching,
-        isRefetching: query.isFetching && !query.isLoading,
-        isError: query.isError,
-        recordsFiltered: query.data?.recordsFiltered ?? 0,
-        recordsTotal: query.data?.recordsTotal ?? 0,
-    });
     return result;
 }

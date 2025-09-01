@@ -1,24 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Table, SortingState, PaginationState, ColumnDef, ColumnFiltersState } from '@tanstack/react-table';
-import { FluentTableProps } from '../types';
-
-interface UseTableEventsProps<TData extends object> {
-  table: Table<TData>;
-  event?: FluentTableProps<TData>['event'];
-  pagination: PaginationState;
-  sorting: SortingState;
-  debouncedGlobalFilter: string;
-  data: TData[];
-  columns: ColumnDef<TData>[];
-  debouncedOnDrawDependencies: {
-    pagination: PaginationState;
-    sorting: SortingState;
-    debouncedGlobalFilter: string;
-    columnFilters: ColumnFiltersState;
-    data: TData[];
-    columns: ColumnDef<TData>[];
-  };
-}
+import { FluentTableProps, UseTableEventsProps } from '../types';
 
 export function useTableEvents<TData extends object>({
   table,
