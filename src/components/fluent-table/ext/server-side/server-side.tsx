@@ -7,7 +7,6 @@ import {
   getSortedRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
-  ColumnDef,
   Row,
   SortingState,
   PaginationState,
@@ -17,7 +16,7 @@ import { useId, TableBody, TableCell, TableRow, Table, TableHeader, TableHeaderC
 import { useServerSideTable } from '../../hooks/use-server-side-table';
 import { useDebounce } from '../../hooks/use-debounce';
 import { useIsMobile } from '@components/ui/hooks/use-mobile';
-import { TableControl, TableLayout, FluentTableProps, ServerSideParams, ServerSideFluentTableProps } from '../../types';
+import { TableControl, ServerSideParams, ServerSideFluentTableProps } from '../../types';
 import { SearchControl } from '../../controls/search-control';
 import { PageSizeControl } from '../../controls/page-size-control';
 import { PaginationControl } from '../../controls/pagination-control';
@@ -93,7 +92,7 @@ export const ServerSideFluentTable = <TData extends object>({
   // Display data management - preserve previous data during fetches to prevent UI flicker
   const displayData = isFetching && previousData.length > 0 ? previousData : serverData;
   const displayRecordsFiltered = isFetching && previousRecordsFiltered > 0 ? previousRecordsFiltered : recordsFiltered;
-  const displayRecordsTotal = isFetching && previousRecordsTotal > 0 ? previousRecordsTotal : recordsTotal;
+  const _displayRecordsTotal = isFetching && previousRecordsTotal > 0 ? previousRecordsTotal : recordsTotal;
 
   // Create table instance with display data (server data or previous data during fetches)
   const table = useReactTable({

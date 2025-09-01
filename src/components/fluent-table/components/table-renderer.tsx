@@ -9,7 +9,7 @@ import {
   Label,
   mergeClasses,
 } from '@fluentui/react-components';
-import { Row, ColumnDef, flexRender, Column, HeaderGroup, Header } from '@tanstack/react-table';
+import { Row, flexRender, Column, HeaderGroup } from '@tanstack/react-table';
 import { useStyles } from '../styles';
 import { TableRendererProps } from '../types';
 

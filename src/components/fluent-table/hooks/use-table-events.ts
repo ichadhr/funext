@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { FluentTableProps, UseTableEventsProps } from '../types';
+import { UseTableEventsProps } from '../types';
 
 export function useTableEvents<TData extends object>({
   table,
@@ -7,11 +7,9 @@ export function useTableEvents<TData extends object>({
   pagination,
   sorting,
   debouncedGlobalFilter,
-  data,
-  columns,
   debouncedOnDrawDependencies,
 }: UseTableEventsProps<TData>) {
-  const { onInitializing, onInit, onSearch, onDraw, onOrder, onPageChange, onPageLengthChange, onPreDraw, onPreInit, onProcessing, onError } = event || {};
+  const { onInitializing, onInit, onSearch, onDraw, onOrder, onPageChange, onPageLengthChange, onPreDraw, onPreInit, onProcessing, onError: _onError } = event || {};
 
   // Refs and state for event management
   const isMounted = useRef(false);

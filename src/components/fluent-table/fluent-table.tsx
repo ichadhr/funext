@@ -1,25 +1,6 @@
-import React, { useMemo, useRef } from "react";
-import {
-  useId,
-  TableBody,
-  TableCell,
-  TableRow,
-  Table,
-  TableHeader,
-  TableHeaderCell,
-  Label,
-  mergeClasses,
-} from "@fluentui/react-components";
-import {
-  useReactTable,
-  getCoreRowModel,
-  ColumnDef,
-  flexRender,
-  getSortedRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  Row,
-} from "@tanstack/react-table";
+import React, { useMemo } from "react";
+import { useId } from "@fluentui/react-components";
+import { ColumnDef } from "@tanstack/react-table";
 
 export type { ColumnDef };
 import { useTableFiltering } from "./hooks/use-table-filtering";
@@ -30,7 +11,7 @@ import { useIsMobile } from "@components/ui/hooks/use-mobile"; // Import useIsMo
 import { useTableEvents } from "./hooks/use-table-events"; // Import custom event handling hook
 import { useTableConfig } from "./utils/table-config"; // Import table configuration hook
 import { TableRenderer } from "./components/table-renderer"; // Import table renderer component
-import { TableControl, TableLayout, FluentTableProps } from "./types";
+import { TableControl, FluentTableProps } from "./types";
 import { SearchControl } from "./controls/search-control";
 import { PageSizeControl } from "./controls/page-size-control";
 import { PaginationControl } from "./controls/pagination-control";
@@ -65,7 +46,7 @@ export const FluentTable = <TData extends object>({
   const { globalFilter, setGlobalFilter, debouncedGlobalFilter } = useTableFiltering(table);
   const {
     pagination,
-    setPagination,
+    setPagination: _setPagination,
     previousPage,
     nextPage,
     getCanPreviousPage,
@@ -75,7 +56,7 @@ export const FluentTable = <TData extends object>({
     setPageSize,
     setPageIndex,
   } = useTablePagination(table);
-  const { sorting, setSorting } = useTableSorting(table);
+  const { sorting, setSorting: _setSorting } = useTableSorting(table);
 
   // Memoize table state values
   const memoizedPagination = useMemo(() => pagination, [pagination]);
@@ -104,7 +85,7 @@ export const FluentTable = <TData extends object>({
   const debouncedOnDrawDependencies = useDebounce(onDrawDependencies, 100);
 
   // Use custom hook for event handling
-  const { isProcessing, isInitializing } = useTableEvents({
+  const { isProcessing: _isProcessing, isInitializing: _isInitializing } = useTableEvents({
     table,
     event,
     pagination: memoizedPagination,

@@ -102,7 +102,7 @@ export const PaginationControl = ({
     // Active page for keyboard navigation (always matches current page)
     const activePage = currentPage;
 
-    const handleKeyDown = useCallback((event: KeyboardEvent<HTMLButtonElement>, page: number) => {
+    const handleKeyDown = useCallback((event: KeyboardEvent<HTMLButtonElement>, _page: number) => {
         switch (event.key) {
             case 'ArrowLeft':
                 if (currentPage > 1) {

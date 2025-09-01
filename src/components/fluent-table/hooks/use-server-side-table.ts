@@ -8,7 +8,6 @@ import {
     UseServerSideTableResult
 } from '../types';
 import { transformDataTablesResponse, isDataTablesFormat, makeDataTablesRequest } from '../ext/server-side/api/datatables';
-import { makeRestRequest } from '../ext/server-side/api/rest';
 import { makeGraphQLRequest, transformGraphQLResponse } from '../ext/server-side/api/graphql';
 import { ColumnDef } from '@tanstack/react-table';
 
